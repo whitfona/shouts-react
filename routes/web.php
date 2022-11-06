@@ -4,7 +4,9 @@ use App\Models\Beer;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,21 @@ Route::get('/beers', function() {
 Route::get('/beers/{user}', function(User $user) {
     return Beer::where('user_id', '=', $user->id)->get();
 })->name('beers.user');
+
+Route::post('/beers/', function () {
+//    dd(request()->toArray());
+    $validated = request()->validate([
+        'name' => ['required', 'string', 'max:100'],
+        'brewery' => ['required', 'string', 'max:100'],
+        'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
+    ]);
+
+    $validated['has_lactose'] = request()->has('has_lactose');
+    auth()->user()->beers()->create($validated);
+
+    return Response::HTTP_CREATED;
+
+})->name('beers.store');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

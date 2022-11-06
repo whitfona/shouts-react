@@ -9,6 +9,8 @@ class Beer extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
       'has_lactose' => 'boolean'
     ];

@@ -37,11 +37,25 @@ class BeerTest extends TestCase
             ->assertJson($userBeers->toArray());
 
     }
-//    public function test_user_can_add_a_beer()
-//    {
-//        $user = User::factory()->create();
-//        $beer = Beer::factory()->make(['user_id' => $user->id]);
-//
-//        $this->
-//    }
+
+    public function test_unauthenticated_user_cannot_add_beer()
+    {
+        $beer = Beer::factory()->make();
+
+        $this->postJson(route('beers.store'), $beer->toArray());
+
+        $this->assertGuest();
+    }
+
+    public function test_user_can_add_a_beer()
+    {
+        $user = User::factory()->create();
+        $beer = Beer::factory()->make(['user_id' => $user->id, 'has_lactose' => 'false']);
+
+        $this->actingAs($user)->postJson(route('beers.store'), $beer->toArray())
+            ->assertOk();
+
+        $this->assertDatabaseCount('beers', 1);
+        $this->assertDatabaseHas('beers', $beer->toArray());
+    }
 }
