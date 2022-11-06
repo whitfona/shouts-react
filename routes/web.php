@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Beer;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +16,14 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/beers', function() {
+    return Beer::all();
+})->name('beers.index');
+
+Route::get('/beers/{user}', function(User $user) {
+    return Beer::where('user_id', '=', $user->id)->get();
+})->name('beers.user');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

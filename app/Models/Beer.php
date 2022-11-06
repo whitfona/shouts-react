@@ -9,6 +9,10 @@ class Beer extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+      'has_lactose' => 'boolean'
+    ];
+
     public function category()
     {
         return $this->hasOne(Category::class);

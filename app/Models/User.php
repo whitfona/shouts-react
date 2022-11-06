@@ -42,12 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function beer()
+    public function beers()
     {
         return $this->hasMany(Beer::class);
     }
 
-    public function rating()
+    public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
