@@ -42,10 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function beers()
-    {
-        return $this->hasMany(Beer::class);
-    }
+//    public function beers()
+//    {
+//        return $this->hasMany(Beer::class);
+//    }
 
     public function ratings()
     {

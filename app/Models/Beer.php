@@ -20,10 +20,10 @@ class Beer extends Model
         return $this->hasOne(Category::class);
     }
 
-    public function user()
-    {
-        return $this->belongsToMany(User::class);
-    }
+//    public function user()
+//{
+//    return $this->belongsToMany(User::class);
+//}
 
     public function rating()
     {

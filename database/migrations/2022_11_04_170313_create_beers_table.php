@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('beers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('category_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('rating_id')->nullable();
+//            $table->unsignedInteger('category_id')->nullable();
+//            $table->unsignedInteger('user_id')->nullable();
+//            $table->unsignedInteger('rating_id')->nullable();
+            $table->bigInteger('barcode')->nullable();
             $table->string('name');
             $table->string('brewery');
-            $table->float('alcohol_percent');
+            $table->float('alcohol_percent')->nullable();
             $table->boolean('has_lactose');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
