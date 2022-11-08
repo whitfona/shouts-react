@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Beer;
+use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +26,6 @@ Route::get('/beers', function () {
     return Beer::with('rating')->get();
 })->name('beers.barcode.index');
 
-
 /**
  * GET all users ratings & comments for a beer using the beer's barcode
  *
@@ -34,8 +35,13 @@ Route::get('/beers/barcode/{beer}', function ($barcode) {
     return Beer::with('rating')->get()->where('barcode', '=', $barcode)->first(); // search using barcode
 })->name('beers.barcode.show');
 
-
-
+/**
+ * Get all beers, comments and ratings for the signed in user
+ */
+Route::get('/beers/{user}', function() {
+    $user = auth()->user();
+    return Rating::all()->where('user_id', '=', $user->id);
+})->middleware('auth')->name('beers.user.show');
 
 
 

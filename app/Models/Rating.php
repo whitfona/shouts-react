@@ -9,7 +9,7 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
+    protected $with = ['user', 'beer'];
 
     public function beer()
     {
