@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Beer;
+use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -23,7 +24,7 @@ use Inertia\Inertia;
  *
  */
 Route::get('/beers', function () {
-    return Beer::with('rating')->get();
+    return json_encode(Beer::with('rating', 'category')->get());
 })->name('beers.barcode.index');
 
 /**

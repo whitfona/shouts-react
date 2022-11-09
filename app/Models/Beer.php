@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Beer extends Model
 {
@@ -15,9 +17,9 @@ class Beer extends Model
       'has_lactose' => 'boolean'
     ];
 
-    public function category()
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
 //    public function user()
@@ -25,7 +27,7 @@ class Beer extends Model
 //    return $this->belongsToMany(User::class);
 //}
 
-    public function rating()
+    public function rating(): HasMany
     {
         return $this->hasMany(Rating::class);
     }

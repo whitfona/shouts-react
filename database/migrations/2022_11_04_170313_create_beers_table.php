@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('beers', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
 //            $table->unsignedInteger('user_id')->nullable();
 //            $table->unsignedInteger('rating_id')->nullable();
             $table->bigInteger('barcode')->nullable();

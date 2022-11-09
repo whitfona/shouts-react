@@ -43,14 +43,17 @@ class BeerTest extends TestCase
             'name' => 'Elora Borealis',
             'brewery' => 'Elora Brewing Co.',
             'alcohol_percent' => 5.1,
-            'has_lactose' => false
+            'has_lactose' => false,
+            'category_id' => 1
         ]);
         Beer::factory()->create([
             'barcode' => 628028020468,
             'name' => 'Papays Juicy IPA',
             'brewery' => 'Cowbell Brewing Co.',
             'alcohol_percent' => 6,
-            'has_lactose' => false
+            'has_lactose' => false,
+            'category_id' => 2
+//            'category_id' => Category::find(2)->id
         ]);
 
         Rating::factory()->create([
@@ -75,7 +78,7 @@ class BeerTest extends TestCase
         ]);
     }
 
-    public function test_get_all_beers_with_all_ratings_comments_from_all_users()
+    public function test_get_all_beers_with_all_ratings_comments_from_all_users_and_category()
     {
         $beers = Beer::all();
 

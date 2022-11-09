@@ -43,14 +43,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Elora Borealis',
             'brewery' => 'Elora Brewing Co.',
             'alcohol_percent' => 5.1,
-            'has_lactose' => false
+            'has_lactose' => false,
+            'category_id' => 1
         ]);
         Beer::factory()->create([
             'barcode' => 628028020468,
             'name' => 'Papays Juicy IPA',
             'brewery' => 'Cowbell Brewing Co.',
             'alcohol_percent' => 6,
-            'has_lactose' => false
+            'has_lactose' => false,
+            'category_id' => 2
         ]);
 
         Rating::factory()->create([
