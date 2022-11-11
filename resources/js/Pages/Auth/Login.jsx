@@ -31,12 +31,12 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
-
+        <GuestLayout
+            header={'Log In'}
+        >
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="p-4">
                 <div>
                     <InputLabel forInput="email" value="Email" />
 
