@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -13,6 +13,7 @@ export default function Register() {
         password: '',
         password_confirmation: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         return () => {
@@ -35,6 +36,7 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit} className="p-4">
+                <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Register</h2>
                 <div>
                     <InputLabel forInput="name" value="Name" />
 
@@ -72,7 +74,7 @@ export default function Register() {
                     <InputLabel forInput="password" value="Password" />
 
                     <TextInput
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
@@ -80,6 +82,11 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+                    <p onClick={() => setShowPassword(!showPassword)}
+                       className="text-right text-sm mt-0.5 text-gray-700 hover:cursor-pointer select-none"
+                    >
+                        {showPassword ? 'Hide Password' : 'Show Password'}
+                    </p>
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>

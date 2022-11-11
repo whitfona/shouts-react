@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -13,6 +13,7 @@ export default function Login({ status, canResetPassword }) {
         password: '',
         remember: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         return () => {
@@ -38,6 +39,8 @@ export default function Login({ status, canResetPassword }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit} className="p-4">
+                <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Log in</h2>
+
                 <div>
                     <InputLabel forInput="email" value="Email" />
 
@@ -58,13 +61,18 @@ export default function Login({ status, canResetPassword }) {
                     <InputLabel forInput="password" value="Password" />
 
                     <TextInput
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
                         handleChange={onHandleChange}
                     />
+                    <p onClick={() => setShowPassword(!showPassword)}
+                       className="text-right text-sm mt-0.5 text-gray-700 hover:cursor-pointer select-none"
+                    >
+                        {showPassword ? 'Hide Password' : 'Show Password'}
+                    </p>
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
