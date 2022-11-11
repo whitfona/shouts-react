@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Style barcode reader scanner*/
+#reader {
+    width: 350px;
+    margin: auto;
+}
+canvas.drawingBuffer {
+    height: 0;
+    width: 0;
+}
+
