@@ -4,6 +4,7 @@ import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import BeerDetails from "@/Components/BeerDetails";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
+import DownArrow from "@/Components/DownArrow";
 
 export default function Welcome(props) {
     const startReader = () => {
@@ -90,7 +91,29 @@ export default function Welcome(props) {
             .catch(err => console.log(err))
     }
 
+    const searchByCategory = () => {
+        const category = event.target.value
+        if (category == -1) {
+            fetch(route('beers.barcode.index'))
+                .then(res => res.json())
+                .then(data => {
+                    data.sort((a, b) => b.avg_rating - a.avg_rating)
+                    setBeers(data)
+                })
+                .catch(err => console.log(err))
+        } else {
+            fetch(route('beers.category.show', category))
+                .then(res => res.json())
+                .then(data => {
+                    data.sort((a, b) => b.avg_rating - a.avg_rating)
+                    setBeers(data)
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
     const [beers, setBeers] = useState([])
+    const [categories, setCategories] = useState([])
     const [message, setMessage] = useState('')
 
     useEffect(() => {
@@ -99,6 +122,12 @@ export default function Welcome(props) {
             .then(data => {
                 data.sort((a, b) => b.avg_rating - a.avg_rating)
                 setBeers(data)
+            })
+            .catch(err => console.log(err))
+        fetch(route('categories.index'))
+            .then(res => res.json())
+            .then(data => {
+                setCategories(data)
             })
             .catch(err => console.log(err))
     }, [])
@@ -139,6 +168,21 @@ export default function Welcome(props) {
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                     <div className="p-6 bg-white border-b border-gray-200">Welcome</div>
+                                    {/*<button*/}
+                                    {/*    className="bg-white px-3 py-2 text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2 flex gap-2">*/}
+                                    {/*    Filter by Category*/}
+                                    {/*    <DownArrow />*/}
+                                    {/*</button>*/}
+                                    <select
+                                        onChange={searchByCategory}
+                                        className="bg-white text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex"
+                                    >
+                                        <option selected disabled>Filter by Category</option>
+                                        <option key={-1} value={-1}>All</option>
+                                        {categories.map(category => (
+                                            <option key={category.id} value={category.id}>{category.type}</option>
+                                        ))}
+                                    </select>
                                     <button onClick={startReader}
                                             className="max-w-fit mx-auto sm:px-6 rounded-md mt-6 p-4 bg-pink-400 flex
                                             justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
