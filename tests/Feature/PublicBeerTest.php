@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class BeerTest extends TestCase
+class PublicBeerTest extends TestCase
 {
 
     use RefreshDatabase;
@@ -219,27 +219,5 @@ class BeerTest extends TestCase
             ->assertOk()
             ->assertJsonCount(1);
 //            ->assertJson($beer->toArray());
-    }
-
-
-
-
-
-    public function test_get_all_beers_for_logged_in_user()
-    {
-        $user = User::find(3);
-        $numberOfRatings = Rating::all()->where('user_id', '=', $user->id)->count();
-
-        $this->actingAs($user)->getJson(route('beers.user.show', $user))
-            ->assertOk()
-            ->assertJsonCount($numberOfRatings);
-    }
-
-    public function test_cannot_get_beers_for_user_if_not_logged_in()
-    {
-        $user = User::find(1);
-
-        $this->getJson(route('beers.user.show', $user))
-            ->assertUnauthorized();
     }
 }

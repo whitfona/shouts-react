@@ -129,15 +129,6 @@ Route::get('/categories', function () {
 
 
 
-
-/**
- * Get all beers, comments and ratings for the signed in user
- */
-//Route::get('/beers/{user}', function() {
-//    $user = auth()->user();
-//    return Rating::all()->where('user_id', '=', $user->id);
-//})->middleware('auth')->name('beers.user.show');
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

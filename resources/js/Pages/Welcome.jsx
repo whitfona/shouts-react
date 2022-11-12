@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import BeerDetails from "@/Components/BeerDetails";
+import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
 
 export default function Welcome(props) {
@@ -225,7 +225,7 @@ export default function Welcome(props) {
                                     </button>
                                     <div id="reader"></div>
                                     {beers.map(beer => (
-                                        <BeerDetails
+                                        <PublicBeerDetails
                                             beer={beer}
                                             searchByBrewery={searchByBrewery}
                                             searchByUser={searchByUser}
