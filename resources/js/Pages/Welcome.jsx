@@ -3,6 +3,7 @@ import { Link, Head } from '@inertiajs/inertia-react';
 import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import BeerDetails from "@/Components/BeerDetails";
+import MagnifyingGlass from "@/Components/MagnifyingGlass";
 
 export default function Welcome(props) {
     const startReader = () => {
@@ -81,7 +82,6 @@ export default function Welcome(props) {
         fetch(route('beers.barcode.index'))
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 data.sort((a, b) => b.avg_rating - a.avg_rating)
                 setBeers(data)
             })
@@ -124,7 +124,13 @@ export default function Welcome(props) {
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                     <div className="p-6 bg-white border-b border-gray-200">Welcome</div>
-                                    <button onClick={startReader} className="p-4 bg-red-400">Scan Beer</button>
+                                    <button onClick={startReader}
+                                            className="max-w-fit mx-auto sm:px-6 rounded-md mt-6 p-4 bg-pink-400 flex
+                                            justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
+                                            text-white font-extrabold uppercase pl-3">
+                                        <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
+                                        Barcode
+                                    </button>
                                     <p>{message}</p>
                                     <div id="reader"></div>
                                     {beers.map(beer => (
