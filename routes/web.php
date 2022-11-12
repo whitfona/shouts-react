@@ -25,7 +25,6 @@ use Inertia\Inertia;
  *
  */
 Route::get('/beers', function () {
-
     $allBeers = BeerResource::collection(Beer::all());
 
     return response()->json($allBeers);
@@ -54,7 +53,7 @@ Route::get('/beers/brewery/{beer}', function ($brewery) {
 })->name('beers.brewery.show');
 
 /**
- * GET all beers associatd to a category
+ * GET all beers associated to a category
  *
  */
 Route::get('/beers/category/{beer}', function($category) {
@@ -66,15 +65,66 @@ Route::get('/beers/category/{beer}', function($category) {
 })->name('beers.category.show');
 
 /**
+ * GET all beers associated to a user
+ *
+ */
+Route::get('/beers/user/{beer}', function ($user) {
+    $found = Rating::all()->where('user_id', '=', $user);
+    $results = $found->map(function ($beer) {
+        return  [
+            'id' => $beer->beer->id,
+            "barcode" => $beer->beer->barcode,
+            "name" => $beer->beer->name,
+            "brewery" => $beer->beer->brewery,
+            "alcohol_percent" => $beer->beer->alcohol_percent,
+            "photo" => $beer->beer->photo,
+            "category" => $beer->beer->category->type,
+            "avg_rating" => null,
+            "has_lactose" => $beer->beer->has_lactose,
+            "ratings" => [
+                    [
+                    "id" => $beer->id,
+                    "user_id" => $beer->user->id,
+                    "user" => $beer->user->name,
+                    "rating" => $beer->rating,
+                    "comment" => $beer->comment,
+                    "user_photo" => $beer->user->profile_image,
+                    "date_added" => $beer->created_at->toDateString()
+                ]
+            ]
+        ];
+    });
+
+    $final = collect($results)->values()->all();
+
+    return response()->json($final);
+})->name('beers.user.show');
+
+/**
+ * GET all categories
+ *
+ */
+Route::get('/categories', function () {
+    $categories = Category::all();
+
+    return response()->json($categories);
+})->name('categories.index');
+
+
+
+
+
+
+
+
+
+/**
  * Get all beers, comments and ratings for the signed in user
  */
-Route::get('/beers/{user}', function() {
-    $user = auth()->user();
-    return Rating::all()->where('user_id', '=', $user->id);
-})->middleware('auth')->name('beers.user.show');
-
-
-
+//Route::get('/beers/{user}', function() {
+//    $user = auth()->user();
+//    return Rating::all()->where('user_id', '=', $user->id);
+//})->middleware('auth')->name('beers.user.show');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

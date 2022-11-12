@@ -183,9 +183,29 @@ class BeerTest extends TestCase
 
         $this->getJson(route('beers.category.show', $beer->category))
             ->assertOk()
-            ->dd()
             ->assertJsonCount($result->count());
     }
+
+    public function test_return_all_beers_for_a_user()
+    {
+        $user = User::find(1);
+        $result = Rating::all()->where('user_id', '=', $user->id);
+
+        $this->get(route('beers.user.show', $user->id))
+            ->assertOk()
+            ->assertJsonCount($result->count());
+    }
+
+
+    public function test_return_all_categories()
+    {
+        $categories = Category::all();
+
+        $this->getJson(route('categories.index'))
+            ->assertOk()
+            ->assertJson($categories->toArray());
+    }
+
 
     public function test_get_all_beers_for_logged_in_user()
     {
