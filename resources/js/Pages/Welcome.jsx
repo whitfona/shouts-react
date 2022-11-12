@@ -4,7 +4,6 @@ import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import BeerDetails from "@/Components/BeerDetails";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
-import DownArrow from "@/Components/DownArrow";
 
 export default function Welcome(props) {
     const startReader = () => {
