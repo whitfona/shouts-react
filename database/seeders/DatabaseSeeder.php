@@ -89,6 +89,14 @@ class DatabaseSeeder extends Seeder
             'category_id' => Category::find(2)->id,
             'photo' => "http://localhost:8000/storage/beers/neon.png"
         ]);
+        Beer::factory()->create([
+            'barcode' => null,
+            'name' => 'Light Work',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 4.1,
+            'has_lactose' => false,
+            'category_id' => Category::find(1)->id
+        ]);
 
         Rating::factory()->create([
             'user_id' => User::find(1)->id,
