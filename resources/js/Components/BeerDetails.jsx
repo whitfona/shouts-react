@@ -21,7 +21,7 @@ export default function BeerDetails({beer}) {
                     <DetailFormat name={'Lactose'} value={beer.has_lactose ? 'Yes' : 'No'} />
                 </div>
                 <div key={beer.id}>
-                    {beer.rating.map(rating => (
+                    {beer.ratings.map(rating => (
                         <div key={rating.id}>
                             <div className="mb-4">
                                 <p><span className="text-md font-semibold tracking-wide uppercase">Added By: </span><img className="w-8 h-8 rounded-full inline" src={rating.user_photo} /> {rating.user} | {rating.date_added}</p>

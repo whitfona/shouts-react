@@ -24,7 +24,7 @@ class BeerResource extends JsonResource
             'category' => $this->category->type,
             'avg_rating' => round($this->rating->avg('rating'), 1),
             'has_lactose' => $this->has_lactose,
-            'rating' => RatingResource::collection($this->rating),
+            'ratings' => RatingResource::collection($this->rating),
         ];
     }
 }
