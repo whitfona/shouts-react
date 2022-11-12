@@ -5,8 +5,34 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
 import BarcodeScanner from "@/Components/BarcodeScanner";
+import Header from "@/Components/Header";
 
 export default function Welcome(props) {
+
+    const [beers, setBeers] = useState([])
+    const [categories, setCategories] = useState([])
+    const [search, setSearch] = useState('')
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        fetchAllBeers()
+        fetch(route('categories.index'))
+            .then(res => res.json())
+            .then(data => {
+                setCategories(data)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const fetchAllBeers = () => {
+        fetch(route('beers.barcode.index'))
+            .then(res => res.json())
+            .then(data => {
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
+    }
 
     const getScannedBeers = (barcode) => {
         setMessage('')
@@ -74,30 +100,6 @@ export default function Welcome(props) {
         }
     }
 
-    const [beers, setBeers] = useState([])
-    const [categories, setCategories] = useState([])
-    const [search, setSearch] = useState('')
-    const [message, setMessage] = useState('')
-
-    const fetchAllBeers = () => {
-        fetch(route('beers.barcode.index'))
-            .then(res => res.json())
-            .then(data => {
-                data.sort((a, b) => b.avg_rating - a.avg_rating)
-                setBeers(data)
-            })
-            .catch(err => console.log(err))
-    }
-
-    useEffect(() => {
-        fetchAllBeers()
-        fetch(route('categories.index'))
-            .then(res => res.json())
-            .then(data => {
-                setCategories(data)
-            })
-            .catch(err => console.log(err))
-    }, [])
     return (
         <>
             <Head title="Welcome" />
@@ -135,28 +137,13 @@ export default function Welcome(props) {
                             <div className="max-w-7xl mx-auto">
                             {/*<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">*/}
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                    <header className="border-b border-gray-200 py-8 sm:px-6 lg:px-8">
-                                        <div className="font-semibold pb-4 text-xl leading-tight">All Bevvies</div>
-                                        <input
-                                            className="rounded-md shadow-sm text-gray-500 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-2 md:w-1/3"
-                                            type="text"
-                                            placeholder={'Search...'}
-                                            value={search}
-                                            onChange={handleSearch}
-                                        />
-                                        <select
-                                            onChange={searchByCategory}
-                                            defaultValue={'disabled'}
-                                            className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex"
-                                        >
-                                            <option value={'disabled'} disabled>Filter by Category</option>
-                                            <option key={-1} value={-1}>All</option>
-                                            {categories.map(category => (
-                                                <option key={category.id} value={category.id}>{category.type}</option>
-                                            ))}
-                                        </select>
-                                        <p>{message}</p>
-                                    </header>
+                                    <Header
+                                        categories={categories}
+                                        message={message}
+                                        search={search}
+                                        handleSearch={handleSearch}
+                                        searchByCategory={searchByCategory}
+                                    />
                                     <BarcodeScanner
                                         getScannedBeers={getScannedBeers}
                                         setMessage={setMessage}
