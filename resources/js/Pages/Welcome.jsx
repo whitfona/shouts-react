@@ -190,11 +190,12 @@ export default function Welcome(props) {
                         </div>
                     </div>
 
-                    <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                        <div className="py-12">
-                            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
+                        <div className="">
+                            <div className="max-w-7xl mx-auto">
+                            {/*<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">*/}
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                    <header className="border-b border-gray-200">
+                                    <header className="border-b border-gray-200 py-8 sm:px-6 lg:px-8">
                                         <div className="font-semibold pb-4 text-xl leading-tight">All Bevvies</div>
                                         <input
                                             className="rounded-md shadow-sm text-gray-500 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-2 md:w-1/3"
@@ -214,15 +215,15 @@ export default function Welcome(props) {
                                                 <option key={category.id} value={category.id}>{category.type}</option>
                                             ))}
                                         </select>
-                                        <button onClick={startReader}
-                                                className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
-                                                justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
-                                                text-white font-extrabold uppercase pl-3">
-                                            <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
-                                            Barcode
-                                        </button>
                                         <p>{message}</p>
                                     </header>
+                                    <button onClick={startReader}
+                                            className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
+                                            justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
+                                            text-white font-extrabold uppercase pl-3 mt-6">
+                                        <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
+                                        Barcode
+                                    </button>
                                     <div id="reader"></div>
                                     {beers.map(beer => (
                                         <BeerDetails
