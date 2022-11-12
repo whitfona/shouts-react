@@ -95,7 +95,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Fairweather Brewing Co.',
             'alcohol_percent' => 4.1,
             'has_lactose' => false,
-            'category_id' => Category::find(1)->id
+            'category_id' => Category::find(1)->id,
+            'photo' => "http://localhost:8000/storage/beers/lightwork.png"
         ]);
 
         Rating::factory()->create([
@@ -151,6 +152,10 @@ class DatabaseSeeder extends Seeder
         Rating::factory()->create([
             'user_id' => User::find(1)->id,
             'beer_id' => Beer::find(5)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(4)->id,
+            'beer_id' => Beer::find(6)->id
         ]);
 
         // \App\Models\User::factory(10)->create();
