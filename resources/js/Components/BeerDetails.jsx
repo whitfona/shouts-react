@@ -1,7 +1,7 @@
 import React from 'react'
 import DetailFormat from "@/Components/DetailFormat";
 
-export default function BeerDetails({beer}) {
+export default function BeerDetails({beer, searchByBrewery}) {
     return (
         <div className="md:flex gap-4 p-4 mb-4 md:mb-10" key={beer.id}>
             <img className="w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
@@ -17,7 +17,10 @@ export default function BeerDetails({beer}) {
                         <span className="font-semibold tracking-wide uppercase">Percent: </span>
                         {beer.alcohol_percent}%
                     </h2>
-                    <DetailFormat name={'Brewery'} value={beer.brewery} />
+                    <h2 className="text-lg min-w-[15%]">
+                        <span className="font-semibold tracking-wide uppercase">Brewery: </span>
+                        <button onClick={() => searchByBrewery(beer.brewery)}> {beer.brewery}</button>
+                    </h2>
                     <DetailFormat name={'Lactose'} value={beer.has_lactose ? 'Yes' : 'No'} />
                 </div>
                 <div key={beer.id}>
