@@ -175,16 +175,12 @@ export default function Welcome(props) {
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                     <div className="p-6 bg-white border-b border-gray-200">Welcome</div>
-                                    {/*<button*/}
-                                    {/*    className="bg-white px-3 py-2 text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2 flex gap-2">*/}
-                                    {/*    Filter by Category*/}
-                                    {/*    <DownArrow />*/}
-                                    {/*</button>*/}
                                     <select
                                         onChange={searchByCategory}
+                                        defaultValue={'disabled'}
                                         className="bg-white text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex"
                                     >
-                                        <option selected disabled>Filter by Category</option>
+                                        <option value={'disabled'} disabled>Filter by Category</option>
                                         <option key={-1} value={-1}>All</option>
                                         {categories.map(category => (
                                             <option key={category.id} value={category.id}>{category.type}</option>
