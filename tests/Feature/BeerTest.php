@@ -29,13 +29,16 @@ class BeerTest extends TestCase
             'email' => 'jill@example.com',
             'password' => Hash::make('password'),
         ]);
-        User::factory()->create();
+        User::factory(2)->create();
 
         Category::factory()->create([
             'type' => 'ale'
         ]);
         Category::factory()->create([
             'type' => 'IPA'
+        ]);
+        Category::factory()->create([
+            'type' => 'sour'
         ]);
 
         Beer::factory()->create([
@@ -44,7 +47,7 @@ class BeerTest extends TestCase
             'brewery' => 'Elora Brewing Co.',
             'alcohol_percent' => 5.1,
             'has_lactose' => false,
-            'category_id' => 1
+            'category_id' => Category::find(1)->id
         ]);
         Beer::factory()->create([
             'barcode' => 628028020468,
@@ -52,30 +55,88 @@ class BeerTest extends TestCase
             'brewery' => 'Cowbell Brewing Co.',
             'alcohol_percent' => 6,
             'has_lactose' => false,
-            'category_id' => 2
-//            'category_id' => Category::find(2)->id
+            'category_id' => Category::find(2)->id
+        ]);
+        Beer::factory()->create([
+            'barcode' => null,
+            'name' => 'Beki',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 4.8,
+            'has_lactose' => false,
+            'category_id' => Category::find(3)->id
+        ]);
+        Beer::factory()->create([
+            'barcode' => 818278002240,
+            'name' => 'Electric Unicorn',
+            'brewery' => 'Phillips Brewing & Malting Co.',
+            'alcohol_percent' => 6.5,
+            'has_lactose' => false,
+            'category_id' => Category::find(2)->id
+        ]);
+        Beer::factory()->create([
+            'barcode' => 626824190040,
+            'name' => 'Neon Haze',
+            'brewery' => 'Amsterdam Brewing',
+            'alcohol_percent' => 5.7,
+            'has_lactose' => false,
+            'category_id' => Category::find(2)->id
         ]);
 
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
+            'user_id' => User::find(1)->id,
+            'beer_id' => Beer::find(1)->id,
             'rating' => 8,
             'comment' => 'This is quite lovely, I would love to have another!'
         ]);
         Rating::factory()->create([
-            'user_id' => 2,
-            'beer_id' => 2,
+            'user_id' => User::find(2)->id,
+            'beer_id' => Beer::find(2)->id,
             'rating' => 2,
             'comment' => 'I hate everything about this'
         ]);
         Rating::factory()->create([
-            'user_id' => 3,
-            'beer_id' => 1
+            'user_id' => User::find(2)->id,
+            'beer_id' => Beer::find(3)->id,
+            'rating' => 9,
+            'comment' => 'This is my favourite beer!!'
         ]);
         Rating::factory()->create([
-            'user_id' => 3,
-            'beer_id' => 2
+            'user_id' => User::find(3)->id,
+            'beer_id' => Beer::find(1)->id
         ]);
+        Rating::factory()->create([
+            'user_id' => User::find(1)->id,
+            'beer_id' => Beer::find(3)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(1)->id,
+            'beer_id' => Beer::find(4)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(3)->id,
+            'beer_id' => Beer::find(3)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(3)->id,
+            'beer_id' => Beer::find(4)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(4)->id,
+            'beer_id' => Beer::find(1)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(4)->id,
+            'beer_id' => Beer::find(2)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(4)->id,
+            'beer_id' => Beer::find(4)->id
+        ]);
+        Rating::factory()->create([
+            'user_id' => User::find(1)->id,
+            'beer_id' => Beer::find(5)->id
+        ]);
+
     }
 
     public function test_get_all_beers_with_all_ratings_comments_from_all_users_and_category()

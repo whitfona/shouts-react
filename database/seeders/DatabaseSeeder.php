@@ -23,13 +23,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Nick',
             'email' => 'whitford_4@hotmail.com',
             'password' => Hash::make('password'),
+            'profile_image' => 'http://localhost:8000/storage/users/man1.png'
         ]);
         User::factory()->create([
             'name' => 'Jill',
             'email' => 'jill@example.com',
             'password' => Hash::make('password'),
+            'profile_image' => 'http://localhost:8000/storage/users/girl1.png'
         ]);
-        User::factory(2)->create();
+        User::factory()->create(['profile_image' => 'http://localhost:8000/storage/users/man2.png']);
+        User::factory()->create(['profile_image' => 'http://localhost:8000/storage/users/girl2.png']);
 
         Category::factory()->create([
             'type' => 'ale'
@@ -47,7 +50,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Elora Brewing Co.',
             'alcohol_percent' => 5.1,
             'has_lactose' => false,
-            'category_id' => Category::find(1)->id
+            'category_id' => Category::find(1)->id,
+            'photo' => "http://localhost:8000/storage/beers/elora.png"
         ]);
         Beer::factory()->create([
             'barcode' => 628028020468,
@@ -55,7 +59,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Cowbell Brewing Co.',
             'alcohol_percent' => 6,
             'has_lactose' => false,
-            'category_id' => Category::find(2)->id
+            'category_id' => Category::find(2)->id,
+            'photo' => "http://localhost:8000/storage/beers/papaya.png"
         ]);
         Beer::factory()->create([
             'barcode' => null,
@@ -63,7 +68,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Fairweather Brewing Co.',
             'alcohol_percent' => 4.8,
             'has_lactose' => false,
-            'category_id' => Category::find(3)->id
+            'category_id' => Category::find(3)->id,
+            'photo' => "http://localhost:8000/storage/beers/beki.png"
         ]);
         Beer::factory()->create([
             'barcode' => 818278002240,
@@ -71,7 +77,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Phillips Brewing & Malting Co.',
             'alcohol_percent' => 6.5,
             'has_lactose' => false,
-            'category_id' => Category::find(2)->id
+            'category_id' => Category::find(2)->id,
+            'photo' => "http://localhost:8000/storage/beers/electric.png"
         ]);
         Beer::factory()->create([
             'barcode' => 626824190040,
@@ -79,7 +86,8 @@ class DatabaseSeeder extends Seeder
             'brewery' => 'Amsterdam Brewing',
             'alcohol_percent' => 5.7,
             'has_lactose' => false,
-            'category_id' => Category::find(2)->id
+            'category_id' => Category::find(2)->id,
+            'photo' => "http://localhost:8000/storage/beers/neon.png"
         ]);
 
         Rating::factory()->create([

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
 use App\Models\Rating;
@@ -24,7 +25,12 @@ use Inertia\Inertia;
  *
  */
 Route::get('/beers', function () {
-    return json_encode(Beer::with('rating', 'category')->get());
+
+    $allBeers = BeerResource::collection(Beer::all());
+
+    return response()->json($allBeers);
+
+//    return json_encode(Beer::with('rating', 'category')->get());
 })->name('beers.barcode.index');
 
 /**

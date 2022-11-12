@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import BeerDetails from "@/Components/BeerDetails";
 
 export default function Welcome(props) {
     const startReader = () => {
@@ -79,34 +80,17 @@ export default function Welcome(props) {
     useEffect(() => {
         fetch(route('beers.barcode.index'))
             .then(res => res.json())
-            .then(data => setBeers(data))
+            .then(data => {
+                console.log(data)
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
             .catch(err => console.log(err))
     }, [])
     return (
         <>
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
-                {/*<div className="fixed top-0 right-0 px-6 py-4 sm:block">*/}
-                {/*    {props.auth.user ? (*/}
-                {/*        <Link href={route('dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">*/}
-                {/*            Dashboard*/}
-                {/*        </Link>*/}
-                {/*    ) : (*/}
-                {/*        <>*/}
-                {/*            <Link href={route('login')} className="text-sm text-white dark:text-gray-500 underline">*/}
-                {/*                Log in*/}
-                {/*            </Link>*/}
-
-                {/*            <Link*/}
-                {/*                href={route('register')}*/}
-                {/*                className="ml-4 text-sm text-white dark:text-gray-500 underline"*/}
-                {/*            >*/}
-                {/*                Register*/}
-                {/*            </Link>*/}
-                {/*        </>*/}
-                {/*    )}*/}
-                {/*</div>*/}
-
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex justify-between pt-8">
                         <div className="flex flex-col justify-center items-center">
@@ -143,25 +127,9 @@ export default function Welcome(props) {
                                     <button onClick={startReader} className="p-4 bg-red-400">Scan Beer</button>
                                     <p>{message}</p>
                                     <div id="reader"></div>
-                                    <div>
-                                        {beers.map(beer => (
-                                            <div key={beer.id}>
-                                                <p>Barcode: {beer.barcode}</p>
-                                                <p>Name: {beer.name}</p>
-                                                <p>Brewery: {beer.brewery}</p>
-                                                <p>Percent: {beer.alcohol_percent}</p>
-                                                <p>Type: {beer.category.type}</p>
-                                                {beer.rating.map(rating => (
-                                                    <ol key={rating.id}>
-                                                        <li>User: {rating.user.name}</li>
-                                                        <li>Rating: {rating.rating}</li>
-                                                        <li>Comment: {rating.comment}</li>
-                                                    </ol>
-                                                ))}
-                                                <br /><br />
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {beers.map(beer => (
+                                        <BeerDetails beer={beer} />
+                                    ))}
                                 </div>
                             </div>
                         </div>
