@@ -72,7 +72,6 @@ export default function Welcome(props) {
         fetch(route('beers.barcode.show', barcode))
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setBeers([data])
             })
             .catch(err => setMessage("Sorry, No Match Found"))
@@ -83,7 +82,6 @@ export default function Welcome(props) {
         fetch(route('beers.brewery.show', brewery))
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 data.sort((a, b) => b.avg_rating - a.avg_rating)
                 setBeers(data)
             })
@@ -115,7 +113,7 @@ export default function Welcome(props) {
         fetch(route('beers.user.show', user))
             .then(res => res.json())
             .then(data => {
-                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                data.sort((a, b) => b.ratings[0].rating - a.ratings[0].rating)
                 setBeers(data)
             })
             .catch(err => console.log(err))
