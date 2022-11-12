@@ -153,6 +153,7 @@ class BeerTest extends TestCase
         $beer = Beer::find(2);
 
         $this->getJson(route('beers.barcode.show', $beer->barcode))
+            ->dd()
             ->assertOk()
             ->assertJson($beer->toArray());
     }

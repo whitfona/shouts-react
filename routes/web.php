@@ -39,7 +39,11 @@ Route::get('/beers', function () {
  */
 Route::get('/beers/barcode/{beer}', function ($barcode) {
 //    return Beer::with('rating')->get()->find($beer->id); // search using id
-    return Beer::with('rating', 'category')->get()->where('barcode', '=', $barcode)->first(); // search using barcode
+//    return Beer::with('rating', 'category')->get()->where('barcode', '=', $barcode)->first(); // search using barcode
+
+    $found = Beer::all()->where('barcode', '=', $barcode)->first();
+
+    return response()->json(new BeerResource($found));
 })->name('beers.barcode.show');
 
 /**

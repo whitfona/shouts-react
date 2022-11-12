@@ -26,6 +26,7 @@ export default function Welcome(props) {
             }
             console.log("Initialization finished. Ready to start");
             Quagga.start();
+            document.getElementById("reader").style.display = 'block';
         });
 
         Quagga.onDetected(function (result) {
@@ -70,7 +71,10 @@ export default function Welcome(props) {
         setMessage('')
         fetch(route('beers.barcode.show', barcode))
             .then(res => res.json())
-            .then(data => setBeers([data]))
+            .then(data => {
+                console.log(data)
+                setBeers([data])
+            })
             .catch(err => setMessage("Sorry, No Match Found"))
         // .catch(err => console.log(err))
     }
