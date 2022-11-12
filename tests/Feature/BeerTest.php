@@ -206,6 +206,24 @@ class BeerTest extends TestCase
             ->assertJson($categories->toArray());
     }
 
+    public function test_return_beer_when_searching_title()
+    {
+        $beer = Beer::find(1);
+
+        $this->getJson(route('beers.search.show', $beer->name))
+            ->assertOk()
+            ->assertJsonCount(1);
+//            ->assertJson($beer->toArray());
+
+        $this->getJson(route('beers.search.show', $beer->brewery))
+            ->assertOk()
+            ->assertJsonCount(1);
+//            ->assertJson($beer->toArray());
+    }
+
+
+
+
 
     public function test_get_all_beers_for_logged_in_user()
     {

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -99,6 +100,17 @@ Route::get('/beers/user/{beer}', function ($user) {
 
     return response()->json($final);
 })->name('beers.user.show');
+
+/**
+ * GET all beers with name or brewery that matches the search criteria
+ *
+ */
+Route::get('/beers/search/{beer}', function ($search) {
+    $found = Beer::where('name', 'LIKE', '%' . $search . '%')->orWhere('brewery', 'LIKE', '%' . $search . '%')->get();
+    $results = BeerResource::collection($found);
+
+    return response()->json($results);
+})->name('beers.search.show');
 
 /**
  * GET all categories
