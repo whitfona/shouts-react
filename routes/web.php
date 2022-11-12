@@ -29,22 +29,41 @@ Route::get('/beers', function () {
     $allBeers = BeerResource::collection(Beer::all());
 
     return response()->json($allBeers);
-
-//    return json_encode(Beer::with('rating', 'category')->get());
 })->name('beers.barcode.index');
 
 /**
- * GET all users ratings & comments for a beer using the beer's barcode
+ * GET all users ratings & comments for a SINGLE beer using the beer's barcode
  *
  */
 Route::get('/beers/barcode/{beer}', function ($barcode) {
-//    return Beer::with('rating')->get()->find($beer->id); // search using id
-//    return Beer::with('rating', 'category')->get()->where('barcode', '=', $barcode)->first(); // search using barcode
-
     $found = Beer::all()->where('barcode', '=', $barcode)->first();
 
     return response()->json(new BeerResource($found));
 })->name('beers.barcode.show');
+
+/**
+ * GET all beers associated to a brewery
+ *
+ */
+Route::get('/beers/brewery/{beer}', function ($brewery) {
+    $found = Beer::all()->where('brewery', 'LIKE', $brewery);
+
+    $foundCollection = BeerResource::collection($found);
+
+    return response()->json($foundCollection);
+})->name('beers.brewery.show');
+
+/**
+ * GET all beers associatd to a category
+ *
+ */
+Route::get('/beers/category/{beer}', function($category) {
+    $found = Beer::all()->where('category_id', '=', $category);
+    $foundCollection = BeerResource::collection($found);
+
+    return response()->json($foundCollection);
+
+})->name('beers.category.show');
 
 /**
  * Get all beers, comments and ratings for the signed in user

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
 use App\Models\Rating;
@@ -81,6 +82,14 @@ class BeerTest extends TestCase
             'has_lactose' => false,
             'category_id' => Category::find(2)->id
         ]);
+        Beer::factory()->create([
+            'barcode' => null,
+            'name' => 'Light Work',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 4.1,
+            'has_lactose' => false,
+            'category_id' => Category::find(1)->id
+        ]);
 
         Rating::factory()->create([
             'user_id' => User::find(1)->id,
@@ -151,11 +160,31 @@ class BeerTest extends TestCase
     public function test_use_barcode_to_get_single_beer_with_all_ratings_comments_from_all_users()
     {
         $beer = Beer::find(2);
+        $beerResource = new BeerResource($beer);
 
         $this->getJson(route('beers.barcode.show', $beer->barcode))
-            ->dd()
             ->assertOk()
-            ->assertJson($beer->toArray());
+            ->assertJson([$beerResource]);
+    }
+
+    public function test_return_all_beers_from_same_brewery()
+    {
+        $beer = Beer::find(3);
+
+        $this->getJson(route('beers.brewery.show', $beer->brewery))
+            ->assertOk()
+            ->assertJsonCount(2);
+    }
+
+    public function test_return_all_beers_from_same_category()
+    {
+        $beer = Beer::find(2);
+        $result = Beer::all()->where('category', '=', $beer->category);
+
+        $this->getJson(route('beers.category.show', $beer->category))
+            ->assertOk()
+            ->dd()
+            ->assertJsonCount($result->count());
     }
 
     public function test_get_all_beers_for_logged_in_user()
