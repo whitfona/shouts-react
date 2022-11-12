@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
@@ -91,13 +91,7 @@ export default function Welcome(props) {
     const searchByCategory = () => {
         const category = event.target.value
         if (category == -1) {
-            fetch(route('beers.barcode.index'))
-                .then(res => res.json())
-                .then(data => {
-                    data.sort((a, b) => b.avg_rating - a.avg_rating)
-                    setBeers(data)
-                })
-                .catch(err => console.log(err))
+            fetchAllBeers()
         } else {
             fetch(route('beers.category.show', category))
                 .then(res => res.json())
@@ -119,11 +113,33 @@ export default function Welcome(props) {
             .catch(err => console.log(err))
     }
 
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+        if (search.length > 1) {
+            fetch(route('beers.search.show', search))
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        setMessage('Sorry, no beers match that search.')
+                        setBeers([])
+                    }
+                        data.sort((a, b) => b.avg_rating - a.avg_rating)
+                        setBeers(data)
+                })
+                .catch(err => console.log(err))
+        }
+        if (search.length === 1) {
+            setMessage('')
+            fetchAllBeers()
+        }
+    }
+
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
+    const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
 
-    useEffect(() => {
+    const fetchAllBeers = () => {
         fetch(route('beers.barcode.index'))
             .then(res => res.json())
             .then(data => {
@@ -131,6 +147,10 @@ export default function Welcome(props) {
                 setBeers(data)
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        fetchAllBeers()
         fetch(route('categories.index'))
             .then(res => res.json())
             .then(data => {
@@ -176,6 +196,13 @@ export default function Welcome(props) {
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                     <header className="border-b border-gray-200">
                                         <div className="font-semibold pb-4 text-xl leading-tight">All Bevvies</div>
+                                        <input
+                                            className="rounded-md shadow-sm text-gray-500 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-2 md:w-1/3"
+                                            type="text"
+                                            placeholder={'Search...'}
+                                            value={search}
+                                            onChange={handleSearch}
+                                        />
                                         <select
                                             onChange={searchByCategory}
                                             defaultValue={'disabled'}
