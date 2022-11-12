@@ -80,10 +80,10 @@ export default function Welcome(props) {
     }
 
     const searchByBrewery = (brewery) => {
-        console.log(brewery)
         fetch(route('beers.brewery.show', brewery))
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 data.sort((a, b) => b.avg_rating - a.avg_rating)
                 setBeers(data)
             })
@@ -109,6 +109,16 @@ export default function Welcome(props) {
                 })
                 .catch(err => console.log(err))
         }
+    }
+
+    const searchByUser = (user) => {
+        fetch(route('beers.user.show', user))
+            .then(res => res.json())
+            .then(data => {
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
     }
 
     const [beers, setBeers] = useState([])
@@ -195,6 +205,7 @@ export default function Welcome(props) {
                                         <BeerDetails
                                             beer={beer}
                                             searchByBrewery={searchByBrewery}
+                                            searchByUser={searchByUser}
                                         />
                                     ))}
                                 </div>

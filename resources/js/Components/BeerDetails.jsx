@@ -1,7 +1,7 @@
 import React from 'react'
 import DetailFormat from "@/Components/DetailFormat";
 
-export default function BeerDetails({beer, searchByBrewery}) {
+export default function BeerDetails({beer, searchByBrewery, searchByUser}) {
     return (
         <div className="md:flex gap-4 p-4 mb-4 md:mb-10" key={beer.id}>
             <img className="w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
@@ -27,7 +27,11 @@ export default function BeerDetails({beer, searchByBrewery}) {
                     {beer.ratings.map(rating => (
                         <div key={rating.id}>
                             <div className="mb-4">
-                                <p><span className="text-md font-semibold tracking-wide uppercase">Added By: </span><img className="w-8 h-8 rounded-full inline" src={rating.user_photo} /> {rating.user} | {rating.date_added}</p>
+                                <p>
+                                    <span className="text-md font-semibold tracking-wide uppercase">Added By: </span>
+                                    <button onClick={() => searchByUser(rating.user_id)}>
+                                    <img className="w-8 h-8 rounded-full inline" src={rating.user_photo} /> {rating.user}</button> | {rating.date_added}</p>
+                                {/*<p><span className="text-md font-semibold tracking-wide uppercase">Added By: </span><img className="w-8 h-8 rounded-full inline" src={rating.user_photo} /> {rating.user} | {rating.date_added}</p>*/}
                                 <p><span className="text-md font-semibold tracking-wide uppercase">Rating: </span>{rating.rating}</p>
                                 <p><span className="text-md font-semibold tracking-wide uppercase">Comment: </span>{rating.comment}</p>
                             </div>
