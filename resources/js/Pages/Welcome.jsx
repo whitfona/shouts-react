@@ -144,10 +144,10 @@ export default function Welcome(props) {
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex justify-between pt-8">
-                        <div className="flex flex-col justify-center items-center">
+                        <Link href="/" className="flex flex-col justify-center items-center">
                             <ApplicationLogo size={50} />
                             <h1 className="text-white">SHOUTS!</h1>
-                        </div>
+                        </Link>
                         <div>
                             {props.auth.user ? (
                                 <Link href={route('dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">
@@ -174,26 +174,28 @@ export default function Welcome(props) {
                         <div className="py-12">
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                    <div className="p-6 bg-white border-b border-gray-200">Welcome</div>
-                                    <select
-                                        onChange={searchByCategory}
-                                        defaultValue={'disabled'}
-                                        className="bg-white text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex"
-                                    >
-                                        <option value={'disabled'} disabled>Filter by Category</option>
-                                        <option key={-1} value={-1}>All</option>
-                                        {categories.map(category => (
-                                            <option key={category.id} value={category.id}>{category.type}</option>
-                                        ))}
-                                    </select>
-                                    <button onClick={startReader}
-                                            className="max-w-fit mx-auto sm:px-6 rounded-md mt-6 p-4 bg-pink-400 flex
-                                            justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
-                                            text-white font-extrabold uppercase pl-3">
-                                        <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
-                                        Barcode
-                                    </button>
-                                    <p>{message}</p>
+                                    <header className="border-b border-gray-200">
+                                        <div className="font-semibold pb-4 text-xl leading-tight">All Bevvies</div>
+                                        <select
+                                            onChange={searchByCategory}
+                                            defaultValue={'disabled'}
+                                            className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex"
+                                        >
+                                            <option value={'disabled'} disabled>Filter by Category</option>
+                                            <option key={-1} value={-1}>All</option>
+                                            {categories.map(category => (
+                                                <option key={category.id} value={category.id}>{category.type}</option>
+                                            ))}
+                                        </select>
+                                        <button onClick={startReader}
+                                                className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
+                                                justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
+                                                text-white font-extrabold uppercase pl-3">
+                                            <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
+                                            Barcode
+                                        </button>
+                                        <p>{message}</p>
+                                    </header>
                                     <div id="reader"></div>
                                     {beers.map(beer => (
                                         <BeerDetails
