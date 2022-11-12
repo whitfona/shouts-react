@@ -127,8 +127,7 @@ export default function Welcome(props) {
                         setBeers(data)
                 })
                 .catch(err => console.log(err))
-        }
-        if (search.length === 1) {
+        } else {
             setMessage('')
             fetchAllBeers()
         }
