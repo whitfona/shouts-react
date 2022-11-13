@@ -38,7 +38,7 @@ export default function AddBevvie(props) {
     };
 
     const getScannedBeer = (barcode) => {
-        console.log(barcode)
+        clearAllFields()
         fetch(route('beers.user.barcode', barcode))
             .then(res => res.json())
             .then(data => {
@@ -51,11 +51,25 @@ export default function AddBevvie(props) {
                     alcohol_percent: data.alcohol_percent,
                     category: data.category_id,
                     has_lactose: checked,
-                    comments: data.comment
+                    comments: data.comment,
+                    // image: data.image
                 })
             })
             .catch(err => setMessage("Sorry, error fetching beers."))
         // .catch(err => console.log(err))
+    }
+
+    const clearAllFields = () => {
+        setData({
+            barcode: '',
+            name: '',
+            rating:'',
+            alcohol_percent: '',
+            category: '',
+            has_lactose: false,
+            comments: '',
+            image: ''
+        })
     }
 
 
