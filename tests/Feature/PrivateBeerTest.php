@@ -148,12 +148,15 @@ class PrivateBeerTest extends TestCase
 
     }
 
-    public function test_get_all_beers_with_all_ratings_comments_from_all_users_and_category()
+    public function test_get_all_beers_for_authenticated_user()
     {
-        $beers = Beer::all();
+        $user = User::find(1);
+        $userBeers = Beer::where('user_id', '=', $user->id);
 
-        $this->getJson(route('beers.barcode.index'))
+        $this->actingAs($user)
+            ->get(route('beers.user.index'))
             ->assertOk()
-            ->assertJson($beers->toArray());
+            ->assertJsonCount(4);
+//            ->assertJson($userBeers);
     }
 }
