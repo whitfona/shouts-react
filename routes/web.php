@@ -52,7 +52,7 @@ Route::get('/beers/barcode/{beer}', function ($barcode) {
  *
  */
 Route::get('/beers/brewery/{beer}', function ($brewery) {
-    $found = Beer::all()->where('brewery', 'LIKE', $brewery);
+    $found = Beer::all()->where('brewery', 'LIKE', '%' . $brewery . '%');
 
     $foundCollection = BeerResource::collection($found);
 
@@ -135,10 +135,9 @@ Route::get('/categories', function () {
  *
  *
  */
-Route::get('/beers/add-bevvie', function () {
-    return Inertia::render('AddBevvie');
-})->name('beer.create');
-
+/**
+ * GET all beers for the authenticated user
+ */
 Route::get('/beers/user', function () {
     $user = auth()->user();
     $found = Rating::all()->where('user_id', '=', $user->id);
@@ -162,6 +161,29 @@ Route::get('/beers/user', function () {
 
     return response()->json($final);
 })->middleware('auth')->name('beers.user.index');
+
+/**
+ * GET all beers for the authenticated user associated to a brewery
+ */
+Route::get('/beers/user/brewery/{beer}', function ($brewery) {
+    $user = auth()->user();
+    $found = DB::table('beers')
+        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->where('ratings.user_id', '=', $user->id)
+        ->where('beers.brewery', 'LIKE', '%' . $brewery . '%')
+        ->get();
+
+    return response()->json($found);
+})->middleware('auth')->name('beers.user.brewery');
+
+
+
+
+
+
+Route::get('/beers/add-bevvie', function () {
+    return Inertia::render('AddBevvie');
+})->name('beer.create');
 
 
 Route::get('/', function () {

@@ -21,21 +21,24 @@ export default function Dashboard(props) {
         fetch(route('beers.user.index'))
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
-                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                data.sort((a, b) => b.rating - a.rating)
                 setBeers(data)
             })
             .catch(err => console.log(err))
     }
 
     const searchByBrewery = (brewery) => {
-        fetch(route('beers.brewery.show', brewery))
+        fetch(route('beers.user.brewery', brewery))
             .then(res => res.json())
             .then(data => {
-                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                data.sort((a, b) => b.rating - a.rating)
                 setBeers(data)
             })
             .catch(err => console.log(err))
+    }
+
+    const deleteBeer = () => {
+
     }
 
     return (
@@ -54,6 +57,7 @@ export default function Dashboard(props) {
                                 <PrivateBeerDetails
                                     beer={beer}
                                     searchByBrewery={searchByBrewery}
+                                    deleteBeer={deleteBeer}
                                 />
                             ))}
                         </div>

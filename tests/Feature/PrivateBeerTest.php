@@ -159,4 +159,15 @@ class PrivateBeerTest extends TestCase
             ->assertJsonCount(4);
 //            ->assertJson($userBeers);
     }
+
+    public function test_get_all_beers_by_brewery_for_authenticated_user()
+    {
+        $user = User::find(1);
+        $brewery = 'Elora';
+
+        $this->actingAs($user)
+            ->get(route('beers.user.brewery', $brewery))
+            ->assertOk()
+            ->assertJsonCount(1);
+    }
 }
