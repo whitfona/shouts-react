@@ -3,6 +3,13 @@ import DetailFormat from "@/Components/DetailFormat";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
 
 export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) {
+    const formattedDate = (date) => {
+        const d = new Date(date)
+        const year = d.getFullYear()
+        const month = d.getMonth() + 1
+        const day = d.getDate()
+        return `${year}-${month}-${day}`
+    }
     return (
         <div className="md:flex gap-4 p-4 mb-4 md:mb-10" key={beer.id}>
             <div>
@@ -23,7 +30,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
                 <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                     <DetailFormat name={'Name'} value={beer.name} />
                     <DetailFormat name={'Rating'} value={beer.rating} />
-                    <DetailFormat name={'Category'} value={beer.category} />
+                    <DetailFormat name={'Category'} value={beer.type} />
                 </div>
                 <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                     <h2 className="text-lg min-w-[15%]">
@@ -39,7 +46,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
                 <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                     <h2 className="text-lg">
                         <span className="font-semibold tracking-wide uppercase">Date Added: </span>
-                        {beer.date_added}
+                        {formattedDate(beer.updated_at)}
                     </h2>
                     <h2 className="text-lg">
                         <span className="font-semibold tracking-wide uppercase">Comment: </span>

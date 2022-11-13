@@ -155,6 +155,7 @@ class PrivateBeerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('beers.user.index'))
+            ->dd()
             ->assertOk()
             ->assertJsonCount(4);
 //            ->assertJson($userBeers);
@@ -167,6 +168,7 @@ class PrivateBeerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('beers.user.brewery', $brewery))
+            ->dd()
             ->assertOk()
             ->assertJsonCount(1);
     }
@@ -178,6 +180,7 @@ class PrivateBeerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('beers.user.category', $category->id))
+            ->dd()
             ->assertOk();
 //            ->assertJson($category->toArray());
     }

@@ -21,7 +21,7 @@ class RatingResource extends JsonResource
             'rating' => $this->rating,
             'comment' => $this->comment,
             'user_photo' => $this->user->profile_image,
-            'date_added' => $this->created_at->toDateString()
+            'date_added' => $this->updated_at->toDateString()
         ];
     }
 }

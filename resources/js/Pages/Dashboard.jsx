@@ -2,19 +2,21 @@ import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/inertia-react';
 import PrivateBeerDetails from "@/Components/PrivateBeerDetails";
+import Header from "@/Components/Header";
 
 export default function Dashboard(props) {
 
     const [beers, setBeers] = useState([])
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         fetchAllBeers()
-        // fetch(route('categories.index'))
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setCategories(data)
-        //     })
-        //     .catch(err => console.log(err))
+        fetch(route('categories.index'))
+            .then(res => res.json())
+            .then(data => {
+                setCategories(data)
+            })
+            .catch(err => console.log(err))
     }, [])
 
     const fetchAllBeers = () => {
@@ -45,7 +47,22 @@ export default function Dashboard(props) {
                 }
             })
             .catch(err => console.log(err))
+    }
 
+    const serchByCategory = (event) => {
+        const category = event.target.value
+
+        if (category == -1) {
+            fetchAllBeers()
+        } else {
+            fetch(route('beers.user.category', category))
+                .then(res => res.json())
+                .then(data => {
+                    data.sort((a, b) => b.rating - a.rating)
+                    setBeers(data)
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     return (
@@ -59,6 +76,10 @@ export default function Dashboard(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <Header
+                            categories={categories}
+                            searchByCategory={serchByCategory}
+                        />
                         <div>
                             {beers.map(beer => (
                                 <PrivateBeerDetails

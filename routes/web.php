@@ -140,27 +140,13 @@ Route::get('/categories', function () {
  */
 Route::get('/beers/user', function () {
     $user = auth()->user();
-    $found = Rating::all()->where('user_id', '=', $user->id);
-    $results = $found->map(function ($beer) {
-        return  [
-            'id' => $beer->beer->id,
-            "barcode" => $beer->beer->barcode,
-            "name" => $beer->beer->name,
-            "brewery" => $beer->beer->brewery,
-            "alcohol_percent" => $beer->beer->alcohol_percent,
-            "photo" => $beer->beer->photo,
-            "category" => $beer->beer->category->type,
-            "has_lactose" => $beer->beer->has_lactose,
-            "rating" => $beer->rating,
-            "rating_id" => $beer->id,
-            "comment" => $beer->comment,
-            "date_added" => $beer->created_at->toDateString(),
-        ];
-    });
+    $found = DB::table('beers')
+        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->join('categories', 'beers.category_id', '=', 'categories.id')
+        ->where('ratings.user_id', '=', $user->id)
+        ->get();
 
-    $final = collect($results)->values()->all();
-
-    return response()->json($final);
+    return response()->json($found);
 })->middleware('auth')->name('beers.user.index');
 
 /**
@@ -171,6 +157,7 @@ Route::get('/beers/user/brewery/{beer}', function ($brewery) {
     $user = auth()->user();
     $found = DB::table('beers')
         ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->join('categories', 'beers.category_id', '=', 'categories.id')
         ->where('ratings.user_id', '=', $user->id)
         ->where('beers.brewery', 'LIKE', '%' . $brewery . '%')
         ->get();
@@ -186,6 +173,7 @@ Route::get('/beers/user/category/{beer}', function ($category) {
     $user = auth()->user();
     $found = DB::table('beers')
         ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->join('categories', 'beers.category_id', '=', 'categories.id')
         ->where('ratings.user_id', '=', $user->id)
         ->where('beers.category_id', '=', $category)
         ->get();
@@ -202,6 +190,7 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
     // Look for user with their rating
     $found = DB::table('beers')
         ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->join('categories', 'beers.category_id', '=', 'categories.id')
         ->where('ratings.user_id', '=', $user->id)
         ->where('barcode', '=', $barcode)
         ->get();
@@ -210,6 +199,7 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
     if (count($found) < 1) {
         $found = DB::table('beers')
             ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+            ->join('categories', 'beers.category_id', '=', 'categories.id')
             ->where('barcode', '=', $barcode)
             ->get(['ratings.beer_id', 'category_id', 'barcode', 'name', 'brewery', 'alcohol_percent', 'has_lactose', 'photo']);
     }
