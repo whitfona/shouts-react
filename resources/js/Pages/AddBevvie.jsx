@@ -20,7 +20,7 @@ export default function AddBevvie(props) {
         category: '',
         has_lactose: false,
         comments: '',
-        image: ''
+        photo: ''
     });
     const [categories, setCategories] = useState([])
 
@@ -43,6 +43,7 @@ export default function AddBevvie(props) {
             .then(res => res.json())
             .then(data => {
                 const checked = data.has_lactose === 1
+                console.log(data)
                 setData({
                     barcode:  data.barcode,
                     name: data.name,
@@ -52,7 +53,7 @@ export default function AddBevvie(props) {
                     category: data.category_id,
                     has_lactose: checked,
                     comments: data.comment,
-                    // image: data.image
+                    photo: data.photo
                 })
             })
             .catch(err => setMessage("Sorry, error fetching beers."))
@@ -105,6 +106,9 @@ export default function AddBevvie(props) {
                             {/*<form onSubmit={submit} className="p-4">*/}
                             <form className="p-4">
                                 <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Add By Barcode</h2>
+                                <div>
+                                    {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
+                                </div>
                                 <div>
                                     <InputLabel forInput="barcode" value="Barcode" />
 
@@ -238,16 +242,16 @@ export default function AddBevvie(props) {
                                 </div>
 
                                 <div className="mt-4">
-                                    <InputLabel forInput="image" value="Add Image" />
+                                    <InputLabel forInput="photo" value="Add Image" />
 
                                     <input
                                         className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
-                                        id="image"
+                                        id="photo"
                                         type="file"
-                                        name="image"
+                                        name="photo"
                                     />
 
-                                    <InputError message={errors.image} className="mt-2" />
+                                    <InputError message={errors.photo} className="mt-2" />
                                 </div>
 
                                 <div className="flex gap-4">
