@@ -1,9 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
-import Quagga from "@ericblade/quagga2";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
-import MagnifyingGlass from "@/Components/MagnifyingGlass";
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
 
@@ -13,6 +11,7 @@ export default function Welcome(props) {
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
+    const [year, setYear] = useState('')
 
     useEffect(() => {
         fetchAllBeers()
@@ -22,6 +21,8 @@ export default function Welcome(props) {
                 setCategories(data)
             })
             .catch(err => console.log(err))
+
+        getYear()
     }, [])
 
     const fetchAllBeers = () => {
@@ -100,12 +101,18 @@ export default function Welcome(props) {
         }
     }
 
+    const getYear = () => {
+        const date = new Date
+        const year = date.getFullYear()
+        setYear(year)
+    }
+
     return (
         <>
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex justify-between pt-8">
+                    <div className="flex justify-between px-4 pt-8">
                         <Link href="/" className="flex flex-col justify-center items-center">
                             <ApplicationLogo size={50} />
                             <h1 className="text-white">SHOUTS!</h1>
@@ -135,8 +142,7 @@ export default function Welcome(props) {
                     <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
                         <div className="">
                             <div className="max-w-7xl mx-auto">
-                            {/*<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">*/}
-                                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div className="bg-pink-100 overflow-hidden shadow-sm sm:rounded-lg">
                                     <Header
                                         categories={categories}
                                         message={message}
@@ -160,9 +166,9 @@ export default function Welcome(props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-center mt-4 sm:items-center sm:items-center">
+                    <div className="flex justify-center my-4 sm:items-center sm:items-center">
                         <div className="text-center text-sm text-gray-500 sm:text-left">
-                            <a href="https://whitforddesign.ca">whitforddesign.ca</a>
+                            <a className="text-white" href="https://whitforddesign.ca">Whitford Design | {year}</a>
                         </div>
                     </div>
                 </div>
