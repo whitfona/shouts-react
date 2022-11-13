@@ -151,19 +151,10 @@ Route::get('/beers/user', function () {
             "alcohol_percent" => $beer->beer->alcohol_percent,
             "photo" => $beer->beer->photo,
             "category" => $beer->beer->category->type,
-            "avg_rating" => null,
             "has_lactose" => $beer->beer->has_lactose,
-            "ratings" => [
-                [
-                    "id" => $beer->id,
-                    "user_id" => $beer->user->id,
-                    "user" => $beer->user->name,
-                    "rating" => $beer->rating,
-                    "comment" => $beer->comment,
-                    "user_photo" => $beer->user->profile_image,
-                    "date_added" => $beer->created_at->toDateString()
-                ]
-            ]
+            "rating" => $beer->rating,
+            "comment" => $beer->comment,
+            "date_added" => $beer->created_at->toDateString(),
         ];
     });
 

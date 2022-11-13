@@ -1,8 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/inertia-react';
+import PrivateBeerDetails from "@/Components/PrivateBeerDetails";
 
 export default function Dashboard(props) {
+
+    const [beers, setBeers] = useState([])
+
+    useEffect(() => {
+        fetchAllBeers()
+        // fetch(route('categories.index'))
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setCategories(data)
+        //     })
+        //     .catch(err => console.log(err))
+    }, [])
+
+    const fetchAllBeers = () => {
+        fetch(route('beers.user.index'))
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const searchByBrewery = (brewery) => {
+        fetch(route('beers.brewery.show', brewery))
+            .then(res => res.json())
+            .then(data => {
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <AuthenticatedLayout
@@ -15,9 +49,13 @@ export default function Dashboard(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-white border-b border-gray-200">You're logged in!</div>
                         <div>
-
+                            {beers.map(beer => (
+                                <PrivateBeerDetails
+                                    beer={beer}
+                                    searchByBrewery={searchByBrewery}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
