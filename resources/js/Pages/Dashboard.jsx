@@ -8,6 +8,7 @@ export default function Dashboard(props) {
 
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
         fetchAllBeers()
@@ -49,7 +50,7 @@ export default function Dashboard(props) {
             .catch(err => console.log(err))
     }
 
-    const serchByCategory = (event) => {
+    const searchByCategory = (event) => {
         const category = event.target.value
 
         if (category == -1) {
@@ -62,6 +63,24 @@ export default function Dashboard(props) {
                     setBeers(data)
                 })
                 .catch(err => console.log(err))
+        }
+    }
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+        if (search.length > 1) {
+            fetch(route('beers.user.search', search))
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        setBeers([])
+                    }
+                    data.sort((a, b) => b.avg_rating - a.avg_rating)
+                    setBeers(data)
+                })
+                .catch(err => console.log(err))
+        } else {
+            fetchAllBeers()
         }
     }
 
@@ -78,7 +97,9 @@ export default function Dashboard(props) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <Header
                             categories={categories}
-                            searchByCategory={serchByCategory}
+                            searchByCategory={searchByCategory}
+                            search={search}
+                            handleSearch={handleSearch}
                         />
                         <div>
                             {beers.map(beer => (

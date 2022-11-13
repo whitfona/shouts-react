@@ -185,17 +185,19 @@ class PrivateBeerTest extends TestCase
 //            ->assertJson($category->toArray());
     }
 
-    public function test_authenticated_user_can_delete_a_beer()
+    public function test_get_all_beers_by_search_terms_for_authenticated_user()
     {
         $user = User::find(1);
-        $rating = Rating::find(1);
+        $searchTerm = 'Brewing Co';
 
         $this->actingAs($user)
-            ->delete(route('beers.user.destroy', $rating->id))
-            ->assertSuccessful();
+            ->get(route('beers.user.search', $searchTerm))
+            ->dd()
+            ->assertOk();
+//            ->assertJson($category->toArray());
     }
 
-    public function test_using_barcode_scanner_get_beer_and_user_rating_if_it_exists()
+    public function test_get_beer_using_barcode_scanner_and_user_rating_if_it_exists()
     {
         $user = User::find(1);
         $beer = Beer::find(1);
@@ -204,5 +206,15 @@ class PrivateBeerTest extends TestCase
             ->getJson(route('beers.user.barcode', $beer->barcode))
             ->assertOk();
 //            ->assertJson($beer->toArray());
+    }
+
+    public function test_authenticated_user_can_delete_a_beer()
+    {
+        $user = User::find(1);
+        $rating = Rating::find(1);
+
+        $this->actingAs($user)
+            ->delete(route('beers.user.destroy', $rating->id))
+            ->assertSuccessful();
     }
 }

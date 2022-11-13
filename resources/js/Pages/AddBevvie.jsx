@@ -43,7 +43,6 @@ export default function AddBevvie(props) {
             .then(res => res.json())
             .then(data => {
                 const checked = data.has_lactose === 1
-                console.log(data)
                 setData({
                     barcode:  data.barcode,
                     name: data.name,
@@ -72,7 +71,6 @@ export default function AddBevvie(props) {
             image: ''
         })
     }
-
 
     return (
         <AuthenticatedLayout
