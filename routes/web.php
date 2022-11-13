@@ -21,6 +21,12 @@ use Inertia\Inertia;
 |
 */
 
+/*
+ * START OF PUBLIC ROUTES
+ *
+ *
+ *
+ */
 /**
  * GET all beers with all users ratings & comments for each beer
  *
@@ -123,8 +129,15 @@ Route::get('/categories', function () {
 })->name('categories.index');
 
 
-
-
+/*
+ * START OF PRIVATE ROUTES
+ *
+ *
+ *
+ */
+Route::get('/beers/add-bevvie', function () {
+    return Inertia::render('AddBevvie');
+})->name('beer.create');
 
 
 
@@ -136,7 +149,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
