@@ -152,6 +152,7 @@ Route::get('/beers/user', function () {
             "category" => $beer->beer->category->type,
             "has_lactose" => $beer->beer->has_lactose,
             "rating" => $beer->rating,
+            "rating_id" => $beer->id,
             "comment" => $beer->comment,
             "date_added" => $beer->created_at->toDateString(),
         ];
@@ -176,6 +177,16 @@ Route::get('/beers/user/brewery/{beer}', function ($brewery) {
     return response()->json($found);
 })->middleware('auth')->name('beers.user.brewery');
 
+/**
+ * DELETE a beer for the authenticated user
+ */
+Route::delete('/beers/{rating}', function ($rating) {
+    $user = auth()->user();
+    $rating = Rating::find($rating);
+    $rating->delete();
+
+    return response()->json('Beer successfully deleted', 202);
+})->middleware('auth')->name('beers.user.destroy');
 
 
 

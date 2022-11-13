@@ -170,4 +170,14 @@ class PrivateBeerTest extends TestCase
             ->assertOk()
             ->assertJsonCount(1);
     }
+
+    public function test_authenticated_user_can_delete_a_beer()
+    {
+        $user = User::find(1);
+        $rating = Rating::find(1);
+
+        $this->actingAs($user)
+            ->delete(route('beers.user.destroy', $rating->id))
+            ->assertSuccessful();
+    }
 }

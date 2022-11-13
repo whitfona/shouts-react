@@ -37,7 +37,14 @@ export default function Dashboard(props) {
             .catch(err => console.log(err))
     }
 
-    const deleteBeer = () => {
+    const deleteBeer = async (beer) => {
+        await axios.delete(route('beers.user.destroy', beer))
+            .then(res => {
+                if (res.status === 202) {
+                    fetchAllBeers()
+                }
+            })
+            .catch(err => console.log(err))
 
     }
 

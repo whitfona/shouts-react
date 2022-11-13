@@ -8,7 +8,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
             <div>
                 <img className="max-w-none w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
                 <div className="flex gap-x-2 mb-3">
-                    <button onClick={deleteBeer}
+                    <button onClick={() => deleteBeer(beer.rating_id)}
                         className="max-w-fit sm:px-6 rounded-md mt-6 p-4 bg-pink-400 hover:cursor-pointer hover:bg-pink-300 inline-block text-md text-white font-extrabold uppercase">
                         Delete
                     </button>
