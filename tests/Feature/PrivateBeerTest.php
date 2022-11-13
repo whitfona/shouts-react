@@ -171,6 +171,17 @@ class PrivateBeerTest extends TestCase
             ->assertJsonCount(1);
     }
 
+    public function test_get_all_beers_by_category_for_authenticated_user()
+    {
+        $user = User::find(1);
+        $category = Category::find(1);
+
+        $this->actingAs($user)
+            ->get(route('beers.user.category', $category->id))
+            ->assertOk();
+//            ->assertJson($category->toArray());
+    }
+
     public function test_authenticated_user_can_delete_a_beer()
     {
         $user = User::find(1);

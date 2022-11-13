@@ -165,6 +165,7 @@ Route::get('/beers/user', function () {
 
 /**
  * GET all beers for the authenticated user associated to a brewery
+ *
  */
 Route::get('/beers/user/brewery/{beer}', function ($brewery) {
     $user = auth()->user();
@@ -178,15 +179,19 @@ Route::get('/beers/user/brewery/{beer}', function ($brewery) {
 })->middleware('auth')->name('beers.user.brewery');
 
 /**
- * DELETE a beer for the authenticated user
+ * GET all beers for the authenticated user by category
+ *
  */
-Route::delete('/beers/{rating}', function ($rating) {
+Route::get('/beers/user/category/{beer}', function ($category) {
     $user = auth()->user();
-    $rating = Rating::find($rating);
-    $rating->delete();
+    $found = DB::table('beers')
+        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->where('ratings.user_id', '=', $user->id)
+        ->where('beers.category_id', '=', $category)
+        ->get();
 
-    return response()->json('Beer successfully deleted', 202);
-})->middleware('auth')->name('beers.user.destroy');
+    return response()->json($found);
+})->middleware('auth')->name('beers.user.category');
 
 /**
  * GET beer with user ratings (if it exists) for scanned barcode
@@ -212,6 +217,16 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
     return response()->json($found->first());
 })->middleware('auth')->name('beers.user.barcode');
 
+/**
+ * DELETE a beer for the authenticated user
+ */
+Route::delete('/beers/{rating}', function ($rating) {
+    $user = auth()->user();
+    $rating = Rating::find($rating);
+    $rating->delete();
+
+    return response()->json('Beer successfully deleted', 202);
+})->middleware('auth')->name('beers.user.destroy');
 
 
 
