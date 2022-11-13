@@ -180,4 +180,15 @@ class PrivateBeerTest extends TestCase
             ->delete(route('beers.user.destroy', $rating->id))
             ->assertSuccessful();
     }
+
+    public function test_using_barcode_scanner_get_beer_and_user_rating_if_it_exists()
+    {
+        $user = User::find(1);
+        $beer = Beer::find(1);
+
+        $this->actingAs($user)
+            ->getJson(route('beers.user.barcode', $beer->barcode))
+            ->assertOk();
+//            ->assertJson($beer->toArray());
+    }
 }

@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Elora Borealis',
             'brewery' => 'Elora Brewing Co.',
             'alcohol_percent' => 5.1,
-            'has_lactose' => false,
+            'has_lactose' => true,
             'category_id' => Category::find(1)->id,
             'photo' => "http://localhost:8000/storage/beers/elora.png"
         ]);

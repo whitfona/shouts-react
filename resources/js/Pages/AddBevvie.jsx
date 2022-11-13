@@ -37,6 +37,28 @@ export default function AddBevvie(props) {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
+    const getScannedBeer = (barcode) => {
+        console.log(barcode)
+        fetch(route('beers.user.barcode', barcode))
+            .then(res => res.json())
+            .then(data => {
+                const checked = data.has_lactose === 1
+                setData({
+                    barcode:  data.barcode,
+                    name: data.name,
+                    brewery: data.brewery,
+                    rating: data.rating,
+                    alcohol_percent: data.alcohol_percent,
+                    category: data.category_id,
+                    has_lactose: checked,
+                    comments: data.comment
+                })
+            })
+            .catch(err => setMessage("Sorry, error fetching beers."))
+        // .catch(err => console.log(err))
+    }
+
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -65,7 +87,7 @@ export default function AddBevvie(props) {
                             </button>
                         </div>
                         <div>
-                            <BarcodeScanner />
+                            <BarcodeScanner getScannedBeers={getScannedBeer} />
                             {/*<form onSubmit={submit} className="p-4">*/}
                             <form className="p-4">
                                 <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Add By Barcode</h2>
@@ -155,8 +177,8 @@ export default function AddBevvie(props) {
                                             <InputLabel forInput="category" value="Category" />
 
                                             <select
-                                                // onChange={searchByCategory}
-                                                defaultValue={'disabled'}
+                                                value={data.category}
+                                                onChange={(e) => setData({category: e.target.value})}
                                                 className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
                                             >
                                                 {categories.map(category => (
@@ -171,10 +193,15 @@ export default function AddBevvie(props) {
                                             <InputLabel forInput="has_lactose" value="Has Lactose" />
 
                                             <input
-                                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-6 h-6 block md:w-10 md:h-10 mt-1"
+                                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300
+                                                focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-6 h-6 block md:w-10
+                                                md:h-10 mt-1 checked:bg-pink-400 focus:bg-pink-400 "
                                                 id="hasLactose"
                                                 type="checkbox"
-                                                name="has_lactose" />
+                                                name="has_lactose"
+                                                checked={data.has_lactose}
+                                                onChange={() => setData({has_lactose: !data.has_lactose})}
+                                            />
 
                                             <InputError message={errors.has_lactose} className="mt-2" />
                                         </div>
@@ -185,10 +212,11 @@ export default function AddBevvie(props) {
                                     <InputLabel forInput="comments" value="Comments" />
 
                                     <textarea
+                                        className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                         id="comments"
                                         rows="4"
                                         name="comments"
-                                        className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                        value={data.comments}
                                     >
                                     </textarea>
 
@@ -202,7 +230,8 @@ export default function AddBevvie(props) {
                                         className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
                                         id="image"
                                         type="file"
-                                        name="image" />
+                                        name="image"
+                                    />
 
                                     <InputError message={errors.image} className="mt-2" />
                                 </div>
