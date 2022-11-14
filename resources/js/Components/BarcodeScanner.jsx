@@ -68,7 +68,7 @@ export default function BarcodeScanner({getScannedBeers, setMessage}) {
                     className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
                                                 justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
                                                 text-white font-extrabold uppercase pl-3 mt-6">
-                <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
+                <span className="w-10 bg-pink-200 p-2 rounded-full mr-2"><MagnifyingGlass /></span>
                 Barcode
             </button>
             <div id="reader"/>
