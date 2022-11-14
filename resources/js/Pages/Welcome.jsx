@@ -26,7 +26,7 @@ export default function Welcome(props) {
     }, [])
 
     const fetchAllBeers = () => {
-        fetch(route('beers.barcode.index'))
+        fetch(route('beers.index'))
             .then(res => res.json())
             .then(data => {
                 data.sort((a, b) => b.avg_rating - a.avg_rating)

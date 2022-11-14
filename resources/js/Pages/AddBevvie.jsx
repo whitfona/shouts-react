@@ -7,6 +7,7 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
+import { Typeahead } from "react-bootstrap-typeahead";
 
 export default function AddBevvie(props) {
 
@@ -23,12 +24,19 @@ export default function AddBevvie(props) {
         rating: ''
     });
     const [categories, setCategories] = useState([])
+    const [beers, setBeers] = useState([])
 
     useEffect(() => {
         fetch(route('categories.index'))
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
+            })
+            .catch(err => console.log(err))
+        fetch(route('beers.index'))
+            .then(res => res.json())
+            .then(data => {
+                setBeers(data)
             })
             .catch(err => console.log(err))
     }, [])
@@ -56,7 +64,7 @@ export default function AddBevvie(props) {
                     rating: data.rating
                 })
             })
-            .catch(err => setMessage("Sorry, error fetching beers."))
+            // .catch(err => setMessage("Sorry, error fetching beers."))
         // .catch(err => console.log(err))
     }
 
@@ -82,6 +90,34 @@ export default function AddBevvie(props) {
         post(route('beers.store'));
     };
 
+    const handleSearch = (e) => {
+        clearAllFields()
+
+        if (e.length === 1) {
+            const beer = e[0].id
+
+            fetch(route('beers.user.beer', beer))
+                .then(res => res.json())
+                .then(data => {
+                    const checked = data.has_lactose === 1
+                    setData({
+                        alcohol_percent: data.alcohol_percent,
+                        barcode:  data.barcode,
+                        beer_id: data.beer_id,
+                        brewery: data.brewery,
+                        category_id: data.category_id,
+                        comment: data.comment,
+                        has_lactose: checked,
+                        name: data.name,
+                        photo: data.photo,
+                        rating: data.rating
+                    })
+                })
+                // .catch(err => setMessage("Sorry, error fetching beer."))
+        }
+
+    }
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -94,23 +130,23 @@ export default function AddBevvie(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div>
-                            <button
-                                    className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
-                                                justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
-                                                text-white font-extrabold uppercase pl-3 mt-6">
-                                <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><MagnifyingGlass /></span>
-                                Add By Barcode
-                            </button>
-                            <button
-                                    className="max-w-fit mx-auto sm:px-6 rounded-md mb-4 p-4 bg-pink-400 flex
-                                                justify-center items-center hover:cursor-pointer hover:bg-pink-300 text-4xl
-                                                text-white font-extrabold uppercase pl-3 mt-6">
-                                <span className="w-16 bg-pink-200 p-3 rounded-full mr-2"><PlusIcon width={40} /> </span>
-                                Add Manually
-                            </button>
                         </div>
                         <div>
-                            <BarcodeScanner getScannedBeers={getScannedBeer} />
+                            <div className="p-4">
+                                <BarcodeScanner getScannedBeers={getScannedBeer} />
+                                <p className="text-center mb-3">OR</p>
+                                <Typeahead
+                                    onChange={handleSearch}
+                                    placeholder={'Search for beer...'}
+                                    options={beers}
+                                    id="id"
+                                    clearButton={true}
+                                    labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
+                                    // labelKey="name"
+                                    className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
+                                    // selected={this.state.selected}
+                                />
+                            </div>
                             <form onSubmit={submit} className="p-4">
                             {/*<form className="p-4">*/}
                                 <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Add By Barcode</h2>

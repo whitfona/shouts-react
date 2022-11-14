@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/*Style barcode reader scanner*/
+/* Style barcode reader scanner */
 #reader {
     width: 350px;
     margin: auto;
@@ -12,3 +12,32 @@ canvas.drawingBuffer {
     width: 0;
 }
 
+/* Style Typeahead Component */
+input.rbt-input-main {
+    border-radius: 0.375rem;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    width: 100%;
+}
+
+span.rbt-close-content {
+    font-size: 26px;
+    color: #f572b5;
+}
+
+span.sr-only.visually-hidden {
+    display: none;
+}
+
+a.dropdown-item {
+    display: block;
+    padding: 8px 4px;
+    background-color: white;
+}
+
+a.dropdown-item:nth-child(odd) {
+    background-color: #ffe9f6;
+}
+
+a.dropdown-item:hover {
+    background-color: #F572B5;
+}

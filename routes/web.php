@@ -37,7 +37,7 @@ Route::get('/beers', function () {
     $allBeers = BeerResource::collection(Beer::all());
 
     return response()->json($allBeers);
-})->name('beers.barcode.index');
+})->name('beers.index');
 
 /**
  * GET all users ratings & comments for a SINGLE beer using the beer's barcode
@@ -228,6 +228,32 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
 
     return response()->json($found->first());
 })->middleware('auth')->name('beers.user.barcode');
+
+/**
+ * GET beer with user ratings (if it exists) by beer_id
+ *
+ */
+Route::get('/beers/user/{beer}', function ($beer) {
+    $user = auth()->user();
+    // Look for user with their rating
+    $found = DB::table('beers')
+        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+        ->join('categories', 'beers.category_id', '=', 'categories.id')
+        ->where('ratings.user_id', '=', $user->id)
+        ->where('ratings.beer_id', '=', $beer)
+        ->get();
+
+    // If no user with rating is found, search for just the beer
+    if (count($found) < 1) {
+        $found = DB::table('beers')
+            ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
+            ->join('categories', 'beers.category_id', '=', 'categories.id')
+            ->where('beer_id', '=', $beer)
+            ->get(['ratings.beer_id', 'category_id', 'barcode', 'name', 'brewery', 'alcohol_percent', 'has_lactose', 'photo']);
+    }
+
+    return response()->json($found->first());
+})->middleware('auth')->name('beers.user.beer');
 
 /**
  * POST add a beer for the authenticated user

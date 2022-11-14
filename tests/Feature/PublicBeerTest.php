@@ -152,7 +152,7 @@ class PublicBeerTest extends TestCase
     {
         $beers = Beer::all();
 
-        $this->getJson(route('beers.barcode.index'))
+        $this->getJson(route('beers.index'))
             ->assertOk()
             ->assertJson($beers->toArray());
     }
