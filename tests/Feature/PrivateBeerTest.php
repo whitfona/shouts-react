@@ -215,7 +215,7 @@ class PrivateBeerTest extends TestCase
         $data = [
             'alcohol_percent' => 4.5,
             'barcode' => 628028020468,
-            'beer_id' => 2,
+            'beer_id' => 1,
             'brewery' => 'Cowbell Brewing Co.',
             'category_id' => 2,
             'comment' => 'This is so good I wish it was real',

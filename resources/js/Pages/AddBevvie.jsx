@@ -144,7 +144,7 @@ export default function AddBevvie(props) {
                             </div>
                             <form onSubmit={submit} className="p-4">
                                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
-                                <InputError message={errors.barcode} className="mt-2" />
+                                <InputError message={errors.beer_id} className="mt-2" />
                                 <div>
                                     {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
                                 </div>
@@ -297,7 +297,7 @@ export default function AddBevvie(props) {
                                 <div className="flex gap-4">
                                     <button type="submit"
                                             className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8">
-                                        Add
+                                        Save
                                     </button>
                                     <button type="submit"
                                             className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8">

@@ -265,9 +265,10 @@ Route::post('/beers/user', function (Request $request) {
     // 1. Validate data is correctly submitted
     $request->validate([
         'name' => ['required', 'string', 'max:100'],
-        'beer_id' =>  Rule::unique('ratings', 'beer_id')->where(function ($query) use ($user) {
-            return $query->where('user_id', '=', $user->id);
-        }),
+        'beer_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
+//        'beer_id' =>  Rule::unique('ratings', 'beer_id')->where(function ($query) use ($user) {
+//            return $query->where('user_id', '=', $user->id);
+//        }),
         'brewery' => ['required', 'string', 'max:100'],
         'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
         'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
@@ -281,18 +282,7 @@ Route::post('/beers/user', function (Request $request) {
     ]
     );
 
-    $beer = [
-       'barcode' => $request->barcode,
-       'name' => $request->name,
-       'brewery' => $request->brewery,
-       'alcohol_percent' => $request->alcohol_percent,
-       'has_lactose' => request()->has('hasLactose'),
-       'photo' => $request->photo,
-       'category_id' => $request->category_id,
-    ];
-
-    // 2. If beer_id is sent with the response
-    //  2.1 Update beer and use the beer_id
+    //  Update beer
     if (Beer::find($request->beer_id)) {
         $foundBeer = Beer::find($request->beer_id);
         $foundBeer->barcode = $request->barcode;
@@ -306,8 +296,7 @@ Route::post('/beers/user', function (Request $request) {
         $foundBeer->save();
         $beer = $foundBeer;
     } else {
-        // 3. If beer_id is NOT set with the response
-        //  3.1 Create the beer and use the beer_id
+        //  Create new beer
         $newBeer = new Beer;
         $newBeer->barcode = $request->barcode;
         $newBeer->name = $request->name;
@@ -321,21 +310,26 @@ Route::post('/beers/user', function (Request $request) {
         $beer = $newBeer;
     }
 
-    // 4. Add beer_id, user_id, rating and comment to Ratings table
-    $newRating = new Rating;
+    // Update Rating
+    $previousRating = Rating::where('beer_id', $beer->id)->where('user_id', $user->id)->first();
+    if ($previousRating) {
+        $previousRating->rating = $request->rating;
+        $previousRating->comment = $request->comment;
 
-//    $newRating->beer_id = $beer;
-//    $newRating->user_id = $user;
-    $newRating->beer()->associate($beer);
-    $newRating->user()->associate($user);
-    $newRating->rating = $request->rating;
-    $newRating->comment = $request->comment;
+        $previousRating->save();
+    } else {
+        // Create new Rating
+        $newRating = new Rating;
 
-    $newRating->save();
+        $newRating->beer()->associate($beer);
+        $newRating->user()->associate($user);
+        $newRating->rating = $request->rating;
+        $newRating->comment = $request->comment;
 
-    // return JSON 202 message
-    return response()->json('Beer successfully added', 201);
+        $newRating->save();
+    }
 
+    return redirect()->route('dashboard')->with('message', 'Beer successfully saved.');
 })->middleware('auth')->name('beers.store');
 
 /**
