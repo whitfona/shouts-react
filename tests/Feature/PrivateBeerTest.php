@@ -208,6 +208,28 @@ class PrivateBeerTest extends TestCase
 //            ->assertJson($beer->toArray());
     }
 
+    public function test_add_beer_for_authenticated_user()
+    {
+        $user = User::find(1);
+
+        $data = [
+            'alcohol_percent' => 4.5,
+            'barcode' => 628028020468,
+            'beer_id' => 2,
+            'brewery' => 'Cowbell Brewing Co.',
+            'category_id' => 2,
+            'comment' => 'This is so good I wish it was real',
+            'has_lactose' => false,
+            'name' => 'Papays Juicy IPA',
+            'photo' => null,
+            'rating' => 9
+        ];
+
+        $this->actingAs($user)
+            ->postJson(route('beers.store'), $data)
+            ->assertSuccessful();
+    }
+
     public function test_authenticated_user_can_delete_a_beer()
     {
         $user = User::find(1);

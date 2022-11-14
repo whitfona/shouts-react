@@ -43,11 +43,13 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
                     </h2>
                     <DetailFormat name={'Lactose'} value={beer.has_lactose ? 'Yes' : 'No'} />
                 </div>
-                <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
+                <div className="mb-3">
                     <h2 className="text-lg">
                         <span className="font-semibold tracking-wide uppercase">Date Added: </span>
                         {formattedDate(beer.updated_at)}
                     </h2>
+                </div>
+                <div className="mb-3">
                     <h2 className="text-lg">
                         <span className="font-semibold tracking-wide uppercase">Comment: </span>
                         {beer.comment}

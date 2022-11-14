@@ -7,20 +7,20 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function AddBevvie(props) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        barcode: '',
-        name: '',
-        brewery: '',
-        rating: '',
         alcohol_percent: '',
-        category: '',
+        barcode: '',
+        beer_id: '',
+        brewery: '',
+        category_id: '',
+        comment: '',
         has_lactose: false,
-        comments: '',
-        photo: ''
+        name: '',
+        photo: '',
+        rating: ''
     });
     const [categories, setCategories] = useState([])
 
@@ -44,15 +44,16 @@ export default function AddBevvie(props) {
             .then(data => {
                 const checked = data.has_lactose === 1
                 setData({
-                    barcode:  data.barcode,
-                    name: data.name,
-                    brewery: data.brewery,
-                    rating: data.rating,
                     alcohol_percent: data.alcohol_percent,
-                    category: data.category_id,
+                    barcode:  data.barcode,
+                    beer_id: data.beer_id,
+                    brewery: data.brewery,
+                    category_id: data.category_id,
+                    comment: data.comment,
                     has_lactose: checked,
-                    comments: data.comment,
-                    photo: data.photo
+                    name: data.name,
+                    photo: data.photo,
+                    rating: data.rating
                 })
             })
             .catch(err => setMessage("Sorry, error fetching beers."))
@@ -61,16 +62,25 @@ export default function AddBevvie(props) {
 
     const clearAllFields = () => {
         setData({
-            barcode: '',
-            name: '',
-            rating:'',
             alcohol_percent: '',
-            category: '',
+            barcode: '',
+            beer_id: '',
+            brewery: '',
+            category_id: '',
+            comment: '',
             has_lactose: false,
-            comments: '',
-            image: ''
+            name: '',
+            photo: '',
+            rating: ''
         })
     }
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        console.log(data)
+        post(route('beers.store'));
+    };
 
     return (
         <AuthenticatedLayout
@@ -101,9 +111,10 @@ export default function AddBevvie(props) {
                         </div>
                         <div>
                             <BarcodeScanner getScannedBeers={getScannedBeer} />
-                            {/*<form onSubmit={submit} className="p-4">*/}
-                            <form className="p-4">
+                            <form onSubmit={submit} className="p-4">
+                            {/*<form className="p-4">*/}
                                 <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Add By Barcode</h2>
+                                <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                                 <div>
                                     {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
                                 </div>
@@ -190,11 +201,11 @@ export default function AddBevvie(props) {
 
                                     <div className="flex gap-4 mt-4">
                                         <div>
-                                            <InputLabel forInput="category" value="Category" />
+                                            <InputLabel forInput="category_id" value="Category" />
 
                                             <select
-                                                value={data.category}
-                                                onChange={(e) => setData({category: e.target.value})}
+                                                value={data.category_id}
+                                                onChange={(e) => setData({category_id: e.target.value})}
                                                 className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
                                             >
                                                 {categories.map(category => (
@@ -202,7 +213,7 @@ export default function AddBevvie(props) {
                                                 ))}
                                             </select>
 
-                                            <InputError message={errors.category} className="mt-2" />
+                                            <InputError message={errors.category_id} className="mt-2" />
                                         </div>
 
                                         <div>
@@ -225,18 +236,19 @@ export default function AddBevvie(props) {
                                 </div>
 
                                 <div className="mt-4">
-                                    <InputLabel forInput="comments" value="Comments" />
+                                    <InputLabel forInput="comment" value="Comments" />
 
                                     <textarea
                                         className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                                        id="comments"
+                                        id="comment"
                                         rows="4"
-                                        name="comments"
-                                        value={data.comments}
+                                        name="comment"
+                                        onChange={onHandleChange}
+                                        value={data.comment}
                                     >
                                     </textarea>
 
-                                    <InputError message={errors.comments} className="mt-2" />
+                                    <InputError message={errors.comment} className="mt-2" />
                                 </div>
 
                                 <div className="mt-4">
@@ -262,16 +274,6 @@ export default function AddBevvie(props) {
                                         Exit
                                     </button>
                                 </div>
-
-                                {/*<div className="flex items-center justify-end mt-4">*/}
-                                {/*    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">*/}
-                                {/*        Already registered?*/}
-                                {/*    </Link>*/}
-
-                                {/*    <PrimaryButton className="ml-4" processing={processing}>*/}
-                                {/*        Register*/}
-                                {/*    </PrimaryButton>*/}
-                                {/*</div>*/}
                             </form>
                         </div>
                     </div>

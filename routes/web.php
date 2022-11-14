@@ -6,8 +6,10 @@ use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 /*
@@ -226,6 +228,89 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
 
     return response()->json($found->first());
 })->middleware('auth')->name('beers.user.barcode');
+
+/**
+ * POST add a beer for the authenticated user
+ *
+ */
+Route::post('/beers/user', function (Request $request) {
+
+    $user = auth()->user();
+    // 1. Validate data is correctly submitted
+    $request->validate([
+        'name' => ['required', 'string', 'max:100'],
+        'beer_id' =>  Rule::unique('ratings', 'beer_id')->where(function ($query) use ($user) {
+            return $query->where('user_id', '=', $user->id);
+        }),
+        'brewery' => ['required', 'string', 'max:100'],
+        'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
+        'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
+//        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
+        'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
+        'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
+        'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
+    ],
+    [
+        'beer_id.unique' => 'You have already rated this beer.'
+    ]
+    );
+
+    $beer = [
+       'barcode' => $request->barcode,
+       'name' => $request->name,
+       'brewery' => $request->brewery,
+       'alcohol_percent' => $request->alcohol_percent,
+       'has_lactose' => request()->has('hasLactose'),
+       'photo' => $request->photo,
+       'category_id' => $request->category_id,
+    ];
+
+    // 2. If beer_id is sent with the response
+    //  2.1 Update beer and use the beer_id
+    if (Beer::find($request->beer_id)) {
+        $foundBeer = Beer::find($request->beer_id);
+        $foundBeer->barcode = $request->barcode;
+        $foundBeer->name = $request->name;
+        $foundBeer->brewery = $request->brewery;
+        $foundBeer->alcohol_percent = $request->alcohol_percent;
+        $foundBeer->has_lactose = request()->has('hasLactose');
+        $foundBeer->photo = $request->photo;
+        $foundBeer->category_id = $request->category_id;
+
+        $foundBeer->save();
+        $beer = $foundBeer;
+    } else {
+        // 3. If beer_id is NOT set with the response
+        //  3.1 Create the beer and use the beer_id
+        $newBeer = new Beer;
+        $newBeer->barcode = $request->barcode;
+        $newBeer->name = $request->name;
+        $newBeer->brewery = $request->brewery;
+        $newBeer->alcohol_percent = $request->alcohol_percent;
+        $newBeer->has_lactose = request()->has('hasLactose');
+        $newBeer->photo = $request->photo;
+        $newBeer->category_id = $request->category_id;
+
+        $newBeer->save();
+        $beer = $newBeer;
+    }
+
+    // 4. Add beer_id, user_id, rating and comment to Ratings table
+    $newRating = new Rating;
+
+//    $newRating->beer_id = $beer;
+//    $newRating->user_id = $user;
+    $newRating->beer()->associate($beer);
+    $newRating->user()->associate($user);
+    $newRating->rating = $request->rating;
+    $newRating->comment = $request->comment;
+
+    $newRating->save();
+
+    // return JSON 202 message
+    return response()->json('Beer successfully added', 201);
+
+})->middleware('auth')->name('beers.store');
 
 /**
  * DELETE a beer for the authenticated user

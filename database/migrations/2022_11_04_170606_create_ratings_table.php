@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('beer_id');
             $table->unsignedInteger('user_id');
             $table->float('rating');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
