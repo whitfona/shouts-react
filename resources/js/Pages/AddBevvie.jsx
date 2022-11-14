@@ -26,16 +26,16 @@ export default function AddBevvie(props) {
     const [message, setMessage] = useState('')
 
     useEffect(() => {
-        fetch(route('categories.index'))
-            .then(res => res.json())
-            .then(data => {
-                setCategories(data)
-            })
-            .catch(err => console.log(err))
         fetch(route('beers.index'))
             .then(res => res.json())
             .then(data => {
                 setBeers(data)
+            })
+            .catch(err => console.log(err))
+        fetch(route('categories.index'))
+            .then(res => res.json())
+            .then(data => {
+                setCategories(data)
             })
             .catch(err => console.log(err))
     }, [])
@@ -62,13 +62,7 @@ export default function AddBevvie(props) {
             .catch(err => setMessage("Sorry, error fetching beers."))
     }
 
-    const submit = (e) => {
-        e.preventDefault();
-
-        post(route('beers.store'));
-    };
-
-    const handleSearch = (e) => {
+    const getSearchedBeer = (e) => {
         clearAllFields()
 
         if (e.length === 1) {
@@ -83,6 +77,12 @@ export default function AddBevvie(props) {
                 .catch(err => setMessage("Sorry, error fetching beer."))
         }
     }
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        post(route('beers.store'));
+    };
 
     const setFields = (data, checked) =>{
         setData({
@@ -132,7 +132,7 @@ export default function AddBevvie(props) {
                                 <BarcodeScanner getScannedBeers={getScannedBeer} />
                                 <p className="text-center mb-3">OR</p>
                                 <Typeahead
-                                    onChange={handleSearch}
+                                    onChange={getSearchedBeer}
                                     placeholder={'Search for beer...'}
                                     options={beers}
                                     id="id"
@@ -235,7 +235,7 @@ export default function AddBevvie(props) {
 
                                             <select
                                                 value={data.category_id}
-                                                onChange={(e) => setData({category_id: e.target.value})}
+                                                onChange={(e) => setData('category_id', e.target.value)}
                                                 className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
                                             >
                                                 {categories.map(category => (
