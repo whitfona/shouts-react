@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, Link, useForm} from '@inertiajs/inertia-react';
-import MagnifyingGlass from "@/Components/MagnifyingGlass";
-import PlusIcon from "@/Components/PlusIcon";
+import {Head, useForm} from '@inertiajs/inertia-react';
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
@@ -25,6 +23,7 @@ export default function AddBevvie(props) {
     });
     const [categories, setCategories] = useState([])
     const [beers, setBeers] = useState([])
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
         fetch(route('categories.index'))
@@ -47,46 +46,25 @@ export default function AddBevvie(props) {
 
     const getScannedBeer = (barcode) => {
         clearAllFields()
+        setMessage('')
         fetch(route('beers.user.barcode', barcode))
             .then(res => res.json())
             .then(data => {
-                const checked = data.has_lactose === 1
-                setData({
-                    alcohol_percent: data.alcohol_percent,
-                    barcode:  data.barcode,
-                    beer_id: data.beer_id,
-                    brewery: data.brewery,
-                    category_id: data.category_id,
-                    comment: data.comment,
-                    has_lactose: checked,
-                    name: data.name,
-                    photo: data.photo,
-                    rating: data.rating
-                })
+                // if no matches are returned
+                if (Object.keys(data).length === 0) {
+                    setFields({barcode: barcode})
+                    setMessage('Sorry, no match found. Please try again or enter manually.')
+                } else {
+                    const checked = data.has_lactose === 1
+                    setFields(data, checked)
+                }
             })
-            // .catch(err => setMessage("Sorry, error fetching beers."))
-        // .catch(err => console.log(err))
-    }
-
-    const clearAllFields = () => {
-        setData({
-            alcohol_percent: '',
-            barcode: '',
-            beer_id: '',
-            brewery: '',
-            category_id: '',
-            comment: '',
-            has_lactose: false,
-            name: '',
-            photo: '',
-            rating: ''
-        })
+            .catch(err => setMessage("Sorry, error fetching beers."))
     }
 
     const submit = (e) => {
         e.preventDefault();
 
-        console.log(data)
         post(route('beers.store'));
     };
 
@@ -100,22 +78,40 @@ export default function AddBevvie(props) {
                 .then(res => res.json())
                 .then(data => {
                     const checked = data.has_lactose === 1
-                    setData({
-                        alcohol_percent: data.alcohol_percent,
-                        barcode:  data.barcode,
-                        beer_id: data.beer_id,
-                        brewery: data.brewery,
-                        category_id: data.category_id,
-                        comment: data.comment,
-                        has_lactose: checked,
-                        name: data.name,
-                        photo: data.photo,
-                        rating: data.rating
-                    })
+                    setFields(data, checked)
                 })
-                // .catch(err => setMessage("Sorry, error fetching beer."))
+                .catch(err => setMessage("Sorry, error fetching beer."))
         }
+    }
 
+    const setFields = (data, checked) =>{
+        setData({
+            alcohol_percent: data.alcohol_percent,
+            barcode:  data.barcode,
+            beer_id: data.beer_id,
+            brewery: data.brewery,
+            category_id: data.category_id,
+            comment: data.comment,
+            has_lactose: checked,
+            name: data.name,
+            photo: data.photo,
+            rating: data.rating
+        })
+    }
+
+    const clearAllFields = async () => {
+        await setData({
+            alcohol_percent: '',
+            barcode: '',
+            beer_id: '',
+            brewery: '',
+            category_id: '',
+            comment: '',
+            has_lactose: false,
+            name: '',
+            photo: '',
+            rating: ''
+        })
     }
 
     return (
@@ -132,7 +128,7 @@ export default function AddBevvie(props) {
                         <div>
                         </div>
                         <div>
-                            <div className="p-4">
+                            <div className="p-4 border-b border-gray-200T">
                                 <BarcodeScanner getScannedBeers={getScannedBeer} />
                                 <p className="text-center mb-3">OR</p>
                                 <Typeahead
@@ -142,15 +138,13 @@ export default function AddBevvie(props) {
                                     id="id"
                                     clearButton={true}
                                     labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
-                                    // labelKey="name"
                                     className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
-                                    // selected={this.state.selected}
                                 />
+                                <p className="text-red-500 mt-4">{message}</p>
                             </div>
                             <form onSubmit={submit} className="p-4">
-                            {/*<form className="p-4">*/}
-                                <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Add By Barcode</h2>
                                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
+                                <InputError message={errors.barcode} className="mt-2" />
                                 <div>
                                     {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
                                 </div>
