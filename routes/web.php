@@ -349,6 +349,10 @@ Route::get('/beers/add-bevvie', function () {
     return Inertia::render('AddBevvie');
 })->name('beer.create');
 
+Route::get('/beers/update-bevvie', function () {
+    return Inertia::render('UpdateBevvie');
+})->name('beer.update');
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

@@ -9,6 +9,7 @@ export default function Dashboard(props) {
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
+    const [popupMessage, setPopupMessage] = useState('')
 
     useEffect(() => {
         fetchAllBeers()
@@ -84,6 +85,14 @@ export default function Dashboard(props) {
         }
     }
 
+    const showPopup = (message) => {
+        setPopupMessage(message)
+        fetchAllBeers()
+        setTimeout(() => {
+            setPopupMessage('')
+        }, 3000)
+    }
+    
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -92,6 +101,7 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
 
+            {popupMessage && <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{popupMessage}</span>}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -107,6 +117,7 @@ export default function Dashboard(props) {
                                     beer={beer}
                                     searchByBrewery={searchByBrewery}
                                     deleteBeer={deleteBeer}
+                                    showPopup={showPopup}
                                 />
                             ))}
                         </div>
