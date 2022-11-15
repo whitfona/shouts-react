@@ -6,6 +6,7 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import Dropdown from "@/Components/Dropdown";
 
 export default function Welcome(props) {
 
@@ -107,15 +108,16 @@ export default function Welcome(props) {
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                    <nav>
-                        <div className="flex justify-between px-4 pt-8">
-                            <Link href="/" className="flex flex-col justify-center items-center">
-                                <ApplicationLogo size={50} />
-                                <h1 className="text-white">SHOUTS!</h1>
-                            </Link>
-                            <div>
-                                {props.auth.user ? (
-                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">
+                    <nav className="bg-pink-400 border-b border-gray-100">
+                        <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between h-16">
+                                <Link href="/" className="flex flex-col items-center justify-center">
+                                    <ApplicationLogo size={40} />
+                                    <h1 className="text-white">SHOUTS!</h1>
+                                </Link>
+
+                                {props.auth ?
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                         <NavLink href={route('welcome')} active={route().current('welcome')}>
                                             All Bevvies
                                         </NavLink>
@@ -129,7 +131,7 @@ export default function Welcome(props) {
                                             About
                                         </NavLink>
                                     </div>
-                                ) : (
+                                    :
                                     <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                         <NavLink href={route('welcome')} active={route().current('welcome')}>
                                             All Bevvies
@@ -144,11 +146,111 @@ export default function Welcome(props) {
                                             About
                                         </NavLink>
                                     </div>
-                                )}
+                                }
 
+                                <div className="-mr-2 flex items-center sm:hidden">
+                                    <button
+                                        onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
+                                        className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                    >
+                                        <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                            <path
+                                                className={!showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M4 6h16M4 12h16M4 18h16"
+                                            />
+                                            <path
+                                                className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
+                        {props.auth ?
+                            <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                                <div className="pt-2 pb-3 space-y-1">
+                                    <ResponsiveNavLink href={route('welcome')} active={route().current('welcome')}>
+                                        All Bevvies
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                        My Bevvies
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('beer.create')} active={route().current('beer.create')}>
+                                        Add Bevvie
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('about')} active={route().current('about')}>
+                                        About
+                                    </ResponsiveNavLink>
+                                </div>
+                            </div>
+                            :
+                            <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                                <div className="pt-2 pb-3 space-y-1">
+                                    <ResponsiveNavLink href={route('welcome')} active={route().current('welcome')}>
+                                        All Bevvies
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('login')} active={route().current('login')}>
+                                        Login
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('register')} active={route().current('register')}>
+                                        Register
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href={route('about')} active={route().current('about')}>
+                                        About
+                                    </ResponsiveNavLink>
+                                </div>
+                            </div>}
+
                     </nav>
+                    {/*<nav>*/}
+                    {/*    <div className="flex justify-between px-4 pt-8">*/}
+                    {/*        <Link href="/" className="flex flex-col justify-center items-center">*/}
+                    {/*            <ApplicationLogo size={50} />*/}
+                    {/*            <h1 className="text-white">SHOUTS!</h1>*/}
+                    {/*        </Link>*/}
+                    {/*        <div>*/}
+                    {/*            {props.auth.user ? (*/}
+                    {/*                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">*/}
+                    {/*                    <NavLink href={route('welcome')} active={route().current('welcome')}>*/}
+                    {/*                        All Bevvies*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>*/}
+                    {/*                        My Bevvies*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('beer.create')} active={route().current('beer.create')}>*/}
+                    {/*                        Add Bevvie*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('about')} active={route().current('about')}>*/}
+                    {/*                        About*/}
+                    {/*                    </NavLink>*/}
+                    {/*                </div>*/}
+                    {/*            ) : (*/}
+                    {/*                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">*/}
+                    {/*                    <NavLink href={route('welcome')} active={route().current('welcome')}>*/}
+                    {/*                        All Bevvies*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('login')} active={route().current('login')}>*/}
+                    {/*                        Login*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('register')} active={route().current('register')}>*/}
+                    {/*                        Register*/}
+                    {/*                    </NavLink>*/}
+                    {/*                    <NavLink href={route('about')} active={route().current('about')}>*/}
+                    {/*                        About*/}
+                    {/*                    </NavLink>*/}
+                    {/*                </div>*/}
+                    {/*            )}*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</nav>*/}
 
                     <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
                         <div className="">
@@ -176,12 +278,6 @@ export default function Welcome(props) {
                             </div>
                         </div>
                     </div>
-
-                    {/*<div className="flex justify-center my-4 sm:items-center sm:items-center">*/}
-                    {/*    <div className="text-center text-sm text-gray-500 sm:text-left">*/}
-                    {/*        <a className="text-white" href="https://whitforddesign.ca">Whitford Design | {year}</a>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </>
