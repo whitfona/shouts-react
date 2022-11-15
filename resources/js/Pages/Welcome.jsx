@@ -6,7 +6,6 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import Dropdown from "@/Components/Dropdown";
 
 export default function Welcome(props) {
 
@@ -116,7 +115,7 @@ export default function Welcome(props) {
                                     <h1 className="text-white">SHOUTS!</h1>
                                 </Link>
 
-                                {props.auth ?
+                                {props.auth.user ?
                                     <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                         <NavLink href={route('welcome')} active={route().current('welcome')}>
                                             All Bevvies
@@ -174,7 +173,7 @@ export default function Welcome(props) {
                             </div>
                         </div>
 
-                        {props.auth ?
+                        {props.auth.user ?
                             <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                                 <div className="pt-2 pb-3 space-y-1">
                                     <ResponsiveNavLink href={route('welcome')} active={route().current('welcome')}>
