@@ -97,23 +97,21 @@ export default function Dashboard(props) {
             {showFlashMessage && (
                 <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
             )}
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <Header
-                            categories={categories}
-                            searchByCategory={searchByCategory}
-                            search={search}
-                            handleSearch={handleSearch}
-                        />
-                        <div>
-                            {beers.map(beer => (
-                                <PrivateBeerDetails
-                                    beer={beer}
-                                    searchByBrewery={searchByBrewery}
-                                />
-                            ))}
-                        </div>
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <Header
+                        categories={categories}
+                        searchByCategory={searchByCategory}
+                        search={search}
+                        handleSearch={handleSearch}
+                    />
+                    <div>
+                        {beers.map(beer => (
+                            <PrivateBeerDetails
+                                beer={beer}
+                                searchByBrewery={searchByBrewery}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
