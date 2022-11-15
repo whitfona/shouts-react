@@ -25,6 +25,7 @@ export default function Dashboard(props) {
         if (!flash.message) {
             return
         }
+        fetchAllBeers()
         setShowFlashMessage(true)
         setTimeout(() => {
             setShowFlashMessage(false)
