@@ -1,6 +1,6 @@
 export default function Header({categories, message, search, handleSearch, searchByCategory}) {
     return (
-        <header className="border-b border-gray-200 p-4 py-8 sm:px-6 lg:px-8">
+        <header className="bg-pink-100 p-4 py-8 sm:px-6 lg:px-8">
             <input
                 className="rounded-md shadow-sm text-gray-500 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-2 md:w-1/3"
                 type="text"

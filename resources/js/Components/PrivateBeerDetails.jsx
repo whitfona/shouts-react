@@ -16,7 +16,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
     }
     return (
         <>
-            <div className="md:flex gap-4 p-4 mb-4 md:mb-10" key={beer.id}>
+            <div className="border-b-8 border-pink-100 gap-4 md:flex p-4" key={beer.id}>
                 <div>
                     <img className="max-w-none w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
                     <div className="flex gap-x-2 mb-3">

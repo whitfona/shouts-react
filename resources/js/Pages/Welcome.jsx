@@ -106,7 +106,8 @@ export default function Welcome(props) {
         <>
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
-                <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div className="">
+                {/*<div className="max-w-6xl mx-auto sm:px-6 lg:px-8">*/}
                     <nav className="bg-pink-400 border-b border-gray-100">
                         <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
                             <div className="flex justify-between h-16">
@@ -209,71 +210,29 @@ export default function Welcome(props) {
                             </div>}
 
                     </nav>
-                    {/*<nav>*/}
-                    {/*    <div className="flex justify-between px-4 pt-8">*/}
-                    {/*        <Link href="/" className="flex flex-col justify-center items-center">*/}
-                    {/*            <ApplicationLogo size={50} />*/}
-                    {/*            <h1 className="text-white">SHOUTS!</h1>*/}
-                    {/*        </Link>*/}
-                    {/*        <div>*/}
-                    {/*            {props.auth.user ? (*/}
-                    {/*                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">*/}
-                    {/*                    <NavLink href={route('welcome')} active={route().current('welcome')}>*/}
-                    {/*                        All Bevvies*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>*/}
-                    {/*                        My Bevvies*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('beer.create')} active={route().current('beer.create')}>*/}
-                    {/*                        Add Bevvie*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('about')} active={route().current('about')}>*/}
-                    {/*                        About*/}
-                    {/*                    </NavLink>*/}
-                    {/*                </div>*/}
-                    {/*            ) : (*/}
-                    {/*                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">*/}
-                    {/*                    <NavLink href={route('welcome')} active={route().current('welcome')}>*/}
-                    {/*                        All Bevvies*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('login')} active={route().current('login')}>*/}
-                    {/*                        Login*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('register')} active={route().current('register')}>*/}
-                    {/*                        Register*/}
-                    {/*                    </NavLink>*/}
-                    {/*                    <NavLink href={route('about')} active={route().current('about')}>*/}
-                    {/*                        About*/}
-                    {/*                    </NavLink>*/}
-                    {/*                </div>*/}
-                    {/*            )}*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</nav>*/}
 
-                    <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
-                        <div className="">
-                            <div className="max-w-7xl mx-auto">
-                                <div className="bg-pink-100 overflow-hidden shadow-sm sm:rounded-lg">
-                                    <Header
-                                        categories={categories}
-                                        message={message}
-                                        search={search}
-                                        handleSearch={handleSearch}
-                                        searchByCategory={searchByCategory}
+                    <div className="bg-pink-400 dark:bg-gray-800 overflow-hidden sm:rounded-lg px-6">
+                        <h2 className="font-semibold text-xl text-white leading-tight py-6 px-4 sm:px-0">All Bevvies</h2>
+                        <div className="max-w-7xl mx-auto">
+                            <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
+                                <Header
+                                    categories={categories}
+                                    message={message}
+                                    search={search}
+                                    handleSearch={handleSearch}
+                                    searchByCategory={searchByCategory}
+                                />
+                                <BarcodeScanner
+                                    getScannedBeers={getScannedBeers}
+                                    setMessage={setMessage}
+                                />
+                                {beers.map(beer => (
+                                    <PublicBeerDetails
+                                        beer={beer}
+                                        searchByBrewery={searchByBrewery}
+                                        searchByUser={searchByUser}
                                     />
-                                    <BarcodeScanner
-                                        getScannedBeers={getScannedBeers}
-                                        setMessage={setMessage}
-                                    />
-                                    {beers.map(beer => (
-                                        <PublicBeerDetails
-                                            beer={beer}
-                                            searchByBrewery={searchByBrewery}
-                                            searchByUser={searchByUser}
-                                        />
-                                    ))}
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>
