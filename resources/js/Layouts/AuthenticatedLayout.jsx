@@ -101,7 +101,7 @@ export default function Authenticated({ auth, header, children }) {
                             All Bevvies
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
+                            My Bevvies
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('beer.create')} active={route().current('beer.create')}>
                             Add Bevvie

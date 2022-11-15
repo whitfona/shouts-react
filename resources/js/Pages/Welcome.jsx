@@ -11,7 +11,6 @@ export default function Welcome(props) {
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
-    const [year, setYear] = useState('')
 
     useEffect(() => {
         fetchAllBeers()
@@ -22,7 +21,6 @@ export default function Welcome(props) {
             })
             .catch(err => console.log(err))
 
-        getYear()
     }, [])
 
     const fetchAllBeers = () => {
@@ -101,12 +99,6 @@ export default function Welcome(props) {
         }
     }
 
-    const getYear = () => {
-        const date = new Date
-        const year = date.getFullYear()
-        setYear(year)
-    }
-
     return (
         <>
             <Head title="Welcome" />
@@ -166,11 +158,11 @@ export default function Welcome(props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-center my-4 sm:items-center sm:items-center">
-                        <div className="text-center text-sm text-gray-500 sm:text-left">
-                            <a className="text-white" href="https://whitforddesign.ca">Whitford Design | {year}</a>
-                        </div>
-                    </div>
+                    {/*<div className="flex justify-center my-4 sm:items-center sm:items-center">*/}
+                    {/*    <div className="text-center text-sm text-gray-500 sm:text-left">*/}
+                    {/*        <a className="text-white" href="https://whitforddesign.ca">Whitford Design | {year}</a>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </>

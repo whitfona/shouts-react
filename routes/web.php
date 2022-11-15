@@ -346,6 +346,10 @@ Route::get('/beers/update-bevvie', function () {
     return Inertia::render('UpdateBevvie');
 })->name('beer.update');
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
