@@ -54,8 +54,7 @@ Route::get('/beers/barcode/{beer}', function ($barcode) {
  *
  */
 Route::get('/beers/brewery/{beer}', function ($brewery) {
-    $found = Beer::all()->where('brewery', 'LIKE', '%' . $brewery . '%');
-
+    $found = Beer::where('brewery', 'LIKE', '%' . $brewery . '%')->get();
     $foundCollection = BeerResource::collection($found);
 
     return response()->json($foundCollection);
@@ -77,7 +76,7 @@ Route::get('/beers/category/{beer}', function($category) {
  * GET all beers associated to a user
  *
  */
-Route::get('/beers/user/{beer}', function ($user) {
+Route::get('/beers/user/all/{beer}', function ($user) {
     $found = Rating::all()->where('user_id', '=', $user);
     $results = $found->map(function ($beer) {
         return  [
