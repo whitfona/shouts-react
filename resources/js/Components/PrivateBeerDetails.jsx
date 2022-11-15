@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import DetailFormat from "@/Components/DetailFormat";
 import UpdateBevvie from "@/Pages/UpdateBevvie";
 
-export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer, showPopup}) {
+export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) {
     const [showModal, setShowModal] = useState(false)
 
     const formattedDate = (date) => {
@@ -61,7 +61,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer, s
                     </div>
                 </div>
             </div>
-                {showModal && <UpdateBevvie beer={beer} setShowModal={setShowModal} showPopup={showPopup} />}
+                {showModal && <UpdateBevvie beer={beer} setShowModal={setShowModal} />}
         </>
     )
 }

@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/inertia-react';
+import {Head, usePage} from '@inertiajs/inertia-react';
 import PrivateBeerDetails from "@/Components/PrivateBeerDetails";
 import Header from "@/Components/Header";
 
 export default function Dashboard(props) {
-
+    const { flash } = usePage().props
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
-    const [popupMessage, setPopupMessage] = useState('')
+    const [showFlashMessage, setShowFlashMessage] = useState(false)
 
     useEffect(() => {
         fetchAllBeers()
@@ -20,6 +20,16 @@ export default function Dashboard(props) {
             })
             .catch(err => console.log(err))
     }, [])
+
+    useEffect(() => {
+        if (!flash.message) {
+            return
+        }
+        setShowFlashMessage(true)
+        setTimeout(() => {
+            setShowFlashMessage(false)
+        }, 4000)
+    }, [flash])
 
     const fetchAllBeers = () => {
         fetch(route('beers.user.index'))
@@ -85,14 +95,6 @@ export default function Dashboard(props) {
         }
     }
 
-    const showPopup = (message) => {
-        setPopupMessage(message)
-        fetchAllBeers()
-        setTimeout(() => {
-            setPopupMessage('')
-        }, 3000)
-    }
-    
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -101,7 +103,9 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
 
-            {popupMessage && <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{popupMessage}</span>}
+            {showFlashMessage && (
+                <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
+            )}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -117,7 +121,6 @@ export default function Dashboard(props) {
                                     beer={beer}
                                     searchByBrewery={searchByBrewery}
                                     deleteBeer={deleteBeer}
-                                    showPopup={showPopup}
                                 />
                             ))}
                         </div>

@@ -5,7 +5,7 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 
-export default function UpdateBevvie({beer, setShowModal, showPopup}) {
+export default function UpdateBevvie({beer, setShowModal}) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         alcohol_percent: '',
@@ -53,7 +53,6 @@ export default function UpdateBevvie({beer, setShowModal, showPopup}) {
 
         post(route('beers.store'));
         setShowModal(false)
-        showPopup('Bevvie has been updated!')
     };
 
     return (
