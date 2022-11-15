@@ -237,6 +237,6 @@ class PrivateBeerTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('beers.user.destroy', $rating->id))
-            ->assertSuccessful();
+            ->assertRedirect(route('dashboard'));
     }
 }

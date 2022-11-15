@@ -266,9 +266,6 @@ Route::post('/beers/user', function (Request $request) {
     $request->validate([
         'name' => ['required', 'string', 'max:100'],
         'beer_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-//        'beer_id' =>  Rule::unique('ratings', 'beer_id')->where(function ($query) use ($user) {
-//            return $query->where('user_id', '=', $user->id);
-//        }),
         'brewery' => ['required', 'string', 'max:100'],
         'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
         'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
@@ -276,11 +273,7 @@ Route::post('/beers/user', function (Request $request) {
         'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
         'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
         'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-    ],
-    [
-        'beer_id.unique' => 'You have already rated this beer.'
-    ]
-    );
+    ]);
 
     //  Update beer
     if (Beer::find($request->beer_id)) {
@@ -329,18 +322,18 @@ Route::post('/beers/user', function (Request $request) {
         $newRating->save();
     }
 
-    return redirect()->route('dashboard')->with('message', 'Beer successfully saved.');
+    return redirect(route('dashboard'))->with('message', 'Beer successfully saved.');
 })->middleware('auth')->name('beers.store');
 
 /**
  * DELETE a beer for the authenticated user
  */
-Route::delete('/beers/{rating}', function ($rating) {
+Route::post('/beers/delete', function (Request $request) {
     $user = auth()->user();
-    $rating = Rating::find($rating);
+    $rating = Rating::where('beer_id', $request->beer_id)->where('user_id', $user->id)->first();
     $rating->delete();
 
-    return response()->json('Beer successfully deleted', 202);
+    return redirect(route('dashboard'))->with('message', 'Beer successfully deleted.');
 })->middleware('auth')->name('beers.user.destroy');
 
 

@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, useForm} from '@inertiajs/inertia-react';
+import {useForm} from '@inertiajs/inertia-react';
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 
-export default function UpdateBevvie({beer, setShowModal}) {
+export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, errors } = useForm({
         alcohol_percent: '',
         barcode: '',
         beer_id: '',
@@ -52,7 +51,7 @@ export default function UpdateBevvie({beer, setShowModal}) {
         e.preventDefault();
 
         post(route('beers.store'));
-        setShowModal(false)
+        setShowUpdateModal(false)
     };
 
     return (
@@ -214,7 +213,7 @@ export default function UpdateBevvie({beer, setShowModal}) {
                         Save
                     </button>
                     <button
-                        onClick={() => setShowModal(false)}
+                        onClick={() => setShowUpdateModal(false)}
                         type="submit"
                         className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8"
                     >

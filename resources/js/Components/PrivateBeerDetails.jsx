@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import DetailFormat from "@/Components/DetailFormat";
-import UpdateBevvie from "@/Pages/UpdateBevvie";
+import UpdateBevvie from "@/Components/UpdateBevvie";
+import DeleteBevvie from "@/Components/DeleteBevvie";
 
-export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) {
-    const [showModal, setShowModal] = useState(false)
+export default function PrivateBeerDetails({beer, searchByBrewery}) {
+    const [showUpdateModal, setShowUpdateModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     const formattedDate = (date) => {
         const d = new Date(date)
@@ -18,12 +20,13 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
                 <div>
                     <img className="max-w-none w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
                     <div className="flex gap-x-2 mb-3">
-                        <button onClick={() => deleteBeer(beer.rating_id)}
+                        <button
+                            onClick={() => setShowDeleteModal(true)}
                             className="max-w-fit sm:px-6 rounded-md mt-6 p-4 bg-pink-400 hover:cursor-pointer hover:bg-pink-300 inline-block text-md text-white font-extrabold uppercase">
                             Delete
                         </button>
                         <button
-                            onClick={() => setShowModal(true)}
+                            onClick={() => setShowUpdateModal(true)}
                             className="max-w-fit sm:px-6 rounded-md mt-6 p-4 bg-pink-400 hover:cursor-pointer hover:bg-pink-300 inline-block text-md text-white font-extrabold uppercase">
                             Edit
                         </button>
@@ -61,7 +64,8 @@ export default function PrivateBeerDetails({beer, searchByBrewery, deleteBeer}) 
                     </div>
                 </div>
             </div>
-                {showModal && <UpdateBevvie beer={beer} setShowModal={setShowModal} />}
+                {showUpdateModal && <UpdateBevvie beer={beer} setShowUpdateModal={setShowUpdateModal} />}
+                {showDeleteModal && <DeleteBevvie beer={beer} setShowDeleteModal={setShowDeleteModal} />}
         </>
     )
 }

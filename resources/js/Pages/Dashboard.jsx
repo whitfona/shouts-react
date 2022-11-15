@@ -52,16 +52,6 @@ export default function Dashboard(props) {
             .catch(err => console.log(err))
     }
 
-    const deleteBeer = async (beer) => {
-        await axios.delete(route('beers.user.destroy', beer))
-            .then(res => {
-                if (res.status === 202) {
-                    fetchAllBeers()
-                }
-            })
-            .catch(err => console.log(err))
-    }
-
     const searchByCategory = (event) => {
         const category = event.target.value
 
@@ -121,7 +111,6 @@ export default function Dashboard(props) {
                                 <PrivateBeerDetails
                                     beer={beer}
                                     searchByBrewery={searchByBrewery}
-                                    deleteBeer={deleteBeer}
                                 />
                             ))}
                         </div>
