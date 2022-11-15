@@ -30,6 +30,9 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('beer.create')} active={route().current('beer.create')}>
                                     Add Bevvie
                                 </NavLink>
+                                <NavLink href={route('about')} active={route().current('about')}>
+                                    About
+                                </NavLink>
                             </div>
                         </div>
 
@@ -105,6 +108,9 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('beer.create')} active={route().current('beer.create')}>
                             Add Bevvie
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('about')} active={route().current('about')}>
+                            About
                         </ResponsiveNavLink>
                     </div>
 
