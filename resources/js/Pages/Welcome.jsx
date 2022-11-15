@@ -4,6 +4,8 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 
 export default function Welcome(props) {
 
@@ -11,6 +13,7 @@ export default function Welcome(props) {
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     useEffect(() => {
         fetchAllBeers()
@@ -104,32 +107,48 @@ export default function Welcome(props) {
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-pink-400 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex justify-between px-4 pt-8">
-                        <Link href="/" className="flex flex-col justify-center items-center">
-                            <ApplicationLogo size={50} />
-                            <h1 className="text-white">SHOUTS!</h1>
-                        </Link>
-                        <div>
-                            {props.auth.user ? (
-                                <Link href={route('dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">
-                                    Dashboard
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link href={route('login')} className="text-sm text-white dark:text-gray-500 underline">
-                                        Log in
-                                    </Link>
+                    <nav>
+                        <div className="flex justify-between px-4 pt-8">
+                            <Link href="/" className="flex flex-col justify-center items-center">
+                                <ApplicationLogo size={50} />
+                                <h1 className="text-white">SHOUTS!</h1>
+                            </Link>
+                            <div>
+                                {props.auth.user ? (
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">
+                                        <NavLink href={route('welcome')} active={route().current('welcome')}>
+                                            All Bevvies
+                                        </NavLink>
+                                        <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                            My Bevvies
+                                        </NavLink>
+                                        <NavLink href={route('beer.create')} active={route().current('beer.create')}>
+                                            Add Bevvie
+                                        </NavLink>
+                                        <NavLink href={route('about')} active={route().current('about')}>
+                                            About
+                                        </NavLink>
+                                    </div>
+                                ) : (
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink href={route('welcome')} active={route().current('welcome')}>
+                                            All Bevvies
+                                        </NavLink>
+                                        <NavLink href={route('login')} active={route().current('login')}>
+                                            Login
+                                        </NavLink>
+                                        <NavLink href={route('register')} active={route().current('register')}>
+                                            Register
+                                        </NavLink>
+                                        <NavLink href={route('about')} active={route().current('about')}>
+                                            About
+                                        </NavLink>
+                                    </div>
+                                )}
 
-                                    <Link
-                                        href={route('register')}
-                                        className="ml-4 text-sm text-white dark:text-gray-500 underline"
-                                    >
-                                        Register
-                                    </Link>
-                                </>
-                            )}
+                            </div>
                         </div>
-                    </div>
+                    </nav>
 
                     <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
                         <div className="">
