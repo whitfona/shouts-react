@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
@@ -7,9 +7,15 @@ import { Link } from '@inertiajs/inertia-react';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [year, setYear] = useState()
 
+    useEffect(() => {
+        const date = new Date
+        const year = date.getFullYear()
+        setYear(year)
+    }, [])
     return (
-        <div className="min-h-screen bg-pink-400">
+        <div className="min-h-screen bg-pink-400 pb-8">
             <nav className="bg-pink-400 border-b border-gray-100">
                 <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -143,6 +149,12 @@ export default function Authenticated({ auth, header, children }) {
             )}
 
             <main className="bg-pink-400" >{children}</main>
+
+            <div className="flex justify-center py-4 sm:items-center sm:items-center">
+                <div className="text-center text-sm text-gray-500 sm:text-left">
+                    <a className="text-white" href="https://whitforddesign.ca">Whitford Design | {year}</a>
+                </div>
+            </div>
         </div>
     );
 }

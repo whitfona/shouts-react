@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/inertia-react';
+import {Link} from '@inertiajs/inertia-react';
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 
@@ -10,14 +10,10 @@ export default function Guest({ children }) {
 
 
     useEffect(() => {
-        getYear()
-    }, [])
-
-    const getYear = () => {
         const date = new Date
         const year = date.getFullYear()
         setYear(year)
-    }
+    }, [])
 
     return (
     <>
@@ -89,15 +85,6 @@ export default function Guest({ children }) {
             </div>
         </nav>
 
-
-
-
-
-
-
-
-
-
         <div className="min-h-screen flex flex-col sm:justify-center items-center p-8 sm:pt-0 bg-pink-400">
             <div>
                 <Link href="/" className="flex flex-col justify-center items-center">
@@ -106,7 +93,7 @@ export default function Guest({ children }) {
                 </Link>
             </div>
 
-            <div className="sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden rounded-lg">
+            <div className="sm:max-w-md mt-6 bg-white shadow-md overflow-hidden rounded-lg">
                 {children}
             </div>
 

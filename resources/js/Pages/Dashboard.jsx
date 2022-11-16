@@ -97,7 +97,7 @@ export default function Dashboard(props) {
             {showFlashMessage && (
                 <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
             )}
-            <div className="max-w-7xl bg-pink-400 mx-auto px-6 pb-8">
+            <div className="max-w-7xl bg-pink-400 mx-auto px-6">
                 <div className="bg-white overflow-hidden shadow-sm rounded-lg">
                     <Header
                         categories={categories}

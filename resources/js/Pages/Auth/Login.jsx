@@ -38,7 +38,7 @@ export default function Login({ status, canResetPassword }) {
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit} className="p-4">
+            <form onSubmit={submit} className="p-8">
                 <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Log in</h2>
 
                 <div>
