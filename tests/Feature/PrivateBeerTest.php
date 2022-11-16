@@ -197,6 +197,22 @@ class PrivateBeerTest extends TestCase
 //            ->assertJson($category->toArray());
     }
 
+    public function test_get_beer_using_typeahead_and_user_rating_if_it_exists()
+    {
+        $user = User::find(1);
+        $beer = Beer::find(5);
+
+
+        $this->actingAs($user)
+            ->postJson(route('beers.user.destroy'), ['beer_id' => $beer->id]);
+
+
+        $this->actingAs($user)
+            ->get(route('beers.user.beer', $beer))
+            ->dd()
+            ->assertOk();
+    }
+
     public function test_get_beer_using_barcode_scanner_and_user_rating_if_it_exists()
     {
         $user = User::find(1);

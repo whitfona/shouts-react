@@ -236,26 +236,46 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
  * GET beer with user ratings (if it exists) by beer_id
  *
  */
-Route::get('/beers/user/{beer}', function ($beer) {
-    $user = auth()->user();
-    // Look for user with their rating
-    $found = DB::table('beers')
-        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
-        ->join('categories', 'beers.category_id', '=', 'categories.id')
-        ->where('ratings.user_id', '=', $user->id)
-        ->where('ratings.beer_id', '=', $beer)
-        ->get();
+Route::get('/beers/user/{beer}', function ($beerId) {
+    // Find beer, assume beer always exists since user is using the typeahead
+    $beer = Beer::find($beerId);
+
+    // Check if the auth user has rated the beer
+    $foundRating = Rating::where('user_id', auth()->user()->id)->where('beer_id', $beerId);
 
     // If no user with rating is found, search for just the beer
-    if (count($found) < 1) {
-        $found = DB::table('beers')
-            ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
-            ->join('categories', 'beers.category_id', '=', 'categories.id')
-            ->where('beer_id', '=', $beer)
-            ->get(['ratings.beer_id', 'category_id', 'barcode', 'name', 'brewery', 'alcohol_percent', 'has_lactose', 'photo']);
+    if ($foundRating) {
+
+        $result = [
+            'id' => $beer->id,
+            'beer_id' => $beer->id,
+            "category_id" => $beer->category_id,
+            "barcode" => $beer->barcode,
+            "name" => $beer->name,
+            "brewery" => $beer->brewery,
+            "alcohol_percent" => $beer->alcohol_percent,
+            "photo" => $beer->photo,
+            "has_lactose" => $beer->has_lactose,
+            "rating" => null,
+            "comment" => null
+        ];
+    } else {
+        $result = [
+            'id' => $beer->id,
+            'beer_id' => $beer->id,
+            "category_id" => $beer->category_id,
+            "barcode" => $beer->barcode,
+            "name" => $beer->name,
+            "brewery" => $beer->brewery,
+            "alcohol_percent" => $beer->alcohol_percent,
+            "photo" => $beer->photo,
+            "has_lactose" => $beer->has_lactose,
+            "rating" => $foundRating->rating,
+            "comment" => $foundRating->comment
+        ];
     }
 
-    return response()->json($found->first());
+    return response()->json($result);
 })->middleware('auth')->name('beers.user.beer');
 
 /**
