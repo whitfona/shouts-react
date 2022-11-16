@@ -325,6 +325,15 @@ Route::post('/beers/user', function (Request $request) {
 })->middleware('auth')->name('beers.store');
 
 /**
+ * GET user profile information
+ */
+Route::get('/user', function() {
+    $user = User::find(auth()->user()->id);
+
+    return response()->json($user);
+})->middleware('auth')->name('user.show');
+
+/**
  * DELETE a beer for the authenticated user
  */
 Route::post('/beers/delete', function (Request $request) {
@@ -334,6 +343,7 @@ Route::post('/beers/delete', function (Request $request) {
 
     return redirect(route('dashboard'))->with('message', 'Beer successfully deleted.');
 })->middleware('auth')->name('beers.user.destroy');
+
 
 
 

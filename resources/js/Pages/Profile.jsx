@@ -1,29 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, Link, useForm, usePage} from '@inertiajs/inertia-react';
-import PrivateBeerDetails from "@/Components/PrivateBeerDetails";
-import Header from "@/Components/Header";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import Checkbox from "@/Components/Checkbox";
-import PrimaryButton from "@/Components/PrimaryButton";
-import BarcodeScanner from "@/Components/BarcodeScanner";
-import {Typeahead} from "react-bootstrap-typeahead";
 
 export default function Dashboard(props) {
     const { flash } = usePage().props
     const { data, setData, post, processing, errors, reset } = useForm({
+        user_id: '',
+        name: '',
         email: '',
-        password: '',
-        remember: '',
+        photo: '',
     });
-    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        return () => {
-            reset('password');
-        };
+        fetch(route('user.show'))
+            .then(res => res.json())
+            .then(data => {
+                setData({
+                    user_id: data.id,
+                    name: data.name,
+                    email: data.email,
+                    photo: data.profile_image
+                })
+            })
+            .catch(err => console.log(err))
     }, []);
 
     const onHandleChange = (event) => {
@@ -83,7 +85,7 @@ export default function Dashboard(props) {
                         <div className="mt-4 md:grow">
                             <InputLabel forInput="photo" value="Profile Image" />
 
-                            {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
+                            {data.photo && <img className="md:w-80 mt-1 mb-2" src={data.photo} />}
 
                             <input
                                 className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
