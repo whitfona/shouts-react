@@ -213,7 +213,7 @@ export default function Welcome(props) {
 
                     <div className="bg-pink-400 dark:bg-gray-800 overflow-hidden sm:rounded-lg px-6">
                         <h2 className="font-semibold text-xl text-white leading-tight py-6 px-4 sm:px-0">All Bevvies</h2>
-                        <div className="max-w-7xl mx-auto">
+                        <div className="max-w-7xl mx-auto pb-8">
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
                                 <Header
                                     categories={categories}
