@@ -7,6 +7,7 @@ import InputError from "@/Components/InputError";
 
 export default function Dashboard(props) {
     const { flash } = usePage().props
+    const [showFlashMessage, setShowFlashMessage] = useState(false)
     const { data, setData, post, processing, errors, reset } = useForm({
         user_id: '',
         name: '',
@@ -28,14 +29,23 @@ export default function Dashboard(props) {
             .catch(err => console.log(err))
     }, []);
 
+    useEffect(() => {
+        if (!flash.message) {
+            return
+        }
+        setShowFlashMessage(true)
+        setTimeout(() => {
+            setShowFlashMessage(false)
+        }, 4000)
+    }, [flash])
+
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route('login'));
+        post(route('user.store'));
     };
 
 
@@ -47,6 +57,9 @@ export default function Dashboard(props) {
         >
             <Head title="Profile" />
 
+            {showFlashMessage && (
+                <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
+            )}
             <div className="max-w-7xl bg-pink-400 mx-auto p-4">
                 <div className="bg-white overflow-hidden shadow-sm rounded-lg">
                     <form onSubmit={submit} className="p-4">

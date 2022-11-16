@@ -5,9 +5,13 @@ use App\Models\Beer;
 use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -326,12 +330,36 @@ Route::post('/beers/user', function (Request $request) {
 
 /**
  * GET user profile information
+ *
  */
-Route::get('/user', function() {
+Route::get('/profile', function() {
     $user = User::find(auth()->user()->id);
 
     return response()->json($user);
 })->middleware('auth')->name('user.show');
+
+/**
+ * POST update user profile information
+ *
+ */
+Route::post('/profile', function (Request $request) {
+    $request->validate([
+        'user_id' => ['required', 'numeric', 'gte:0'],
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'id')->ignore($request->user_id)],
+        //        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
+    ]);
+
+    $user = User::find($request->user_id);
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+//    $user->photo = $request->photo;
+
+    $user->save();
+
+    return redirect(route('profile'))->with('message', 'Profile successfully saved.');
+})->middleware('auth')->name('user.store');
 
 /**
  * DELETE a beer for the authenticated user
@@ -373,7 +401,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/profile', function () {
+Route::get('/update-profile', function () {
     return Inertia::render('Profile');
 })->middleware(['auth', 'verified'])->name('profile');
 

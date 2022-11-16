@@ -230,6 +230,23 @@ class PrivateBeerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function test_update_user_profile()
+    {
+        $user = User::find(1);
+
+        $data = [
+            'user_id' => $user->id,
+            'name' => 'New Name',
+            'email' => 'new@email.com'
+        ];
+
+        $this->actingAs($user)
+            ->postJson(route('user.store'), $data)
+            ->assertOk()
+            ->assertRedirect();
+
+    }
+
     public function test_authenticated_user_can_delete_a_beer()
     {
         $user = User::find(1);
