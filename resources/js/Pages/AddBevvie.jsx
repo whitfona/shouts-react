@@ -120,192 +120,188 @@ export default function AddBevvie(props) {
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-white leading-tight">Add Bevvie</h2>}
         >
-            <Head title="Dashboard" />
+            <Head title="Add Bevvie" />
 
-            <div className="max-w-7xl bg-pink-400 mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div>
+            <div className="max-w-7xl bg-pink-400 mx-auto p-4">
+                <div className="bg-white overflow-hidden shadow-sm rounded-lg">
+                    <div className="p-4 border-b border-gray-200T">
+                        <BarcodeScanner getScannedBeers={getScannedBeer} />
+                        <p className="text-center mb-3">OR</p>
+                        <Typeahead
+                            onChange={getSearchedBeer}
+                            placeholder={'Search for beer...'}
+                            options={beers}
+                            id="id"
+                            clearButton={true}
+                            labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
+                            className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
+                        />
+                        <p className="text-red-500 mt-4">{message}</p>
                     </div>
-                    <div>
-                        <div className="p-4 border-b border-gray-200T">
-                            <BarcodeScanner getScannedBeers={getScannedBeer} />
-                            <p className="text-center mb-3">OR</p>
-                            <Typeahead
-                                onChange={getSearchedBeer}
-                                placeholder={'Search for beer...'}
-                                options={beers}
-                                id="id"
-                                clearButton={true}
-                                labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
-                                className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
-                            />
-                            <p className="text-red-500 mt-4">{message}</p>
+                    <form onSubmit={submit} className="p-4">
+                        <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
+                        <InputError message={errors.beer_id} className="mt-2" />
+                        <div>
+                            {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
                         </div>
-                        <form onSubmit={submit} className="p-4">
-                            <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
-                            <InputError message={errors.beer_id} className="mt-2" />
-                            <div>
-                                {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
-                            </div>
-                            <div>
-                                <InputLabel forInput="barcode" value="Barcode" />
+                        <div>
+                            <InputLabel forInput="barcode" value="Barcode" />
+
+                            <TextInput
+                                type="text"
+                                name="barcode"
+                                value={data.barcode}
+                                className="mt-1 block w-full md:w-auto"
+                                autoComplete="name"
+                                // isFocused={true}
+                                handleChange={onHandleChange}
+                            />
+
+                            <InputError message={errors.barcode} className="mt-2" />
+                        </div>
+
+                        <div className="md:flex gap-4">
+                            <div className="mt-4 md:grow">
+                                <InputLabel forInput="name" value="Name*" />
 
                                 <TextInput
                                     type="text"
-                                    name="barcode"
-                                    value={data.barcode}
-                                    className="mt-1 block w-full md:w-auto"
+                                    name="name"
+                                    value={data.name}
+                                    className="mt-1 block w-full"
                                     autoComplete="name"
-                                    // isFocused={true}
                                     handleChange={onHandleChange}
+                                    required
                                 />
 
-                                <InputError message={errors.barcode} className="mt-2" />
+                                <InputError message={errors.name} className="mt-2" />
                             </div>
 
-                            <div className="md:flex gap-4">
-                                <div className="mt-4 md:grow">
-                                    <InputLabel forInput="name" value="Name*" />
+                            <div className="mt-4 md:grow">
+                                <InputLabel forInput="brewery" value="Brewery*" />
+
+                                <TextInput
+                                    type="text"
+                                    name="brewery"
+                                    value={data.brewery}
+                                    className="mt-1 block w-full"
+                                    handleChange={onHandleChange}
+                                    required
+                                />
+
+                                <InputError message={errors.brewery} className="mt-2" />
+                            </div>
+                        </div>
+
+                        <div className="md:flex gap-4">
+                            <div className="flex gap-4 mt-4">
+                                <div>
+                                    <InputLabel forInput="rating" value="Rating (as decimal number)*" />
 
                                     <TextInput
                                         type="text"
-                                        name="name"
-                                        value={data.name}
+                                        name="rating"
+                                        value={data.rating}
                                         className="mt-1 block w-full"
-                                        autoComplete="name"
                                         handleChange={onHandleChange}
                                         required
                                     />
 
-                                    <InputError message={errors.name} className="mt-2" />
+                                    <InputError message={errors.rating} className="mt-2" />
                                 </div>
 
-                                <div className="mt-4 md:grow">
-                                    <InputLabel forInput="brewery" value="Brewery*" />
+                                <div>
+                                    <InputLabel forInput="alcohol_percent" value="Alcohol Percent (as decimal number)" />
 
                                     <TextInput
                                         type="text"
-                                        name="brewery"
-                                        value={data.brewery}
+                                        name="alcohol_percent"
+                                        value={data.alcohol_percent}
                                         className="mt-1 block w-full"
                                         handleChange={onHandleChange}
-                                        required
                                     />
 
-                                    <InputError message={errors.brewery} className="mt-2" />
+                                    <InputError message={errors.alcohol_percent} className="mt-2" />
                                 </div>
                             </div>
 
-                            <div className="md:flex gap-4">
-                                <div className="flex gap-4 mt-4">
-                                    <div>
-                                        <InputLabel forInput="rating" value="Rating (as decimal number)*" />
+                            <div className="flex gap-4 mt-4">
+                                <div>
+                                    <InputLabel forInput="category_id" value="Category" />
 
-                                        <TextInput
-                                            type="text"
-                                            name="rating"
-                                            value={data.rating}
-                                            className="mt-1 block w-full"
-                                            handleChange={onHandleChange}
-                                            required
-                                        />
+                                    <select
+                                        value={data.category_id}
+                                        onChange={(e) => setData('category_id', e.target.value)}
+                                        className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
+                                    >
+                                        {categories.map(category => (
+                                            <option key={category.id} value={category.id}>{category.type}</option>
+                                        ))}
+                                    </select>
 
-                                        <InputError message={errors.rating} className="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel forInput="alcohol_percent" value="Alcohol Percent (as decimal number)" />
-
-                                        <TextInput
-                                            type="text"
-                                            name="alcohol_percent"
-                                            value={data.alcohol_percent}
-                                            className="mt-1 block w-full"
-                                            handleChange={onHandleChange}
-                                        />
-
-                                        <InputError message={errors.alcohol_percent} className="mt-2" />
-                                    </div>
+                                    <InputError message={errors.category_id} className="mt-2" />
                                 </div>
 
-                                <div className="flex gap-4 mt-4">
-                                    <div>
-                                        <InputLabel forInput="category_id" value="Category" />
+                                <div>
+                                    <InputLabel forInput="has_lactose" value="Has Lactose" />
 
-                                        <select
-                                            value={data.category_id}
-                                            onChange={(e) => setData('category_id', e.target.value)}
-                                            className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
-                                        >
-                                            {categories.map(category => (
-                                                <option key={category.id} value={category.id}>{category.type}</option>
-                                            ))}
-                                        </select>
+                                    <input
+                                        className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300
+                                        focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-6 h-6 block md:w-10
+                                        md:h-10 mt-1 checked:bg-pink-400 focus:bg-pink-400 "
+                                        id="hasLactose"
+                                        type="checkbox"
+                                        name="has_lactose"
+                                        checked={data.has_lactose}
+                                        onChange={() => setData({has_lactose: !data.has_lactose})}
+                                    />
 
-                                        <InputError message={errors.category_id} className="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel forInput="has_lactose" value="Has Lactose" />
-
-                                        <input
-                                            className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300
-                                            focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-6 h-6 block md:w-10
-                                            md:h-10 mt-1 checked:bg-pink-400 focus:bg-pink-400 "
-                                            id="hasLactose"
-                                            type="checkbox"
-                                            name="has_lactose"
-                                            checked={data.has_lactose}
-                                            onChange={() => setData({has_lactose: !data.has_lactose})}
-                                        />
-
-                                        <InputError message={errors.has_lactose} className="mt-2" />
-                                    </div>
+                                    <InputError message={errors.has_lactose} className="mt-2" />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="mt-4">
-                                <InputLabel forInput="comment" value="Comments" />
+                        <div className="mt-4">
+                            <InputLabel forInput="comment" value="Comments" />
 
-                                <textarea
-                                    className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                                    id="comment"
-                                    rows="4"
-                                    name="comment"
-                                    onChange={onHandleChange}
-                                    value={data.comment}
-                                >
-                                </textarea>
+                            <textarea
+                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                id="comment"
+                                rows="4"
+                                name="comment"
+                                onChange={onHandleChange}
+                                value={data.comment}
+                            >
+                            </textarea>
 
-                                <InputError message={errors.comment} className="mt-2" />
-                            </div>
+                            <InputError message={errors.comment} className="mt-2" />
+                        </div>
 
-                            <div className="mt-4">
-                                <InputLabel forInput="photo" value="Add Image" />
+                        <div className="mt-4">
+                            <InputLabel forInput="photo" value="Add Image" />
 
-                                <input
-                                    className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
-                                    id="photo"
-                                    type="file"
-                                    name="photo"
-                                />
+                            <input
+                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
+                                id="photo"
+                                type="file"
+                                name="photo"
+                            />
 
-                                <InputError message={errors.photo} className="mt-2" />
-                            </div>
+                            <InputError message={errors.photo} className="mt-2" />
+                        </div>
 
-                            <div className="flex gap-4">
-                                <button type="submit"
-                                        className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8">
-                                    Save
-                                </button>
-                                <Link
-                                    href={route('dashboard')}
-                                    className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8"
-                                >Exit
-                                </Link>
-                            </div>
-                        </form>
-                    </div>
+                        <div className="flex gap-4">
+                            <button type="submit"
+                                    className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8">
+                                Save
+                            </button>
+                            <Link
+                                href={route('dashboard')}
+                                className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8"
+                            >Exit
+                            </Link>
+                        </div>
+                    </form>
                 </div>
             </div>
         </AuthenticatedLayout>

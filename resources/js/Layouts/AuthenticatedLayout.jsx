@@ -9,7 +9,7 @@ export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-pink-400">
             <nav className="bg-pink-400 border-b border-gray-100">
                 <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -63,6 +63,9 @@ export default function Authenticated({ auth, header, children }) {
                                         </Dropdown.Trigger>
 
                                         <Dropdown.Content>
+                                            <Dropdown.Link href={route('profile')} as="button">
+                                                Profile
+                                            </Dropdown.Link>
                                             <Dropdown.Link href={route('logout')} method="post" as="button">
                                                 Log Out
                                             </Dropdown.Link>
@@ -122,6 +125,9 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            <ResponsiveNavLink href={route('profile')} as="button">
+                                Profile
+                            </ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
