@@ -40,7 +40,11 @@ export default function Welcome(props) {
         fetch(route('beers.barcode.show', barcode))
             .then(res => res.json())
             .then(data => {
-                setBeers([data])
+                if (Object.keys(data).length === 0) {
+                    setMessage('Sorry, no match found. Please try again or search manually.')
+                } else {
+                    setBeers(data)
+                }
             })
             .catch(err => setMessage("Sorry, error fetching beers."))
         // .catch(err => console.log(err))
@@ -116,7 +120,7 @@ export default function Welcome(props) {
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
                                 <Header
                                     categories={categories}
-                                    message={message}
+                                    // message={message}
                                     search={search}
                                     handleSearch={handleSearch}
                                     searchByCategory={searchByCategory}
@@ -125,6 +129,7 @@ export default function Welcome(props) {
                                     getScannedBeers={getScannedBeers}
                                     setMessage={setMessage}
                                 />
+                                <p className="text-red-500 mt-4 text-center">{message}</p>
                                 {beers.map(beer => (
                                     <PublicBeerDetails
                                         beer={beer}

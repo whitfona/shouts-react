@@ -5,13 +5,9 @@ use App\Models\Beer;
 use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -48,9 +44,14 @@ Route::get('/beers', function () {
  *
  */
 Route::get('/beers/barcode/{beer}', function ($barcode) {
-    $found = Beer::all()->where('barcode', '=', $barcode)->first();
+    $found = Beer::where('barcode', '=', $barcode)->first();
 
-    return response()->json(new BeerResource($found));
+    // If beer doesn't exist return early
+    if (!$found) {
+        return response()->json(null);
+    }
+
+    return response()->json([new BeerResource($found)]);
 })->name('beers.barcode.show');
 
 /**
