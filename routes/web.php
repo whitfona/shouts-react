@@ -70,7 +70,7 @@ Route::get('/beers/brewery/{beer}', function ($brewery) {
  *
  */
 Route::get('/beers/category/{beer}', function($category) {
-    $found = Beer::all()->where('category_id', '=', $category);
+    $found = Beer::where('category_id', '=', $category)->get();
     $foundCollection = BeerResource::collection($found);
 
     return response()->json($foundCollection);
