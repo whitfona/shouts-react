@@ -218,8 +218,11 @@ class PrivateBeerTest extends TestCase
         $user = User::find(1);
         $beer = Beer::find(1);
 
+        $beer->barcode = '0628669010101';
+
         $this->actingAs($user)
             ->getJson(route('beers.user.barcode', $beer->barcode))
+            ->dd()
             ->assertOk();
 //            ->assertJson($beer->toArray());
     }
