@@ -3,7 +3,7 @@ import DetailFormat from "@/Components/DetailFormat";
 
 export default function PublicBeerDetails({beer, searchByBrewery, searchByUser}) {
     return (
-        <div className="border-t-8 border-pink-100 bg-white md:flex gap-4 p-4 md:mb-10" key={beer.id}>
+        <div className="border-t-8 border-pink-100 bg-white md:flex gap-4 p-4" key={beer.id}>
             <img className="w-[192px] h-[256px] mb-3 md:mb-0" src={beer.photo} />
             <div className="w-full">
                 <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
