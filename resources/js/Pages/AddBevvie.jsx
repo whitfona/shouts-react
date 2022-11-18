@@ -126,7 +126,7 @@ export default function AddBevvie(props) {
                 <div className="bg-white overflow-hidden shadow-sm rounded-lg">
                     <div className="p-4 border-b border-gray-200T">
                         <BarcodeScanner getScannedBeers={getScannedBeer} />
-                        <p className="text-center mb-3">OR</p>
+                        <p className="text-center my-3">OR</p>
                         <Typeahead
                             onChange={getSearchedBeer}
                             placeholder={'Search for beer...'}

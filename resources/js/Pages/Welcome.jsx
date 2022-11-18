@@ -158,13 +158,16 @@ export default function Welcome(props) {
                                     getScannedBeers={getScannedBeers}
                                     setMessage={setMessage}
                                 />
-                                {beers.map(beer => (
-                                    <PublicBeerDetails
-                                        beer={beer}
-                                        searchByBrewery={searchByBrewery}
-                                        searchByUser={searchByUser}
-                                    />
-                                ))}
+                                <p className="text-red-500 mt-4 text-center">{message}</p>
+                                <div className="pb-4">
+                                    {beers.map(beer => (
+                                        <PublicBeerDetails
+                                            beer={beer}
+                                            searchByBrewery={searchByBrewery}
+                                            searchByUser={searchByUser}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                 </GuestLayout>

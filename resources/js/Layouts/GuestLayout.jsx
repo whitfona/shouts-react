@@ -85,7 +85,7 @@ export default function Guest({ children }) {
             </div>
         </nav>
 
-        <div className="min-h-screen flex flex-col sm:justify-center items-center p-8 sm:pt-0 bg-pink-400">
+        <div className="min-h-screen flex flex-col sm:justify-center items-center p-8 bg-pink-400">
             <div>
                 <Link href="/" className="flex flex-col justify-center items-center">
                     <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
@@ -93,7 +93,7 @@ export default function Guest({ children }) {
                 </Link>
             </div>
 
-            <div className="sm:max-w-md mt-6 bg-white shadow-md overflow-hidden rounded-lg">
+            <div className="mt-6 bg-white shadow-md overflow-hidden rounded-lg">
                 {children}
             </div>
 
