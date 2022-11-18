@@ -214,7 +214,7 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
     // Check if the beer exists in the database
     $beer = Beer::where('barcode', '=', $barcode)->first();
 
-    // If beer doesn't exsit return early
+    // If beer doesn't exist return early
     if (!$beer) {
             return response()->json(null);
     }
