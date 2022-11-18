@@ -82,7 +82,7 @@ Route::get('/beers/category/{beer}', function($category) {
  *
  */
 Route::get('/beers/user/all/{beer}', function ($user) {
-    $found = Rating::all()->where('user_id', '=', $user);
+    $found = Rating::where('user_id', '=', $user)->get();
     $results = $found->map(function ($beer) {
         return  [
             'id' => $beer->beer->id,
