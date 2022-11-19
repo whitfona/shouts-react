@@ -350,7 +350,6 @@ Route::post('/beers/user', function (Request $request) {
 
     $beer->save();
 
-//    dd($beer->toArray());
     // Update Rating
     $previousRating = Rating::where('beer_id', $beer->id)->where('user_id', $user->id)->first();
     if ($previousRating) {
