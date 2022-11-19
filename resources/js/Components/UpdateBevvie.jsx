@@ -35,7 +35,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
             beer_id: beer.beer_id,
             brewery: beer.brewery,
             category_id: beer.category_id,
-            comment: beer.comment,
+            comment: beer.comment ? beer.comment : '',
             has_lactose: checked,
             name: beer.name,
             photo: beer.photo,
@@ -53,7 +53,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
     const submit = (e) => {
         e.preventDefault();
-
+        console.log(data)
         post(route('beers.store'));
         setShowUpdateModal(false)
     };
@@ -64,7 +64,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                 <div className="font-semibold pb-4 text-xl leading-tight">Update Bevvie</div>
                 <div>
-                    {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
+                    {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${beer.photo}`} />}
                 </div>
                 <div>
                     <InputLabel forInput="barcode" value="Barcode" />
@@ -72,7 +72,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                     <TextInput
                         type="text"
                         name="barcode"
-                        value={data.barcode}
+                        // value={data.barcode}
                         className="mt-1 block w-full md:w-auto"
                         autoComplete="name"
                         handleChange={onHandleChange}
@@ -88,7 +88,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                         <TextInput
                             type="text"
                             name="name"
-                            value={data.name}
+                            // value={data.name}
                             className="mt-1 block w-full"
                             autoComplete="name"
                             handleChange={onHandleChange}
@@ -104,7 +104,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                         <TextInput
                             type="text"
                             name="brewery"
-                            value={data.brewery}
+                            // value={data.brewery}
                             className="mt-1 block w-full"
                             handleChange={onHandleChange}
                             required
@@ -122,7 +122,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                             <TextInput
                                 type="text"
                                 name="rating"
-                                value={data.rating}
+                                // value={data.rating}
                                 className="mt-1 block w-full"
                                 handleChange={onHandleChange}
                                 required
@@ -137,7 +137,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                             <TextInput
                                 type="text"
                                 name="alcohol_percent"
-                                value={data.alcohol_percent}
+                                // value={data.alcohol_percent}
                                 className="mt-1 block w-full"
                                 handleChange={onHandleChange}
                             />
@@ -151,8 +151,8 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                             <InputLabel forInput="category_id" value="Category" />
 
                             <select
-                                value={data.category_id}
-                                onChange={(e) => setData('category_id', e.target.value)}
+                                // value={data.category_id}
+                                // onChange={(e) => setData('category_id', e.target.value)}
                                 className="text-gray-500 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex mt-1"
                             >
                                 {categories.map(category => (
@@ -173,8 +173,8 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                                 id="hasLactose"
                                 type="checkbox"
                                 name="has_lactose"
-                                checked={data.has_lactose}
-                                onChange={() => setData({has_lactose: !data.has_lactose})}
+                                // checked={data.has_lactose}
+                                // onChange={() => setData({has_lactose: !data.has_lactose})}
                             />
 
                             <InputError message={errors.has_lactose} className="mt-2" />
