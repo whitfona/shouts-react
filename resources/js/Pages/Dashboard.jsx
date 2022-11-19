@@ -106,9 +106,10 @@ export default function Dashboard(props) {
                         handleSearch={handleSearch}
                     />
                     <div>
-                        {beers.map(beer => (
+                        {beers.map((beer, index) => (
                             <PrivateBeerDetails
                                 beer={beer}
+                                key={index}
                                 searchByBrewery={searchByBrewery}
                             />
                         ))}

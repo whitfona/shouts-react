@@ -130,9 +130,10 @@ export default function Welcome(props) {
                                     setMessage={setMessage}
                                 />
                                 <p className="text-red-500 mt-4 text-center">{message}</p>
-                                {beers.map(beer => (
+                                {beers.map((beer, index) => (
                                     <PublicBeerDetails
                                         beer={beer}
+                                        key={index}
                                         searchByBrewery={searchByBrewery}
                                         searchByUser={searchByUser}
                                     />
