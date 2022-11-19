@@ -9,7 +9,7 @@ import { Typeahead } from "react-bootstrap-typeahead";
 
 export default function AddBevvie(props) {
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, errors } = useForm({
         alcohol_percent: '',
         barcode: '',
         beer_id: '',
@@ -90,16 +90,16 @@ export default function AddBevvie(props) {
 
     const setFields = (data, checked) =>{
         setData({
-            alcohol_percent: data.alcohol_percent,
-            barcode:  data.barcode,
+            alcohol_percent: data.alcohol_percent ? data.alcohol_percent : '',
+            barcode:  data.barcode ? data.barcode : '',
             beer_id: data.beer_id,
             brewery: data.brewery,
-            category_id: data.category_id,
-            comment: data.comment,
+            category_id: data.category_id ? data.category_id : 1,
+            comment: data.comment ? data.comment : '',
             has_lactose: checked,
             name: data.name,
-            photo: data.photo,
-            rating: data.rating
+            photo: data.photo ? data.photo : '',
+            rating: data.rating ? data.rating : ''
         })
     }
 
@@ -146,7 +146,7 @@ export default function AddBevvie(props) {
                         <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                         <InputError message={errors.beer_id} className="mt-2" />
                         <div>
-                            {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={data.photo} />}
+                            {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${data.photo}`} />}
                         </div>
                         <div>
                             <InputLabel forInput="barcode" value="Barcode" />
@@ -257,7 +257,7 @@ export default function AddBevvie(props) {
                                         type="checkbox"
                                         name="has_lactose"
                                         checked={data.has_lactose}
-                                        onChange={() => setData({has_lactose: !data.has_lactose})}
+                                        onChange={onHandleChange}
                                     />
 
                                     <InputError message={errors.has_lactose} className="mt-2" />

@@ -329,7 +329,7 @@ Route::post('/beers/user', function (Request $request) {
         'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
     ]);
 
-    $photoName = null;
+    $photoName = $request->photo;
     if ($request->photo && $request->photo instanceof UploadedFile) {
         $photoName = time() . '.' . 'jpg';
         Image::make($request->file('photo'))

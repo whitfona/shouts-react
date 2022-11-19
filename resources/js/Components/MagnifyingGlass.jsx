@@ -1,6 +1,6 @@
 export default function MagnifyingGlass() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink"
+        <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 118.783 118.783">
             <g>
                 <path d="M115.97,101.597L88.661,74.286c4.64-7.387,7.333-16.118,7.333-25.488c0-26.509-21.49-47.996-47.998-47.996
