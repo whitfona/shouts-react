@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 5.1,
             'has_lactose' => true,
             'category_id' => Category::find(1)->id,
-            'photo' => "http://localhost:8000/storage/beers/elora.png"
+            'photo' => "elora.png"
         ]);
         Beer::factory()->create([
             'barcode' => 628028020468,
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 6,
             'has_lactose' => false,
             'category_id' => Category::find(2)->id,
-            'photo' => "http://localhost:8000/storage/beers/papaya.png"
+            'photo' => "papaya.png"
         ]);
         Beer::factory()->create([
             'barcode' => null,
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 4.8,
             'has_lactose' => false,
             'category_id' => Category::find(3)->id,
-            'photo' => "http://localhost:8000/storage/beers/beki.png"
+            'photo' => "beki.png"
         ]);
         Beer::factory()->create([
             'barcode' => 818278002240,
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 6.5,
             'has_lactose' => false,
             'category_id' => Category::find(2)->id,
-            'photo' => "http://localhost:8000/storage/beers/electric.png"
+            'photo' => "electric.png"
         ]);
         Beer::factory()->create([
             'barcode' => 626824190040,
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 5.7,
             'has_lactose' => false,
             'category_id' => Category::find(2)->id,
-            'photo' => "http://localhost:8000/storage/beers/neon.png"
+            'photo' => "neon.png"
         ]);
         Beer::factory()->create([
             'barcode' => null,
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
             'alcohol_percent' => 4.1,
             'has_lactose' => false,
             'category_id' => Category::find(1)->id,
-            'photo' => "http://localhost:8000/storage/beers/lightwork.png"
+            'photo' => "lightwork.png"
         ]);
 
         Rating::factory()->create([
