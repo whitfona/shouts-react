@@ -1,7 +1,11 @@
 import Quagga from "@ericblade/quagga2";
 import MagnifyingGlass from "@/Components/MagnifyingGlass";
+import {useState} from "react";
 
 export default function BarcodeScanner({getScannedBeers, setMessage}) {
+
+    const [showReader, setShowReader] = useState(false)
+
     const startReader = () => {
         let countErrors = 0
 
@@ -22,6 +26,7 @@ export default function BarcodeScanner({getScannedBeers, setMessage}) {
             }
             console.log("Initialization finished. Ready to start");
             Quagga.start();
+            setShowReader(true)
             document.getElementById("reader").style.display = 'block';
         });
 
@@ -59,6 +64,7 @@ export default function BarcodeScanner({getScannedBeers, setMessage}) {
 
     const stopReader = () => {
         Quagga.stop();
+        setShowReader(false)
         document.getElementById("reader").style.display = 'none';
     }
 
@@ -72,7 +78,10 @@ export default function BarcodeScanner({getScannedBeers, setMessage}) {
                 <span className="w-10 bg-pink-200 p-2 rounded-full mr-2"><MagnifyingGlass /></span>
                 Barcode
             </button>
-            <div id="reader"/>
+            <div className="relative w-[350px] m-auto mt-4">
+                <div id="reader"/>
+                {showReader && <p className="absolute bg-white p-2 right-2 rounded-full top-2 cursor-pointer hover:bg-gray-200" onClick={stopReader}>Close</p>}
+            </div>
         </>
     )
 }
