@@ -7,6 +7,7 @@ use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
@@ -316,16 +317,20 @@ Route::post('/beers/user', function (Request $request) {
         'brewery' => ['required', 'string', 'max:100'],
         'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
         'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
+        'photo' => [ 'sometimes', 'max:5000', 'nullable',
+            function ($attribute, $value, $fail) {
+                if (!is_string($value) && !($value instanceof UploadedFile)) {
+                    $fail('The '.$attribute.' must either be a string or file.');
+                }
+            }
+        ],
         'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
         'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
         'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
     ]);
 
-    //    $validated['hasLactose'] = request()->has('hasLactose');
-
     $photoName = null;
-    if ($request->photo) {
+    if ($request->photo && $request->photo instanceof UploadedFile) {
         $photoName = time() . '.' . 'jpg';
         Image::make($request->file('photo'))
             ->resize(512, null, function ($constraint) {
@@ -345,7 +350,11 @@ Route::post('/beers/user', function (Request $request) {
     $beer->brewery = $request->brewery;
     $beer->alcohol_percent = $request->alcohol_percent;
     $beer->has_lactose = request()->has('hasLactose');
-    $beer->photo = $photoName;
+    if (!$photoName) {
+        $beer->photo = 'zzzzempty-sour-glass.png';
+    } else {
+        $beer->photo = $photoName;
+    }
     $beer->category_id = $request->category_id;
 
     $beer->save();
