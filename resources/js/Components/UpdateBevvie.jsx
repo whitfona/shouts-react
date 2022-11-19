@@ -47,6 +47,10 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
+    const onHandleFileChange = (event) => {
+        setData(event.target.name, event.target.files[0]);
+    };
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -202,6 +206,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                         id="photo"
                         type="file"
                         name="photo"
+                        onChange={onHandleFileChange}
                     />
 
                     <InputError message={errors.photo} className="mt-2" />

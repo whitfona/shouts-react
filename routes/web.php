@@ -324,7 +324,8 @@ Route::post('/beers/user', function (Request $request) {
 
     //    $validated['hasLactose'] = request()->has('hasLactose');
 
-    if ($request->has('photo')) {
+    $photoName = null;
+    if ($request->photo) {
         $photoName = time() . '.' . 'jpg';
         Image::make($request->file('photo'))
             ->resize(512, null, function ($constraint) {
@@ -333,12 +334,11 @@ Route::post('/beers/user', function (Request $request) {
             ->save(public_path('/storage/beers/') . $photoName);
     }
 
+    //  Create new beer
+    $beer = new Beer;
     //  Update beer
     if (Beer::find($request->beer_id)) {
         $beer = Beer::find($request->beer_id);
-    } else {
-        //  Create new beer
-        $beer = new Beer;
     }
     $beer->barcode = $request->barcode;
     $beer->name = $request->name;
@@ -350,6 +350,7 @@ Route::post('/beers/user', function (Request $request) {
 
     $beer->save();
 
+//    dd($beer->toArray());
     // Update Rating
     $previousRating = Rating::where('beer_id', $beer->id)->where('user_id', $user->id)->first();
     if ($previousRating) {

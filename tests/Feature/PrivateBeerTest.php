@@ -250,6 +250,19 @@ class PrivateBeerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function test_update_beer_for_authenticated_user()
+    {
+        $user = User::find(1);
+        $beer = Beer::find(1);
+        $beer->brewery = 'Nick Brews';
+        $beer->photo = UploadedFile::fake()->image('test.heic');
+
+
+        $this->actingAs($user)
+            ->postJson(route('beers.store'), [...$beer->toArray(), 'rating' => 10])
+            ->assertSuccessful();
+    }
+
     public function test_update_user_profile()
     {
         $user = User::find(1);
