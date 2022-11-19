@@ -53,7 +53,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data)
+
         post(route('beers.store'));
         setShowUpdateModal(false)
     };
