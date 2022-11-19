@@ -322,33 +322,32 @@ Route::post('/beers/user', function (Request $request) {
         'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
     ]);
 
+//    $validated['hasLactose'] = request()->has('hasLactose');
+//    if (request()->has('image')) {
+//        $validated['image'] = time() . '.' . 'jpg';
+//        Image::make(request()->file('image'))
+//            ->resize(512, null, function ($constraint) {
+//                $constraint->aspectRatio();
+//            })
+//            ->save(public_path('/storage/sours/') . $validated['image']);
+//    }
+
     //  Update beer
     if (Beer::find($request->beer_id)) {
-        $foundBeer = Beer::find($request->beer_id);
-        $foundBeer->barcode = $request->barcode;
-        $foundBeer->name = $request->name;
-        $foundBeer->brewery = $request->brewery;
-        $foundBeer->alcohol_percent = $request->alcohol_percent;
-        $foundBeer->has_lactose = request()->has('hasLactose');
-        $foundBeer->photo = $request->photo;
-        $foundBeer->category_id = $request->category_id;
-
-        $foundBeer->save();
-        $beer = $foundBeer;
+        $beer = Beer::find($request->beer_id);
     } else {
         //  Create new beer
-        $newBeer = new Beer;
-        $newBeer->barcode = $request->barcode;
-        $newBeer->name = $request->name;
-        $newBeer->brewery = $request->brewery;
-        $newBeer->alcohol_percent = $request->alcohol_percent;
-        $newBeer->has_lactose = request()->has('hasLactose');
-        $newBeer->photo = $request->photo;
-        $newBeer->category_id = $request->category_id;
-
-        $newBeer->save();
-        $beer = $newBeer;
+        $beer = new Beer;
     }
+    $beer->barcode = $request->barcode;
+    $beer->name = $request->name;
+    $beer->brewery = $request->brewery;
+    $beer->alcohol_percent = $request->alcohol_percent;
+    $beer->has_lactose = request()->has('hasLactose');
+    $beer->photo = $request->photo;
+    $beer->category_id = $request->category_id;
+
+    $beer->save();
 
     // Update Rating
     $previousRating = Rating::where('beer_id', $beer->id)->where('user_id', $user->id)->first();
