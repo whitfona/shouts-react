@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
+use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -316,21 +316,22 @@ Route::post('/beers/user', function (Request $request) {
         'brewery' => ['required', 'string', 'max:100'],
         'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
         'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-//        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
+        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
         'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
         'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
         'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
     ]);
 
-//    $validated['hasLactose'] = request()->has('hasLactose');
-//    if (request()->has('image')) {
-//        $validated['image'] = time() . '.' . 'jpg';
-//        Image::make(request()->file('image'))
-//            ->resize(512, null, function ($constraint) {
-//                $constraint->aspectRatio();
-//            })
-//            ->save(public_path('/storage/sours/') . $validated['image']);
-//    }
+    //    $validated['hasLactose'] = request()->has('hasLactose');
+
+    if ($request->has('photo')) {
+        $photoName = time() . '.' . 'jpg';
+        Image::make($request->file('photo'))
+            ->resize(512, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('/storage/beers/') . $photoName);
+    }
 
     //  Update beer
     if (Beer::find($request->beer_id)) {
@@ -344,7 +345,7 @@ Route::post('/beers/user', function (Request $request) {
     $beer->brewery = $request->brewery;
     $beer->alcohol_percent = $request->alcohol_percent;
     $beer->has_lactose = request()->has('hasLactose');
-    $beer->photo = $request->photo;
+    $beer->photo = $photoName;
     $beer->category_id = $request->category_id;
 
     $beer->save();

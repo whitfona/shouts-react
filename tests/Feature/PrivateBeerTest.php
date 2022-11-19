@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -240,7 +241,7 @@ class PrivateBeerTest extends TestCase
             'comment' => 'This is so good I wish it was real',
             'has_lactose' => false,
             'name' => 'Papays Juicy IPA',
-            'photo' => null,
+            'photo' => UploadedFile::fake()->image('test.heic'),
             'rating' => 9
         ];
 

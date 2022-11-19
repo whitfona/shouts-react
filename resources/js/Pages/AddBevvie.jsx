@@ -44,6 +44,10 @@ export default function AddBevvie(props) {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
+    const onHandleFileChange = (event) => {
+        setData(event.target.name, event.target.files[0]);
+    };
+
     const getScannedBeer = (barcode) => {
         clearAllFields()
         setMessage('')
@@ -285,6 +289,7 @@ export default function AddBevvie(props) {
                                 id="photo"
                                 type="file"
                                 name="photo"
+                                onChange={onHandleFileChange}
                             />
 
                             <InputError message={errors.photo} className="mt-2" />
