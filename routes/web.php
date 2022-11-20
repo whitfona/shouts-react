@@ -3,6 +3,7 @@
 use App\Http\Controllers\Private\GET\AllBeersController;
 use App\Http\Controllers\Private\GET\BeersByBarcodeController;
 use App\Http\Controllers\Private\GET\BeersByBreweryController;
+use App\Http\Controllers\Private\GET\BeersByCategoryController;
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
@@ -38,17 +39,7 @@ Route::get('/beers/barcode/{beer}', BeersByBarcodeController::class)->name('beer
 
 Route::get('/beers/brewery/{beer}', BeersByBreweryController::class)->name('beers.brewery.show');
 
-/**
- * GET all beers associated to a category
- *
- */
-Route::get('/beers/category/{beer}', function($category) {
-    $found = Beer::where('category_id', '=', $category)->get();
-    $foundCollection = BeerResource::collection($found);
-
-    return response()->json($foundCollection);
-
-})->name('beers.category.show');
+Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('beers.category.show');
 
 /**
  * GET all beers associated to a user
