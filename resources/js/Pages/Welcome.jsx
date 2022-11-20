@@ -30,7 +30,7 @@ export default function Welcome(props) {
             .then(data => {
                 const filtered = data.filter(item => item.avg_rating > 0)
                 filtered.sort((a, b) => b.avg_rating - a.avg_rating)
-                setBeers(data)
+                setBeers(filtered)
             })
             .catch(err => console.log(err))
     }
