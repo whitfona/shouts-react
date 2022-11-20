@@ -76,7 +76,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Muskoka Brewery',
             'alcohol_percent' => 6.4,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 5,
@@ -85,7 +85,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Fairweather Brewing Co.',
             'alcohol_percent' => 5.2,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 5,
@@ -94,7 +94,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Mascot Brewery',
             'alcohol_percent' => 5.7,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -103,7 +103,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Bench Brewing Company',
             'alcohol_percent' => 4,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 5,
@@ -112,7 +112,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Henderson Brewing Co',
             'alcohol_percent' => 4.8,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 3,
@@ -148,7 +148,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Fairweather Brewing Co.',
             'alcohol_percent' => 6.7,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -166,7 +166,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Fairweather Brewing Co.',
             'alcohol_percent' => 4.5,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -175,7 +175,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Fine Balance Brewing Company',
             'alcohol_percent' => 5.4,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -211,7 +211,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Collective Arts Brewing Limited',
             'alcohol_percent' => 5.2,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -220,7 +220,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Collective Arts Brewing Limited',
             'alcohol_percent' => 5.2,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 5,
@@ -238,7 +238,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Bench Brewing Company',
             'alcohol_percent' => 5.4,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 1,
@@ -256,7 +256,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Side Launch Brewing Company',
             'alcohol_percent' => 4.3,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 4,
@@ -265,7 +265,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Somersby',
             'alcohol_percent' => 4.5,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 3,
@@ -436,7 +436,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Hop Valley Brewing',
             'alcohol_percent' => 6.2,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
         Beer::factory()->create([
             'category_id' => 5,
@@ -607,7 +607,7 @@ class ProductionBeers extends Seeder
             'brewery' => 'Amsterdam Brewing',
             'alcohol_percent' => 5,
             'has_lactose' => false,
-            'photo' => null
+            'photo' => 'zzzzempty-sour-glass.png'
         ]);
     }
 }
