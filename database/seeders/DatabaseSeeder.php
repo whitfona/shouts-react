@@ -19,11 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call([
-//           ProductionCategories::class,
-//           ProductionBeers::class,
-//            ProductionUsers::class
-//        ]);
+        $this->call([
+            ProductionCategories::class,
+            ProductionUsers::class,
+            ProductionBeers::class,
+            ProductionRatings::class
+        ]);
         User::factory()->create([
             'name' => 'Nick',
             'email' => 'whitford_4@hotmail.com',
