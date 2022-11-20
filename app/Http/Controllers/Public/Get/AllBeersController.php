@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class AllBeersController extends Controller
 {
     /**
-     * GET all beers with all users ratings & comments for each beer
+     * Get all beers with all users ratings & comments for each beer
      *
      */
     public function __invoke()

@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 class AllCategoriesController extends Controller
 {
     /**
-     * GET all categories
+     * Get all categories
      *
      */
     public function __invoke()

@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class BeersByBarcodeController extends Controller
 {
     /**
-     * GET all users ratings & comments for a SINGLE beer using the beer's barcode
+     * Get all users ratings & comments for a SINGLE beer using the beer's barcode
      *
      */
     public function __invoke($barcode)

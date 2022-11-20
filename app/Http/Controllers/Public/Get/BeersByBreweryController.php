@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class BeersByBreweryController extends Controller
 {
     /**
-     * GET all beers associated to a brewery
+     * Get all beers associated to a brewery
      *
      */
     public function __invoke($brewery)

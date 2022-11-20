@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Private\Get\AllUserBeersController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
 use App\Http\Controllers\Public\Get\BeersByBarcodeController;
@@ -54,24 +55,12 @@ Route::get('/categories', AllCategoriesController::class)->name('categories.inde
  * START OF PRIVATE ROUTES
  *
  *
- *
  */
-/**
- * GET all beers for the authenticated user
- */
-Route::get('/beers/user', function () {
-    $user = auth()->user();
-    $found = DB::table('beers')
-        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
-        ->join('categories', 'beers.category_id', '=', 'categories.id')
-        ->where('ratings.user_id', '=', $user->id)
-        ->get();
+Route::get('/beers/user', AllUserBeersController::class)->middleware('auth')->name('beers.user.index');
 
-    return response()->json($found);
-})->middleware('auth')->name('beers.user.index');
 
 /**
- * GET all beers for the authenticated user by brewery
+ * Get all beers for the authenticated user by brewery
  *
  */
 Route::get('/beers/user/brewery/{beer}', function ($brewery) {
@@ -87,7 +76,7 @@ Route::get('/beers/user/brewery/{beer}', function ($brewery) {
 })->middleware('auth')->name('beers.user.brewery');
 
 /**
- * GET all beers for the authenticated user by category
+ * Get all beers for the authenticated user by category
  *
  */
 Route::get('/beers/user/category/{beer}', function ($category) {
@@ -103,7 +92,7 @@ Route::get('/beers/user/category/{beer}', function ($category) {
 })->middleware('auth')->name('beers.user.category');
 
 /**
- * GET all beers for the authenticated user by search term
+ * Get all beers for the authenticated user by search term
  *
  */
 Route::get('/beers/user/search/{beer}', function ($search) {
@@ -123,7 +112,7 @@ Route::get('/beers/user/search/{beer}', function ($search) {
 })->middleware('auth')->name('beers.user.search');
 
 /**
- * GET beer with user ratings (if it exists) for scanned barcode
+ * Get beer with user ratings (if it exists) for scanned barcode
  *
  */
 Route::get('/beers/user/barcode/{beer}', function ($barcode) {
@@ -173,7 +162,7 @@ Route::get('/beers/user/barcode/{beer}', function ($barcode) {
 })->middleware('auth')->name('beers.user.barcode');
 
 /**
- * GET beer with user ratings (if it exists) by beer_id
+ * Get beer with user ratings (if it exists) by beer_id
  *
  */
 Route::get('/beers/user/{beer}', function ($beerId) {
@@ -296,7 +285,7 @@ Route::post('/beers/user', function (Request $request) {
 })->middleware('auth')->name('beers.store');
 
 /**
- * GET user profile information
+ * Get user profile information
  *
  */
 Route::get('/profile', function() {

@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class BeersBySearchController extends Controller
 {
     /**
-     * GET all beers with name or brewery that matches the search criteria
+     * Get all beers with name or brewery that matches the search criteria
      *
      */
     public function __invoke($search)

@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 class BeersByUserController extends Controller
 {
     /**
-     * GET all beers associated to a user
+     * Get all beers associated to a user
      *
      */
     public function __invoke($user)
