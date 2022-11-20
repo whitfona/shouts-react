@@ -112,7 +112,7 @@ export default function Welcome(props) {
                     errors={props.errors}
                     header={<h2 className="font-semibold text-xl text-white leading-tight">All Bevvies</h2>}
                 >
-                    <Head title="Add Bevvie" />
+                    <Head title="All Shouts" />
 
                     <div className="bg-pink-400 dark:bg-gray-800 overflow-hidden sm:rounded-lg px-6">
                         <div className="max-w-7xl mx-auto pb-8">
@@ -143,7 +143,7 @@ export default function Welcome(props) {
                 </AuthenticatedLayout>
                 :
                 <GuestLayout>
-                    <Head title="Add Bevvie" />
+                    <Head title="All Shouts" />
 
                         <div className="max-w-7xl mx-auto">
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
