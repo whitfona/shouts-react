@@ -15,6 +15,7 @@ class ProductionCategories extends Seeder
     public function run()
     {
         Category::factory()->create(['type' => 'Sour']);
+        Category::factory()->create(['type' => 'IPA']);
         Category::factory()->create(['type' => 'Ale']);
         Category::factory()->create(['type' => 'Cider']);
         Category::factory()->create(['type' => 'Lager']);
