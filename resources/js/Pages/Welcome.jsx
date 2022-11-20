@@ -161,9 +161,10 @@ export default function Welcome(props) {
                                 />
                                 <p className="text-red-500 mt-4 text-center">{message}</p>
                                 <div className="pb-4">
-                                    {beers.map(beer => (
+                                    {beers.map((beer, index) => (
                                         <PublicBeerDetails
                                             beer={beer}
+                                            key={index}
                                             searchByBrewery={searchByBrewery}
                                             searchByUser={searchByUser}
                                         />
