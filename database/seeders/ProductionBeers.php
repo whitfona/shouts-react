@@ -299,7 +299,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 3,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Hello, Friends!',
             'brewery' => 'Left Field Brewery',
@@ -317,7 +317,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 3,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Hop!',
             'brewery' => 'Vagabond',
@@ -326,7 +326,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 3,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Skvader',
             'brewery' => 'Jackallhop',
@@ -335,7 +335,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 3,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Houblon Chouffe',
             'brewery' => 'Brasserie D’Achouffe SA',
@@ -362,7 +362,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 3,
             'barcode' => null,
             'name' => 'Jutsu',
             'brewery' => 'Bellwoods Brewery',
@@ -371,7 +371,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Head Stock',
             'brewery' => 'Nickelbrook Brewing Co.',
@@ -380,7 +380,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Wicked Awesome',
             'brewery' => 'Nickelbrook Brewing Co.',
@@ -389,7 +389,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Ghost Orchid',
             'brewery' => 'Bellwoods Brewery',
@@ -398,7 +398,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 3,
             'barcode' => null,
             'name' => 'Naughty Neighbor',
             'brewery' => 'Nickelbrook Brewing Co.',
@@ -407,7 +407,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Octopus Wants to Fight',
             'brewery' => 'Great Lakes Brewery',
@@ -434,7 +434,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Bubble Stash',
             'brewery' => 'Hop Valley Brewing',
@@ -452,7 +452,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Upside',
             'brewery' => 'Wellington Brewery',
@@ -461,7 +461,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 9,
             'barcode' => null,
             'name' => 'Queen of Wheat',
             'brewery' => 'Spearhead Brewing Company',
@@ -470,7 +470,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 3,
             'barcode' => null,
             'name' => 'Hawaiian Style',
             'brewery' => 'Spearhead Brewing Company',
@@ -479,7 +479,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Detour',
             'brewery' => 'Muskoka Brewery',
@@ -488,7 +488,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 5,
             'barcode' => null,
             'name' => 'Northbound Lager',
             'brewery' => 'Side Launch Brewing Company',
@@ -506,7 +506,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Costal Wave',
             'brewery' => 'Lost Craft Inc.',
@@ -515,7 +515,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'High Tide',
             'brewery' => 'Whitewater Brewing Co.',
@@ -524,7 +524,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 3,
             'barcode' => null,
             'name' => 'Chicken Man Pale Ale',
             'brewery' => 'Furnace Room Brewery',
@@ -542,7 +542,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 3,
             'barcode' => null,
             'name' => 'Bellweiser',
             'brewery' => 'Bellwoods Brewery',
@@ -560,7 +560,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 5,
             'barcode' => null,
             'name' => 'Light Eh! Lager',
             'brewery' => 'Kingsville Brewery',
@@ -569,7 +569,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 5,
             'barcode' => null,
             'name' => 'Lemon & Lime Beach Lager',
             'brewery' => 'Whitewater Brewing Co.',
@@ -578,7 +578,7 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 2,
             'barcode' => null,
             'name' => 'Mango & Passion Fruit Milkshake IPA',
             'brewery' => 'Collective Arts Brewing Limited',
@@ -596,25 +596,16 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 5,
             'barcode' => null,
-            'name' => 'Des Cotes',
-            'brewery' => 'Bearle',
-            'alcohol_percent' => 5,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => null,
-            'name' => 'Worlds Away',
+            'name' => 'Worlds Away Modern Lager',
             'brewery' => 'Flying Monkey',
             'alcohol_percent' => 4.7,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
+            'category_id' => 5,
             'barcode' => null,
             'name' => 'Amsterdam Blonde',
             'brewery' => 'Amsterdam Brewing',
