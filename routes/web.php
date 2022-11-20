@@ -4,6 +4,7 @@ use App\Http\Controllers\Private\GET\AllBeersController;
 use App\Http\Controllers\Private\GET\BeersByBarcodeController;
 use App\Http\Controllers\Private\GET\BeersByBreweryController;
 use App\Http\Controllers\Private\GET\BeersByCategoryController;
+use App\Http\Controllers\Private\GET\BeersBySearchController;
 use App\Http\Controllers\Private\GET\BeersByUserController as BeersByUserControllerAlias;
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;
@@ -44,16 +45,7 @@ Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('be
 
 Route::get('/beers/user/all/{beer}', BeersByUserControllerAlias::class)->name('beers.user.show');
 
-/**
- * GET all beers with name or brewery that matches the search criteria
- *
- */
-Route::get('/beers/search/{beer}', function ($search) {
-    $found = Beer::where('name', 'LIKE', '%' . $search . '%')->orWhere('brewery', 'LIKE', '%' . $search . '%')->get();
-    $results = BeerResource::collection($found);
-
-    return response()->json($results);
-})->name('beers.search.show');
+Route::get('/beers/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
 
 /**
  * GET all categories
