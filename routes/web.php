@@ -378,7 +378,7 @@ Route::post('/beers/user', function (Request $request) {
         $newRating->save();
     }
 
-    return redirect(route('dashboard'))->with('message', 'Beer successfully saved.');
+    return redirect(route('dashboard'))->with('message', 'Bevvie successfully saved.');
 })->middleware('auth')->name('beers.store');
 
 /**
@@ -422,7 +422,7 @@ Route::post('/beers/delete', function (Request $request) {
     $rating = Rating::where('beer_id', $request->beer_id)->where('user_id', $user->id)->first();
     $rating->delete();
 
-    return redirect(route('dashboard'))->with('message', 'Beer successfully deleted.');
+    return redirect(route('dashboard'))->with('message', 'Bevvie successfully deleted.');
 })->middleware('auth')->name('beers.user.destroy');
 
 

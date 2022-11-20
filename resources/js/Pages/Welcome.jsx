@@ -12,7 +12,6 @@ export default function Welcome(props) {
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     useEffect(() => {
         fetchAllBeers()
@@ -29,7 +28,8 @@ export default function Welcome(props) {
         fetch(route('beers.index'))
             .then(res => res.json())
             .then(data => {
-                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                const filtered = data.filter(item => item.avg_rating > 0)
+                filtered.sort((a, b) => b.avg_rating - a.avg_rating)
                 setBeers(data)
             })
             .catch(err => console.log(err))
@@ -47,7 +47,6 @@ export default function Welcome(props) {
                 }
             })
             .catch(err => setMessage("Sorry, error fetching beers."))
-        // .catch(err => console.log(err))
     }
 
     const searchByBrewery = (brewery) => {
