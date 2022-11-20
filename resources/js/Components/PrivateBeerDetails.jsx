@@ -33,7 +33,6 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
                     </div>
                 </div>
                 <div className="w-full">
-                    {/*<p>Barcode: {beer.barcode}</p>*/}
                     <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                         <DetailFormat name={'Name'} value={beer.name} />
                         <DetailFormat name={'Rating'} value={beer.rating} />

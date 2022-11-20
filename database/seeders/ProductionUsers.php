@@ -17,7 +17,8 @@ class ProductionUsers extends Seeder
         User::factory()->create([
             'name' => 'Nick',
             'email' => 'whitford_4@hotmail.com',
-            'password' => '$2y$10$6QPWEneMpsKh6ZdjYofzbuzU7oNGHKDfkHbzkLAFwpQJypumTjWJ6'
+            'password' => '$2y$10$6QPWEneMpsKh6ZdjYofzbuzU7oNGHKDfkHbzkLAFwpQJypumTjWJ6',
+            'profile_image' => '1647698519.jpg'
         ]);
         User::factory()->create([
             'name' => 'Firas Khalid',
@@ -27,7 +28,8 @@ class ProductionUsers extends Seeder
         User::factory()->create([
             'name' => 'Jill',
             'email' => 'jillian.halladay@hotmail.com',
-            'password' => '$2y$10$/a/6e1lBWX5T6aiW7YDXTeDIiKEdhlQ8UazPv9Z8AiWUWRIZXER7q'
+            'password' => '$2y$10$/a/6e1lBWX5T6aiW7YDXTeDIiKEdhlQ8UazPv9Z8AiWUWRIZXER7q',
+            'profile_image' => '1647827666.jpg'
         ]);
         User::factory()->create([
             'name' => 'Ivan',
@@ -37,7 +39,8 @@ class ProductionUsers extends Seeder
         User::factory()->create([
             'name' => 'Josh Hillman',
             'email' => 'joshhillman@simplyanchored.ca',
-            'password' => '$2y$10$QEx30V1oQ1/3aiPS.XaMYOUMeiyl0xZNe2UtD69fP4lREBMDS/sEK'
+            'password' => '$2y$10$QEx30V1oQ1/3aiPS.XaMYOUMeiyl0xZNe2UtD69fP4lREBMDS/sEK',
+            'profile_image' => '1648933519.jpg'
         ]);
         User::factory()->create([
             'name' => 'Andy J',

@@ -29,7 +29,7 @@ export default function PublicBeerDetails({beer, searchByBrewery, searchByUser})
                                 <p>
                                     <span className="text-md font-semibold tracking-wide uppercase">Added By: </span>
                                     <button onClick={() => searchByUser(rating.user_id)}>
-                                    <img className="w-8 h-8 rounded-full inline" src={rating.user_photo} /> {rating.user}</button> | {rating.date_added}</p>
+                                        {rating.user_photo && <img className="w-8 h-8 rounded-full inline" src={`http://localhost:8000/storage/users/${rating.user_photo}`} />} {rating.user}</button> | {rating.date_added}</p>
                                 <p><span className="text-md font-semibold tracking-wide uppercase">Rating: </span>{rating.rating}</p>
                                 <p><span className="text-md font-semibold tracking-wide uppercase">Comment: </span>{rating.comment}</p>
                             </div>
