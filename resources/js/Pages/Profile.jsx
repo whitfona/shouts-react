@@ -29,6 +29,7 @@ export default function Dashboard(props) {
                 })
                 if (data.profile_image) {
                     setPreviewImage(`http://localhost:8000/storage/users/${data.profile_image}`)
+                    // setPreviewImage(`https://itsyourshout.ca/storage/users/${data.profile_image}`)
                 }
             })
             .catch(err => console.log(err))
