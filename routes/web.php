@@ -6,6 +6,7 @@ use App\Http\Controllers\Private\Get\UserBeersByBeerIdController;
 use App\Http\Controllers\Private\Get\UserBeersByBreweryController;
 use App\Http\Controllers\Private\Get\UserBeersByCategoryController;
 use App\Http\Controllers\Private\Get\UserBeersBySearchController;
+use App\Http\Controllers\Private\Post\UpsertBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
 use App\Http\Controllers\Public\Get\BeersByBarcodeController;
@@ -73,83 +74,7 @@ Route::get('/beers/user/barcode/{beer}', UserBeersByBarcodeController::class)->m
 
 Route::get('/beers/user/{beer}', UserBeersByBeerIdController::class)->middleware('auth')->name('beers.user.beer');
 
-/**
- * POST add a beer for the authenticated user
- *
- */
-Route::post('/beers/user', function (Request $request) {
-
-    $user = auth()->user();
-    // 1. Validate data is correctly submitted
-    $request->validate([
-        'name' => ['required', 'string', 'max:100'],
-        'beer_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-        'brewery' => ['required', 'string', 'max:100'],
-        'barcode' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-        'alcohol_percent' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-        'photo' => [ 'sometimes', 'max:5000', 'nullable',
-            function ($attribute, $value, $fail) {
-                if (!is_string($value) && !($value instanceof UploadedFile)) {
-                    $fail('The '.$attribute.' must either be a string or file.');
-                }
-            }
-        ],
-        'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
-        'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
-        'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
-    ]);
-
-    $photoName = $request->photo;
-    if ($request->photo && $request->photo instanceof UploadedFile) {
-        $photoName = time() . '.' . 'jpg';
-        Image::make($request->file('photo'))
-            ->resize(512, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
-            ->save(public_path('/storage/beers/') . $photoName);
-    }
-
-    //  Create new beer
-    $beer = new Beer;
-    //  Update beer
-    if (Beer::find($request->beer_id)) {
-        $beer = Beer::find($request->beer_id);
-    }
-    $beer->barcode = $request->barcode;
-    $beer->name = $request->name;
-    $beer->brewery = $request->brewery;
-    $beer->alcohol_percent = $request->alcohol_percent;
-    $beer->has_lactose = request()->has('hasLactose');
-    if (!$photoName) {
-        $beer->photo = 'zzzzempty-sour-glass.png';
-    } else {
-        $beer->photo = $photoName;
-    }
-    $beer->category_id = $request->category_id;
-
-    $beer->save();
-
-    // Update Rating
-    $previousRating = Rating::where('beer_id', $beer->id)->where('user_id', $user->id)->first();
-    if ($previousRating) {
-        $previousRating->rating = $request->rating;
-        $previousRating->comment = $request->comment;
-
-        $previousRating->save();
-    } else {
-        // Create new Rating
-        $newRating = new Rating;
-
-        $newRating->beer()->associate($beer);
-        $newRating->user()->associate($user);
-        $newRating->rating = $request->rating;
-        $newRating->comment = $request->comment;
-
-        $newRating->save();
-    }
-
-    return redirect(route('dashboard'))->with('message', 'Bevvie successfully saved.');
-})->middleware('auth')->name('beers.store');
+Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
 
 /**
  * Get user profile information
