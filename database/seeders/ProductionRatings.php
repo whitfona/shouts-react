@@ -316,52 +316,52 @@ class ProductionRatings extends Seeder
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 3,
+            'beer_id' => 58,
+            'rating' => 5,
+            'comment' => 'Tastes hoppy with a bit of an aftertaste'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 54,
+            'rating' => 6,
+            'comment' => 'More hoppy than I remembered. I feel like I would actually give it a 5 but I want to like it so I have it a 6. Will return and re-rate when my soul is not hurt from the hops'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 64,
+            'rating' => 4,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
+            'user_id' => 3,
+            'beer_id' => 26,
+            'rating' => 7,
+            'comment' => 'Raspberry lemon and yuzu'
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
+            'user_id' => 3,
+            'beer_id' => 3,
+            'rating' => 8.75,
+            'comment' => 'Super good, all my friends like it, easy drinking and not hoppy'
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
+            'user_id' => 3,
+            'beer_id' => 16,
+            'rating' => 7.5,
+            'comment' => 'Surprisingly good! May rate up if I like it the next time I get it.'
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
+            'user_id' => 3,
+            'beer_id' => 19,
+            'rating' => 6.5,
+            'comment' => 'Fine!'
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
-        ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
-        ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
+            'user_id' => 3,
+            'beer_id' => 14,
+            'rating' => 7.5,
+            'comment' => 'Vanilla which tastes lactose-ey'
         ]);
         Rating::factory()->create([
             'user_id' => 1,
