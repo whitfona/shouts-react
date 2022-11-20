@@ -17,19 +17,9 @@ use App\Http\Controllers\Public\Get\BeersByBreweryController;
 use App\Http\Controllers\Public\Get\BeersByCategoryController;
 use App\Http\Controllers\Public\Get\BeersBySearchController;
 use App\Http\Controllers\Public\Get\BeersByUserController;
-use App\Http\Resources\BeerResource;
-use App\Models\Beer;
-use App\Models\Category;
-use App\Models\Rating;
-use App\Models\User;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,17 +37,11 @@ use Intervention\Image\Facades\Image;
  *
  */
 Route::get('/beers', AllBeersController::class)->name('beers.index');
-
 Route::get('/beers/barcode/{beer}', BeersByBarcodeController::class)->name('beers.barcode.show');
-
 Route::get('/beers/brewery/{beer}', BeersByBreweryController::class)->name('beers.brewery.show');
-
 Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('beers.category.show');
-
 Route::get('/beers/user/all/{beer}', BeersByUserController::class)->name('beers.user.show');
-
 Route::get('/beers/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
-
 Route::get('/categories', AllCategoriesController::class)->name('categories.index');
 
 /*
@@ -74,12 +58,7 @@ Route::get('/beers/user/{beer}', UserBeersByBeerIdController::class)->middleware
 Route::get('/profile', UserProfileController::class)->middleware('auth')->name('user.show');
 
 Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
-/**
- * HANDLE PHOTO UPLOAD
- *
- */
 Route::post('/profile', ProfileController::class)->middleware('auth')->name('user.store');
-
 Route::post('/beers/delete', BeerController::class)->middleware('auth')->name('beers.user.destroy');
 
 /*
