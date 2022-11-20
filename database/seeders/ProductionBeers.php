@@ -551,308 +551,74 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 2,
+            'barcode' => null,
+            'name' => 'Fresh Ideas',
+            'brewery' => 'Bell City Brewery',
+            'alcohol_percent' => 6.3,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Light Eh! Lager',
+            'brewery' => 'Kingsville Brewery',
+            'alcohol_percent' => 4,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Lemon & Lime Beach Lager',
+            'brewery' => 'Whitewater Brewing Co.',
+            'alcohol_percent' => 4,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Mango & Passion Fruit Milkshake IPA',
+            'brewery' => 'Collective Arts Brewing Limited',
+            'alcohol_percent' => 5.9,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Samurai Kettle Sour',
+            'brewery' => 'CAMERON\'S Brewing Company',
+            'alcohol_percent' => 5.4,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Des Cotes',
+            'brewery' => 'Bearle',
+            'alcohol_percent' => 5,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Worlds Away',
+            'brewery' => 'Flying Monkey',
+            'alcohol_percent' => 4.7,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Amsterdam Blonde',
+            'brewery' => 'Amsterdam Brewing',
+            'alcohol_percent' => 5,
             'has_lactose' => false,
             'photo' => null
         ]);
