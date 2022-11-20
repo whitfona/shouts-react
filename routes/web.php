@@ -7,6 +7,8 @@ use App\Http\Controllers\Private\Get\UserBeersByBreweryController;
 use App\Http\Controllers\Private\Get\UserBeersByCategoryController;
 use App\Http\Controllers\Private\Get\UserBeersBySearchController;
 use App\Http\Controllers\Private\Get\UserProfileController;
+use App\Http\Controllers\Private\Delete\BeerController;
+use App\Http\Controllers\Private\Post\ProfileController;
 use App\Http\Controllers\Private\Post\UpsertBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -80,37 +82,12 @@ Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->nam
 Route::get('/profile', UserProfileController::class)->middleware('auth')->name('user.show');
 
 /**
- * POST update user profile information
+ * HANDLE PHOTO UPLOAD
  *
  */
-Route::post('/profile', function (Request $request) {
-    $request->validate([
-        'user_id' => ['required', 'numeric', 'gte:0'],
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'id')->ignore($request->user_id)],
-        //        'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
-    ]);
+Route::post('/profile', ProfileController::class)->middleware('auth')->name('user.store');
 
-    $user = User::find($request->user_id);
-
-    $user->name = $request->name;
-    $user->email = $request->email;
-
-    $user->save();
-
-    return redirect(route('profile'))->with('message', 'Profile successfully saved.');
-})->middleware('auth')->name('user.store');
-
-/**
- * DELETE a beer for the authenticated user
- */
-Route::post('/beers/delete', function (Request $request) {
-    $user = auth()->user();
-    $rating = Rating::where('beer_id', $request->beer_id)->where('user_id', $user->id)->first();
-    $rating->delete();
-
-    return redirect(route('dashboard'))->with('message', 'Bevvie successfully deleted.');
-})->middleware('auth')->name('beers.user.destroy');
+Route::post('/beers/delete', BeerController::class)->middleware('auth')->name('beers.user.destroy');
 
 
 
