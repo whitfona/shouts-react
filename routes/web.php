@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Private\Get\AllUserBeersController;
-use App\Http\Controllers\Private\Get\UserBeersByBrewery;
-use App\Http\Controllers\Private\Get\UserBeersByCategory;
+use App\Http\Controllers\Private\Get\UserBeersByBreweryController;
+use App\Http\Controllers\Private\Get\UserBeersByCategoryController;
 use App\Http\Controllers\Private\Get\UserBeersBySearchController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -61,9 +61,9 @@ Route::get('/categories', AllCategoriesController::class)->name('categories.inde
  */
 Route::get('/beers/user', AllUserBeersController::class)->middleware('auth')->name('beers.user.index');
 
-Route::get('/beers/user/brewery/{beer}', UserBeersByBrewery::class)->middleware('auth')->name('beers.user.brewery');
+Route::get('/beers/user/brewery/{beer}', UserBeersByBreweryController::class)->middleware('auth')->name('beers.user.brewery');
 
-Route::get('/beers/user/category/{beer}', UserBeersByCategory::class)->middleware('auth')->name('beers.user.category');
+Route::get('/beers/user/category/{beer}', UserBeersByCategoryController::class)->middleware('auth')->name('beers.user.category');
 
 Route::get('/beers/user/search/{beer}', UserBeersBySearchController::class)->middleware('auth')->name('beers.user.search');
 
