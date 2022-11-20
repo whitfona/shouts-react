@@ -266,6 +266,11 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => null
         ]);
+
+
+//        START CHECKING CATEGORIES HERE
+
+
         Beer::factory()->create([
             'category_id' => 3,
             'barcode' => null,
@@ -335,6 +340,294 @@ class ProductionBeers extends Seeder
             'name' => 'Houblon Chouffe',
             'brewery' => 'Brasserie D’Achouffe SA',
             'alcohol_percent' => 9,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Clutch',
+            'brewery' => 'Redline Brewhoust',
+            'alcohol_percent' => 4.8,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => null,
+            'name' => 'Classic Organic Pilsner',
+            'brewery' => 'Mill St. Brewery',
+            'alcohol_percent' => 6,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Jutsu',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 5.6,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Head Stock',
+            'brewery' => 'Nickelbrook Brewing Co.',
+            'alcohol_percent' => 7,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Wicked Awesome',
+            'brewery' => 'Nickelbrook Brewing Co.',
+            'alcohol_percent' => 6.5,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Ghost Orchid',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 6.3,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Naughty Neighbor',
+            'brewery' => 'Nickelbrook Brewing Co.',
+            'alcohol_percent' => 4.9,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Octopus Wants to Fight',
+            'brewery' => 'Great Lakes Brewery',
+            'alcohol_percent' => 6.2,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Killarney Cream Ale',
+            'brewery' => 'Manitoulin Brewing Co.',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => null,
+            'name' => 'Grande Ave',
+            'brewery' => 'Grand River Brewing',
+            'alcohol_percent' => 6.5,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 1,
+            'name' => '',
+            'brewery' => '',
+            'alcohol_percent' => 1,
             'has_lactose' => false,
             'photo' => null
         ]);
