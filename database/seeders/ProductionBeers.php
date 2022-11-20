@@ -435,118 +435,118 @@ class ProductionBeers extends Seeder
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Bubble Stash',
+            'brewery' => 'Hop Valley Brewing',
+            'alcohol_percent' => 6.2,
+            'has_lactose' => false,
+            'photo' => null
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => null,
+            'name' => 'Hauler Lager',
+            'brewery' => 'Farm League Brewing',
+            'alcohol_percent' => 4.8,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Upside',
+            'brewery' => 'Wellington Brewery',
+            'alcohol_percent' => 6.8,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Queen of Wheat',
+            'brewery' => 'Spearhead Brewing Company',
+            'alcohol_percent' => 5,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Hawaiian Style',
+            'brewery' => 'Spearhead Brewing Company',
+            'alcohol_percent' => 6,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Detour',
+            'brewery' => 'Muskoka Brewery',
+            'alcohol_percent' => 4.3,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Northbound Lager',
+            'brewery' => 'Side Launch Brewing Company',
+            'alcohol_percent' => 6,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Dream Pop',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 6.1,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Costal Wave',
+            'brewery' => 'Lost Craft Inc.',
+            'alcohol_percent' => 6,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'High Tide',
+            'brewery' => 'Whitewater Brewing Co.',
+            'alcohol_percent' => 6.9,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Chicken Man Pale Ale',
+            'brewery' => 'Furnace Room Brewery',
+            'alcohol_percent' => 5.4,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'El Rosado',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 4.2,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
             'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
-            'has_lactose' => false,
-            'photo' => null
-        ]);
-        Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'barcode' => null,
+            'name' => 'Bellweiser',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 4.8,
             'has_lactose' => false,
             'photo' => null
         ]);
