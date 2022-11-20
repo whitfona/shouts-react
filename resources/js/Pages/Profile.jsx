@@ -98,7 +98,7 @@ export default function Dashboard(props) {
                         <div className="mt-4 md:grow">
                             <InputLabel forInput="photo" value="Profile Image" />
 
-                            {data.photo && <img className="md:w-80 mt-1 mb-2" src={data.photo} />}
+                            {data.photo && <img className="md:w-80 mt-1 mb-2" src={`http://localhost:8000/storage/users/${data.photo}`} />}
 
                             <input
                                 className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"

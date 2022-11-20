@@ -6,6 +6,7 @@ use App\Http\Controllers\Private\Get\UserBeersByBeerIdController;
 use App\Http\Controllers\Private\Get\UserBeersByBreweryController;
 use App\Http\Controllers\Private\Get\UserBeersByCategoryController;
 use App\Http\Controllers\Private\Get\UserBeersBySearchController;
+use App\Http\Controllers\Private\Get\UserProfileController;
 use App\Http\Controllers\Private\Post\UpsertBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -76,15 +77,7 @@ Route::get('/beers/user/{beer}', UserBeersByBeerIdController::class)->middleware
 
 Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
 
-/**
- * Get user profile information
- *
- */
-Route::get('/profile', function() {
-    $user = User::find(auth()->user()->id);
-
-    return response()->json($user);
-})->middleware('auth')->name('user.show');
+Route::get('/profile', UserProfileController::class)->middleware('auth')->name('user.show');
 
 /**
  * POST update user profile information
