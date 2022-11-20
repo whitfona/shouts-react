@@ -267,74 +267,74 @@ class ProductionBeers extends Seeder
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Fat Tire',
+            'brewery' => 'New Belgium Brewing',
+            'alcohol_percent' => 5.2,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Absent Landlord',
+            'brewery' => 'Cowbell Brewing Co.',
+            'alcohol_percent' => 5.3,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Italia Pale Ale',
+            'brewery' => 'Birra Fanelli',
+            'alcohol_percent' => 4.5,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Hello, Friends!',
+            'brewery' => 'Left Field Brewery',
+            'alcohol_percent' => 6,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Another Hazy Beer',
+            'brewery' => 'Kensington Brewing Co.',
+            'alcohol_percent' => 5.5,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Hop!',
+            'brewery' => 'Vagabond',
+            'alcohol_percent' => 2.5,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Skvader',
+            'brewery' => 'Jackallhop',
+            'alcohol_percent' => 8.6,
             'has_lactose' => false,
             'photo' => null
         ]);
         Beer::factory()->create([
-            'category_id' => 1,
-            'barcode' => 1,
-            'name' => '',
-            'brewery' => '',
-            'alcohol_percent' => 1,
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Houblon Chouffe',
+            'brewery' => 'Brasserie D’Achouffe SA',
+            'alcohol_percent' => 9,
             'has_lactose' => false,
             'photo' => null
         ]);
