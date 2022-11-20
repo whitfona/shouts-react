@@ -202,117 +202,117 @@ class ProductionRatings extends Seeder
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 29,
+            'rating' => 9,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 41,
+            'rating' => 7,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 52,
+            'rating' => 6,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 53,
+            'rating' => 6,
+            'comment' => 'Fantastic cottage drink... drink in summer sun heat'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 2,
+            'beer_id' => 51,
+            'rating' => 5,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 65,
+            'rating' => 3,
+            'comment' => 'Tastes so light, probably good for summer bbq or after a drunken night'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 2,
+            'beer_id' => 40,
+            'rating' => 2,
+            'comment' => 'Tastes BITTER'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 2,
+            'beer_id' => 43,
+            'rating' => 7,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 24,
+            'rating' => 3,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
+            'user_id' => 2,
             'beer_id' => 1,
-            'rating' => 0,
+            'rating' => 7,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 44,
+            'rating' => 7,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 34,
+            'rating' => 8,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 35,
+            'rating' => 8,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 31,
+            'rating' => 8.5,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 48,
+            'rating' => 7,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 36,
+            'rating' => 8,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 4,
+            'rating' => 4,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 57,
+            'rating' => 6,
             'comment' => ''
         ]);
         Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
-        ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
-        ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
-            'comment' => ''
-        ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 1,
-            'rating' => 0,
+            'user_id' => 2,
+            'beer_id' => 49,
+            'rating' => 6,
             'comment' => ''
         ]);
         Rating::factory()->create([
