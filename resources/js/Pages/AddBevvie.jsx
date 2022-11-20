@@ -168,7 +168,6 @@ export default function AddBevvie(props) {
                         <InputError message={errors.beer_id} className="mt-2" />
                         <div>
                             {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={previewImage} />}
-                            {/*{data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${data.photo}`} />}*/}
                         </div>
                         <div>
                             <InputLabel forInput="barcode" value="Barcode" />
@@ -179,7 +178,6 @@ export default function AddBevvie(props) {
                                 value={data.barcode}
                                 className="mt-1 block w-full md:w-auto"
                                 autoComplete="name"
-                                // isFocused={true}
                                 handleChange={onHandleChange}
                             />
 
@@ -221,21 +219,6 @@ export default function AddBevvie(props) {
 
                         <div className="md:flex gap-4">
                             <div className="flex gap-4 mt-4">
-                                <div>
-                                    <InputLabel forInput="rating" value="Rating (as decimal number)*" />
-
-                                    <TextInput
-                                        type="text"
-                                        name="rating"
-                                        value={data.rating}
-                                        className="mt-1 block w-full"
-                                        handleChange={onHandleChange}
-                                        required
-                                    />
-
-                                    <InputError message={errors.rating} className="mt-2" />
-                                </div>
-
                                 <div>
                                     <InputLabel forInput="alcohol_percent" value="Alcohol Percent (as decimal number)" />
 
@@ -285,6 +268,21 @@ export default function AddBevvie(props) {
                                     <InputError message={errors.has_lactose} className="mt-2" />
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel forInput="rating" value="Rating (as decimal number)*" />
+
+                            <TextInput
+                                type="text"
+                                name="rating"
+                                value={data.rating}
+                                className="mt-1 block"
+                                handleChange={onHandleChange}
+                                required
+                            />
+
+                            <InputError message={errors.rating} className="mt-2" />
                         </div>
 
                         <div className="mt-4">

@@ -86,7 +86,6 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                 <div className="font-semibold pb-4 text-xl leading-tight">Update Bevvie</div>
                 <div>
                     {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={previewImage} />}
-                    {/*{data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${beer.photo}`} />}*/}
                 </div>
                 <div>
                     <InputLabel forInput="barcode" value="Barcode" />
@@ -139,21 +138,6 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                 <div className="md:flex gap-4">
                     <div className="flex gap-4 mt-4">
                         <div>
-                            <InputLabel forInput="rating" value="Rating (as decimal number)*" />
-
-                            <TextInput
-                                type="text"
-                                name="rating"
-                                value={data.rating}
-                                className="mt-1 block w-full"
-                                handleChange={onHandleChange}
-                                required
-                            />
-
-                            <InputError message={errors.rating} className="mt-2" />
-                        </div>
-
-                        <div>
                             <InputLabel forInput="alcohol_percent" value="Alcohol Percent (as decimal number)" />
 
                             <TextInput
@@ -202,6 +186,21 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                             <InputError message={errors.has_lactose} className="mt-2" />
                         </div>
                     </div>
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel forInput="rating" value="Rating (as decimal number)*" />
+
+                    <TextInput
+                        type="text"
+                        name="rating"
+                        value={data.rating}
+                        className="mt-1 block"
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.rating} className="mt-2" />
                 </div>
 
                 <div className="mt-4">

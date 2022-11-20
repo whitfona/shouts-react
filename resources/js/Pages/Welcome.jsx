@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Head } from '@inertiajs/inertia-react';
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import BarcodeScanner from "@/Components/BarcodeScanner";
@@ -119,7 +119,6 @@ export default function Welcome(props) {
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
                                 <Header
                                     categories={categories}
-                                    // message={message}
                                     search={search}
                                     handleSearch={handleSearch}
                                     searchByCategory={searchByCategory}
