@@ -3,6 +3,7 @@
 use App\Http\Controllers\Private\Get\AllUserBeersController;
 use App\Http\Controllers\Private\Get\UserBeersByBrewery;
 use App\Http\Controllers\Private\Get\UserBeersByCategory;
+use App\Http\Controllers\Private\Get\UserBeersBySearchController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
 use App\Http\Controllers\Public\Get\BeersByBarcodeController;
@@ -64,25 +65,7 @@ Route::get('/beers/user/brewery/{beer}', UserBeersByBrewery::class)->middleware(
 
 Route::get('/beers/user/category/{beer}', UserBeersByCategory::class)->middleware('auth')->name('beers.user.category');
 
-/**
- * Get all beers for the authenticated user by search term
- *
- */
-Route::get('/beers/user/search/{beer}', function ($search) {
-    $user = auth()->user();
-    $found = DB::table('beers')
-        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
-        ->join('categories', 'beers.category_id', '=', 'categories.id')
-        ->where('ratings.user_id', '=', $user->id)
-        ->where(function ($query) use ($search) {
-            $query
-                ->where('beers.brewery', 'LIKE', '%' . $search . '%')
-                ->orWhere('beers.brewery', 'LIKE', '%' . $search . '%');
-        })
-        ->get();
-
-    return response()->json($found);
-})->middleware('auth')->name('beers.user.search');
+Route::get('/beers/user/search/{beer}', UserBeersBySearchController::class)->middleware('auth')->name('beers.user.search');
 
 /**
  * Get beer with user ratings (if it exists) for scanned barcode
