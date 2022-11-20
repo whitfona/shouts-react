@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Private\GET\AllBeersController;
+use App\Http\Controllers\Private\GET\AllCategoriesController;
 use App\Http\Controllers\Private\GET\BeersByBarcodeController;
 use App\Http\Controllers\Private\GET\BeersByBreweryController;
 use App\Http\Controllers\Private\GET\BeersByCategoryController;
@@ -47,16 +48,7 @@ Route::get('/beers/user/all/{beer}', BeersByUserControllerAlias::class)->name('b
 
 Route::get('/beers/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
 
-/**
- * GET all categories
- *
- */
-Route::get('/categories', function () {
-    $categories = Category::all();
-
-    return response()->json($categories);
-})->name('categories.index');
-
+Route::get('/categories', AllCategoriesController::class)->name('categories.index');
 
 /*
  * START OF PRIVATE ROUTES
