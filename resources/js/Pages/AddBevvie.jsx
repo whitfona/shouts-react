@@ -6,6 +6,7 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import { Typeahead } from "react-bootstrap-typeahead";
+import heic2any from "heic2any";
 
 export default function AddBevvie(props) {
 
@@ -24,6 +25,7 @@ export default function AddBevvie(props) {
     const [categories, setCategories] = useState([])
     const [beers, setBeers] = useState([])
     const [message, setMessage] = useState('')
+    const [previewImage, setPreviewImage] = useState('')
 
     useEffect(() => {
         fetch(route('beers.index'))
@@ -45,7 +47,22 @@ export default function AddBevvie(props) {
     };
 
     const onHandleFileChange = (event) => {
-        setData(event.target.name, event.target.files[0]);
+        const file = event.target.files[0]
+
+        setData(event.target.name, file);
+
+        if (file.type === "image/heic") {
+            heic2any({
+                blob: file,
+                toType: 'image/jpeg',
+            }).then(blob => {
+                setPreviewImage(URL.createObjectURL(blob))
+            }, error => {
+                console.log(error)
+            });
+        } else {
+            setPreviewImage(URL.createObjectURL(file))
+        }
     };
 
     const getScannedBeer = (barcode) => {
@@ -101,6 +118,10 @@ export default function AddBevvie(props) {
             photo: data.photo ? data.photo : '',
             rating: data.rating ? data.rating : ''
         })
+
+        if (data.photo) {
+            setPreviewImage(`http://localhost:8000/storage/beers/${data.photo}`)
+        }
     }
 
     const clearAllFields = async () => {
@@ -146,7 +167,8 @@ export default function AddBevvie(props) {
                         <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                         <InputError message={errors.beer_id} className="mt-2" />
                         <div>
-                            {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${data.photo}`} />}
+                            {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={previewImage} />}
+                            {/*{data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${data.photo}`} />}*/}
                         </div>
                         <div>
                             <InputLabel forInput="barcode" value="Barcode" />

@@ -3,6 +3,7 @@ import {useForm} from '@inertiajs/inertia-react';
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
+import heic2any from "heic2any";
 
 export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
@@ -11,7 +12,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
         barcode: '',
         beer_id: '',
         brewery: '',
-        category_id: '',
+        category_id: 1,
         comment: '',
         has_lactose: false,
         name: '',
@@ -19,6 +20,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
         rating: ''
     });
     const [categories, setCategories] = useState([])
+    const [previewImage, setPreviewImage] = useState('')
 
     useEffect(() => {
         fetch(route('categories.index'))
@@ -41,6 +43,10 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
             photo: beer.photo ? beer.photo : '',
             rating: beer.rating
         })
+
+        if (beer.photo) {
+            setPreviewImage(`http://localhost:8000/storage/beers/${beer.photo}`)
+        }
     }, [])
 
     const onHandleChange = (event) => {
@@ -48,7 +54,22 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
     };
 
     const onHandleFileChange = (event) => {
-        setData(event.target.name, event.target.files[0]);
+        const file = event.target.files[0]
+
+        setData(event.target.name, file);
+
+        if (file.type === "image/heic") {
+            heic2any({
+                blob: file,
+                toType: 'image/jpeg',
+            }).then(blob => {
+                setPreviewImage(URL.createObjectURL(blob))
+            }, error => {
+                console.log(error)
+            });
+        } else {
+            setPreviewImage(URL.createObjectURL(file))
+        }
     };
 
     const submit = (e) => {
@@ -64,7 +85,8 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                 <div className="font-semibold pb-4 text-xl leading-tight">Update Bevvie</div>
                 <div>
-                    {data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${beer.photo}`} />}
+                    {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={previewImage} />}
+                    {/*{data.photo && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`http://localhost:8000/storage/beers/${beer.photo}`} />}*/}
                 </div>
                 <div>
                     <InputLabel forInput="barcode" value="Barcode" />

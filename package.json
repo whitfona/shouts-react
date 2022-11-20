@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@ericblade/quagga2": "^1.7.7",
+        "heic2any": "^0.0.3",
         "react-bootstrap-typeahead": "^6.0.0"
     }
 }
