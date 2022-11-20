@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Private\Get\AllUserBeersController;
 use App\Http\Controllers\Private\Get\UserBeersByBarcodeController;
+use App\Http\Controllers\Private\Get\UserBeersByBeerIdController;
 use App\Http\Controllers\Private\Get\UserBeersByBreweryController;
 use App\Http\Controllers\Private\Get\UserBeersByCategoryController;
 use App\Http\Controllers\Private\Get\UserBeersBySearchController;
@@ -70,50 +71,7 @@ Route::get('/beers/user/search/{beer}', UserBeersBySearchController::class)->mid
 
 Route::get('/beers/user/barcode/{beer}', UserBeersByBarcodeController::class)->middleware('auth')->name('beers.user.barcode');
 
-/**
- * Get beer with user ratings (if it exists) by beer_id
- *
- */
-Route::get('/beers/user/{beer}', function ($beerId) {
-    // Find beer, assume beer always exists since user is using the typeahead
-    $beer = Beer::find($beerId);
-
-    // Check if the auth user has rated the beer
-    $foundRating = Rating::where('user_id', auth()->user()->id)->where('beer_id', $beerId)->first();
-
-    // If no user with rating is found, search for just the beer
-    if ($foundRating) {
-        $result = [
-            'id' => $beer->id,
-            'beer_id' => $beer->id,
-            "category_id" => $beer->category_id,
-            "barcode" => $beer->barcode,
-            "name" => $beer->name,
-            "brewery" => $beer->brewery,
-            "alcohol_percent" => $beer->alcohol_percent,
-            "photo" => $beer->photo,
-            "has_lactose" => $beer->has_lactose,
-            "rating" => $foundRating->rating,
-            "comment" => $foundRating->comment
-        ];
-    } else {
-        $result = [
-            'id' => $beer->id,
-            'beer_id' => $beer->id,
-            "category_id" => $beer->category_id,
-            "barcode" => $beer->barcode,
-            "name" => $beer->name,
-            "brewery" => $beer->brewery,
-            "alcohol_percent" => $beer->alcohol_percent,
-            "photo" => $beer->photo,
-            "has_lactose" => $beer->has_lactose,
-            "rating" => null,
-            "comment" => null
-        ];
-    }
-
-    return response()->json($result);
-})->middleware('auth')->name('beers.user.beer');
+Route::get('/beers/user/{beer}', UserBeersByBeerIdController::class)->middleware('auth')->name('beers.user.beer');
 
 /**
  * POST add a beer for the authenticated user
