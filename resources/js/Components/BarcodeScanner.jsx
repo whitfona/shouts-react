@@ -38,7 +38,6 @@ export default function BarcodeScanner({getScannedBeers, setMessage}) {
             const median = getMedian( errors );
             if (median < 0.10) {
                 // probably correct
-                console.log(result.codeResult.code)
                 stopReader()
                 getScannedBeers(result.codeResult.code)
             }

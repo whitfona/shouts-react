@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Private\GET\AllBeersController;
+use App\Http\Controllers\Private\GET\BeersByBarcodeController;
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
@@ -28,32 +30,10 @@ use Intervention\Image\Facades\Image;
  * START OF PUBLIC ROUTES
  *
  *
- *
  */
-/**
- * GET all beers with all users ratings & comments for each beer
- *
- */
-Route::get('/beers', function () {
-    $allBeers = BeerResource::collection(Beer::all());
+Route::get('/beers', AllBeersController::class)->name('beers.index');
 
-    return response()->json($allBeers);
-})->name('beers.index');
-
-/**
- * GET all users ratings & comments for a SINGLE beer using the beer's barcode
- *
- */
-Route::get('/beers/barcode/{beer}', function ($barcode) {
-    $found = Beer::where('barcode', '=', $barcode)->first();
-
-    // If beer doesn't exist return early
-    if (!$found) {
-        return response()->json(null);
-    }
-
-    return response()->json([new BeerResource($found)]);
-})->name('beers.barcode.show');
+Route::get('/beers/barcode/{beer}', BeersByBarcodeController::class)->name('beers.barcode.show');
 
 /**
  * GET all beers associated to a brewery
@@ -407,7 +387,6 @@ Route::post('/profile', function (Request $request) {
 
     $user->name = $request->name;
     $user->email = $request->email;
-//    $user->photo = $request->photo;
 
     $user->save();
 
