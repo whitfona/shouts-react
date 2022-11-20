@@ -4,6 +4,7 @@ use App\Http\Controllers\Private\GET\AllBeersController;
 use App\Http\Controllers\Private\GET\BeersByBarcodeController;
 use App\Http\Controllers\Private\GET\BeersByBreweryController;
 use App\Http\Controllers\Private\GET\BeersByCategoryController;
+use App\Http\Controllers\Private\GET\BeersByUserController as BeersByUserControllerAlias;
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
@@ -41,41 +42,7 @@ Route::get('/beers/brewery/{beer}', BeersByBreweryController::class)->name('beer
 
 Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('beers.category.show');
 
-/**
- * GET all beers associated to a user
- *
- */
-Route::get('/beers/user/all/{beer}', function ($user) {
-    $found = Rating::where('user_id', '=', $user)->get();
-    $results = $found->map(function ($beer) {
-        return  [
-            'id' => $beer->beer->id,
-            "barcode" => $beer->beer->barcode,
-            "name" => $beer->beer->name,
-            "brewery" => $beer->beer->brewery,
-            "alcohol_percent" => $beer->beer->alcohol_percent,
-            "photo" => $beer->beer->photo,
-            "category" => $beer->beer->category->type,
-            "avg_rating" => null,
-            "has_lactose" => $beer->beer->has_lactose,
-            "ratings" => [
-                    [
-                    "id" => $beer->id,
-                    "user_id" => $beer->user->id,
-                    "user" => $beer->user->name,
-                    "rating" => $beer->rating,
-                    "comment" => $beer->comment,
-                    "user_photo" => $beer->user->profile_image,
-                    "date_added" => $beer->created_at->toDateString()
-                ]
-            ]
-        ];
-    });
-
-    $final = collect($results)->values()->all();
-
-    return response()->json($final);
-})->name('beers.user.show');
+Route::get('/beers/user/all/{beer}', BeersByUserControllerAlias::class)->name('beers.user.show');
 
 /**
  * GET all beers with name or brewery that matches the search criteria
