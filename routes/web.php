@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Private\Get\AllUserBeersController;
 use App\Http\Controllers\Private\Get\UserBeersByBrewery;
+use App\Http\Controllers\Private\Get\UserBeersByCategory;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
 use App\Http\Controllers\Public\Get\BeersByBarcodeController;
@@ -61,21 +62,7 @@ Route::get('/beers/user', AllUserBeersController::class)->middleware('auth')->na
 
 Route::get('/beers/user/brewery/{beer}', UserBeersByBrewery::class)->middleware('auth')->name('beers.user.brewery');
 
-/**
- * Get all beers for the authenticated user by category
- *
- */
-Route::get('/beers/user/category/{beer}', function ($category) {
-    $user = auth()->user();
-    $found = DB::table('beers')
-        ->join('ratings', 'beers.id', '=', 'ratings.beer_id')
-        ->join('categories', 'beers.category_id', '=', 'categories.id')
-        ->where('ratings.user_id', '=', $user->id)
-        ->where('beers.category_id', '=', $category)
-        ->get();
-
-    return response()->json($found);
-})->middleware('auth')->name('beers.user.category');
+Route::get('/beers/user/category/{beer}', UserBeersByCategory::class)->middleware('auth')->name('beers.user.category');
 
 /**
  * Get all beers for the authenticated user by search term
