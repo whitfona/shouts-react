@@ -66,21 +66,14 @@ Route::get('/categories', AllCategoriesController::class)->name('categories.inde
  *
  */
 Route::get('/beers/user', AllUserBeersController::class)->middleware('auth')->name('beers.user.index');
-
 Route::get('/beers/user/brewery/{beer}', UserBeersByBreweryController::class)->middleware('auth')->name('beers.user.brewery');
-
 Route::get('/beers/user/category/{beer}', UserBeersByCategoryController::class)->middleware('auth')->name('beers.user.category');
-
 Route::get('/beers/user/search/{beer}', UserBeersBySearchController::class)->middleware('auth')->name('beers.user.search');
-
 Route::get('/beers/user/barcode/{beer}', UserBeersByBarcodeController::class)->middleware('auth')->name('beers.user.barcode');
-
 Route::get('/beers/user/{beer}', UserBeersByBeerIdController::class)->middleware('auth')->name('beers.user.beer');
-
-Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
-
 Route::get('/profile', UserProfileController::class)->middleware('auth')->name('user.show');
 
+Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
 /**
  * HANDLE PHOTO UPLOAD
  *

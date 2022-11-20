@@ -4,11 +4,13 @@ import {Head, Link, useForm, usePage} from '@inertiajs/inertia-react';
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
+import heic2any from "heic2any";
 
 export default function Dashboard(props) {
     const { flash } = usePage().props
     const [showFlashMessage, setShowFlashMessage] = useState(false)
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const [previewImage, setPreviewImage] = useState('')
+    const { data, setData, post, errors } = useForm({
         user_id: '',
         name: '',
         email: '',
@@ -25,6 +27,9 @@ export default function Dashboard(props) {
                     email: data.email,
                     photo: data.profile_image
                 })
+                if (data.profile_image) {
+                    setPreviewImage(`http://localhost:8000/storage/users/${data.profile_image}`)
+                }
             })
             .catch(err => console.log(err))
     }, []);
@@ -41,6 +46,25 @@ export default function Dashboard(props) {
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
+    };
+
+    const onHandleFileChange = (event) => {
+        const file = event.target.files[0]
+
+        setData(event.target.name, file);
+
+        if (file.type === "image/heic") {
+            heic2any({
+                blob: file,
+                toType: 'image/jpeg',
+            }).then(blob => {
+                setPreviewImage(URL.createObjectURL(blob))
+            }, error => {
+                console.log(error)
+            });
+        } else {
+            setPreviewImage(URL.createObjectURL(file))
+        }
     };
 
     const submit = (e) => {
@@ -98,13 +122,14 @@ export default function Dashboard(props) {
                         <div className="mt-4 md:grow">
                             <InputLabel forInput="photo" value="Profile Image" />
 
-                            {data.photo && <img className="md:w-80 mt-1 mb-2" src={`http://localhost:8000/storage/users/${data.photo}`} />}
+                            {previewImage && <img className="md:w-80 mt-1 mb-2" src={previewImage} />}
 
                             <input
                                 className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
                                 id="photo"
                                 type="file"
                                 name="photo"
+                                onChange={onHandleFileChange}
                             />
 
                             <InputError message={errors.photo} className="mt-2" />
