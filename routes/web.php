@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Private\GET\AllBeersController;
-use App\Http\Controllers\Private\GET\AllCategoriesController;
-use App\Http\Controllers\Private\GET\BeersByBarcodeController;
-use App\Http\Controllers\Private\GET\BeersByBreweryController;
-use App\Http\Controllers\Private\GET\BeersByCategoryController;
-use App\Http\Controllers\Private\GET\BeersBySearchController;
-use App\Http\Controllers\Private\GET\BeersByUserController as BeersByUserControllerAlias;
+use App\Http\Controllers\Public\Get\AllBeersController;
+use App\Http\Controllers\Public\Get\AllCategoriesController;
+use App\Http\Controllers\Public\Get\BeersByBarcodeController;
+use App\Http\Controllers\Public\Get\BeersByBreweryController;
+use App\Http\Controllers\Public\Get\BeersByCategoryController;
+use App\Http\Controllers\Public\Get\BeersBySearchController;
+use App\Http\Controllers\Public\Get\BeersByUserController;
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
@@ -44,7 +44,7 @@ Route::get('/beers/brewery/{beer}', BeersByBreweryController::class)->name('beer
 
 Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('beers.category.show');
 
-Route::get('/beers/user/all/{beer}', BeersByUserControllerAlias::class)->name('beers.user.show');
+Route::get('/beers/user/all/{beer}', BeersByUserController::class)->name('beers.user.show');
 
 Route::get('/beers/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
 

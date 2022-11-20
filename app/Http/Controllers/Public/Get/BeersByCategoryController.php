@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Private\GET;
+namespace App\Http\Controllers\Public\Get;
 
 use App\Http\Resources\BeerResource;
 use App\Models\Beer;

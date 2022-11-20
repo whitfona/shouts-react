@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Private\GET;
+namespace App\Http\Controllers\Public\Get;
 
 use App\Models\Rating;
 use Illuminate\Routing\Controller;
