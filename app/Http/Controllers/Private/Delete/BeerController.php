@@ -14,8 +14,7 @@ class BeerController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = auth()->user();
-        $rating = Rating::where('beer_id', $request->beer_id)->where('user_id', $user->id)->first();
+        $rating = Rating::where('beer_id', $request->beer_id)->where('user_id', auth()->user()->id)->first();
         $rating->delete();
 
         return redirect(route('dashboard'))->with('message', 'Bevvie successfully deleted.');
