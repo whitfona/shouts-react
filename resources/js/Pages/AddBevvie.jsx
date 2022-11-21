@@ -120,8 +120,7 @@ export default function AddBevvie(props) {
         })
 
         if (data.photo) {
-            setPreviewImage(`http://localhost:8000/storage/beers/${data.photo}`)
-            // setPreviewImage(`https://itsyourshout.ca/storage/beers/${data.photo}`)
+            setPreviewImage(data.photo)
         }
     }
 

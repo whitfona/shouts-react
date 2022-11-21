@@ -18,8 +18,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
         <>
             <div className="border-t-8 border-pink-100 gap-4 md:flex p-4">
                 <div>
-                    <img className="max-w-none w-[192px] mb-3 md:mb-0" src={`http://localhost:8000/storage/beers/${beer.photo}`} />
-                    {/*<img className="max-w-none w-[192px] mb-3 md:mb-0" src={`https://itsyourshout.ca/storage/beers/${beer.photo}`} />*/}
+                    <img className="max-w-none w-[192px] mb-3 md:mb-0" src={beer.photo} />
                     <div className="flex gap-x-2 mb-3">
                         <button
                             onClick={() => setShowDeleteModal(true)}
@@ -37,7 +36,7 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
                     <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                         <DetailFormat name={'Name'} value={beer.name} />
                         <DetailFormat name={'Rating'} value={beer.rating} />
-                        <DetailFormat name={'Category'} value={beer.type} />
+                        <DetailFormat name={'Category'} value={beer.category.type} />
                     </div>
                     <div className="md:flex flex-wrap justify-between gap-x-2 gap-y-0 mb-3">
                         <h2 className="text-lg min-w-[15%]">

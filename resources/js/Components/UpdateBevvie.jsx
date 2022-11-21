@@ -45,8 +45,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
         })
 
         if (beer.photo) {
-            setPreviewImage(`http://localhost:8000/storage/beers/${beer.photo}`)
-            // setPreviewImage(`https://itsyourshout.ca/storage/beers/${beer.photo}`)
+            setPreviewImage(beer.photo)
         }
     }, [])
 
