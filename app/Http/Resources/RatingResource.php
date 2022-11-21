@@ -20,7 +20,7 @@ class RatingResource extends JsonResource
             'user' => $this->user->name,
             'rating' => $this->rating,
             'comment' => $this->comment,
-            'user_photo' => $this->user->profile_image,
+            'user_photo' => isset($this->user->profile_image) ? asset('/storage/users/' . $this->user->profile_image) : null,
             'date_added' => $this->updated_at->toDateString()
         ];
     }

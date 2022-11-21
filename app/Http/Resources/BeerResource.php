@@ -20,7 +20,7 @@ class BeerResource extends JsonResource
             'name' => $this->name,
             'brewery' => $this->brewery,
             'alcohol_percent' => $this->alcohol_percent,
-            'photo' => $this->photo,
+            'photo' => asset('/storage/beers/' . $this->photo),
             'category' => $this->category->type,
             'avg_rating' => round($this->rating->avg('rating'), 1),
             'has_lactose' => $this->has_lactose,
