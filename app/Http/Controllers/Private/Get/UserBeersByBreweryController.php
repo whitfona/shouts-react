@@ -19,7 +19,6 @@ class UserBeersByBreweryController extends Controller
             ->where('beers.brewery', 'LIKE', '%' . $brewery . '%')
             ->get();
 
-
         return response()->json($found);
     }
 }
