@@ -23,7 +23,6 @@ export default function Welcome(props) {
                 setCategories(data)
             })
             .catch(err => console.log(err))
-
     }, [])
 
     useEffect(() => {
