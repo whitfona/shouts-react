@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('beers')->group(function () {
-    Route::get('/', AllBeersController::class)->name('beers.index');
-    Route::get('/barcode/{beer}', BeersByBarcodeController::class)->name('beers.barcode.show');
-    Route::get('/brewery/{beer}', BeersByBreweryController::class)->name('beers.brewery.show');
-    Route::get('/category/{beer}', BeersByCategoryController::class)->name('beers.category.show');
-    Route::get('/all/user/{beer}', BeersByUserController::class)->name('beers.user.show');
-    Route::get('/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
+    Route::get('/', AllBeersController::class);
+    Route::get('/barcode/{beer}', BeersByBarcodeController::class);
+    Route::get('/brewery/{beer}', BeersByBreweryController::class);
+    Route::get('/category/{beer}', BeersByCategoryController::class);
+    Route::get('/all/user/{beer}', BeersByUserController::class);
+    Route::get('/search/{beer}', BeersBySearchController::class);
 });
-Route::get('/categories', AllCategoriesController::class)->name('categories.index');
+Route::get('/categories', AllCategoriesController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
