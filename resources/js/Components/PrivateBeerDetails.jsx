@@ -55,12 +55,12 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
                             {formattedDate(beer.updated_at)}
                         </h2>
                     </div>
-                    <div className="mb-3">
+                    {beer.comment && <div className="mb-3">
                         <h2 className="text-lg">
                             <span className="font-semibold tracking-wide uppercase">Comment: </span>
                             {beer.comment}
                         </h2>
-                    </div>
+                    </div> }
                 </div>
             </div>
                 {showUpdateModal && <UpdateBevvie beer={beer} setShowUpdateModal={setShowUpdateModal} />}
