@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Head } from '@inertiajs/inertia-react';
+import {Head, usePage} from '@inertiajs/inertia-react';
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
@@ -8,10 +8,12 @@ import GuestLayout from "@/Layouts/GuestLayout";
 
 export default function Welcome(props) {
 
+    const { flash } = usePage().props
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
+    const [showFlashMessage, setShowFlashMessage] = useState(false)
 
     useEffect(() => {
         fetchAllBeers()
@@ -23,6 +25,17 @@ export default function Welcome(props) {
             .catch(err => console.log(err))
 
     }, [])
+
+    useEffect(() => {
+        if (!flash.message) {
+            return
+        }
+        fetchAllBeers()
+        setShowFlashMessage(true)
+        setTimeout(() => {
+            setShowFlashMessage(false)
+        }, 4000)
+    }, [flash])
 
     const fetchAllBeers = () => {
         fetch(route('beers.index'))
@@ -114,6 +127,9 @@ export default function Welcome(props) {
                 >
                     <Head title="All Shouts" />
 
+                    {showFlashMessage && (
+                        <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
+                    )}
                     <div className="bg-pink-400 dark:bg-gray-800 overflow-hidden sm:rounded-lg px-6">
                         <div className="max-w-7xl mx-auto pb-8">
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">
@@ -134,6 +150,7 @@ export default function Welcome(props) {
                                         key={index}
                                         searchByBrewery={searchByBrewery}
                                         searchByUser={searchByUser}
+                                        userId={props.auth.user.id}
                                     />
                                 ))}
                             </div>
@@ -165,6 +182,7 @@ export default function Welcome(props) {
                                             key={index}
                                             searchByBrewery={searchByBrewery}
                                             searchByUser={searchByUser}
+                                            userId={-1}
                                         />
                                     ))}
                                 </div>

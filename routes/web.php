@@ -9,6 +9,7 @@ use App\Http\Controllers\Private\Get\UserBeersBySearchController;
 use App\Http\Controllers\Private\Get\UserProfileController;
 use App\Http\Controllers\Private\Delete\BeerController;
 use App\Http\Controllers\Private\Post\ProfileController;
+use App\Http\Controllers\Private\Post\RatingController;
 use App\Http\Controllers\Private\Post\UpsertBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -60,6 +61,7 @@ Route::get('/profile', UserProfileController::class)->middleware('auth')->name('
 Route::post('/beers/user', UpsertBeerController::class)->middleware('auth')->name('beers.store');
 Route::post('/profile', ProfileController::class)->middleware('auth')->name('user.store');
 Route::post('/beers/delete', BeerController::class)->middleware('auth')->name('beers.user.destroy');
+Route::post('/ratings', RatingController::class)->middleware('auth')->name('ratings.store');
 
 /*
  * Routes

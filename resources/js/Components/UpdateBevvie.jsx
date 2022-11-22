@@ -75,8 +75,9 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('beers.store'));
-        setShowUpdateModal(false)
+        post(route('beers.store'), {
+            onSuccess: () => setShowUpdateModal(false)
+        });
     };
 
     return (
