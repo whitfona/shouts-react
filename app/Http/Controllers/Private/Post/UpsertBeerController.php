@@ -48,6 +48,7 @@ class UpsertBeerController extends Controller
                 ->resize(512, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })
+                ->orientate()
                 ->save(public_path('/storage/beers/') . $photoName);
         }
 
