@@ -5,10 +5,9 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import heic2any from "heic2any";
+import FlashMessage from "@/Components/FlashMessage";
 
 export default function Dashboard(props) {
-    const { flash } = usePage().props
-    const [showFlashMessage, setShowFlashMessage] = useState(false)
     const [previewImage, setPreviewImage] = useState('')
     const { data, setData, post, errors } = useForm({
         user_id: '',
@@ -33,16 +32,6 @@ export default function Dashboard(props) {
             })
             .catch(err => console.log(err))
     }, []);
-
-    useEffect(() => {
-        if (!flash.message) {
-            return
-        }
-        setShowFlashMessage(true)
-        setTimeout(() => {
-            setShowFlashMessage(false)
-        }, 4000)
-    }, [flash])
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
@@ -81,9 +70,7 @@ export default function Dashboard(props) {
         >
             <Head title="Profile" />
 
-            {showFlashMessage && (
-                <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
-            )}
+            <FlashMessage />
             <div className="max-w-7xl bg-pink-400 mx-auto p-4">
                 <div className="bg-white overflow-hidden shadow-sm rounded-lg">
                     <form onSubmit={submit} className="p-4">

@@ -21,10 +21,20 @@ class ProfileController extends Controller
             'user_id' => ['required', 'numeric', 'gte:0'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'id')->ignore($request->user_id)],
-            'photo' => ['sometimes', 'mimes:heic,jpg,jpeg,png,bmp,gif,svg,webp', 'max:5000', 'nullable'],
+            'photo' => [ 'sometimes', 'max:5000', 'nullable',
+                function ($attribute, $value, $fail) {
+                    if (!is_string($value) && !($value instanceof UploadedFile)) {
+                        $fail('The '.$attribute.' must either be a string or file.');
+                    }
+                }
+            ],
         ]);
 
         $photoName = $request->photo;
+        if ($request->photo && !$request->photo instanceof UploadedFile) {
+            $split = preg_split("/(https:\/\/itsyourshout.ca\/storage\/beers\/)|(http:\/\/localhost:8000\/storage\/beers\/)/", $request->photo);
+            $photoName = $split[1];
+        }
         if ($request->photo && $request->photo instanceof UploadedFile) {
             $photoName = time() . '.' . 'jpg';
             Image::make($request->file('photo'))

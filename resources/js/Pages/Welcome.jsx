@@ -5,6 +5,7 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import Header from "@/Components/Header";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import GuestLayout from "@/Layouts/GuestLayout";
+import FlashMessage from "@/Components/FlashMessage";
 
 export default function Welcome(props) {
 
@@ -13,7 +14,6 @@ export default function Welcome(props) {
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
-    const [showFlashMessage, setShowFlashMessage] = useState(false)
 
     useEffect(() => {
         fetchAllBeers()
@@ -23,17 +23,6 @@ export default function Welcome(props) {
                 setCategories(data)
             })
             .catch(err => console.log(err))
-    }, [])
-
-    useEffect(() => {
-        if (!flash.message) {
-            return
-        }
-        fetchAllBeers()
-        setShowFlashMessage(true)
-        setTimeout(() => {
-            setShowFlashMessage(false)
-        }, 4000)
     }, [flash])
 
     const fetchAllBeers = () => {
@@ -126,9 +115,7 @@ export default function Welcome(props) {
                 >
                     <Head title="All Shouts" />
 
-                    {showFlashMessage && (
-                        <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
-                    )}
+                    <FlashMessage />
                     <div className="bg-pink-400 dark:bg-gray-800 overflow-hidden sm:rounded-lg px-6">
                         <div className="max-w-7xl mx-auto pb-8">
                             <div className="bg-pink-100 overflow-hidden shadow-sm rounded-lg">

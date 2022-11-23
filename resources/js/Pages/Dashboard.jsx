@@ -3,13 +3,12 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, usePage} from '@inertiajs/inertia-react';
 import PrivateBeerDetails from "@/Components/PrivateBeerDetails";
 import Header from "@/Components/Header";
+import FlashMessage from "@/Components/FlashMessage";
 
 export default function Dashboard(props) {
-    const { flash } = usePage().props
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
-    const [showFlashMessage, setShowFlashMessage] = useState(false)
 
     useEffect(() => {
         fetchAllBeers()
@@ -20,17 +19,6 @@ export default function Dashboard(props) {
             })
             .catch(err => console.log(err))
     }, [])
-
-    useEffect(() => {
-        if (!flash.message) {
-            return
-        }
-        fetchAllBeers()
-        setShowFlashMessage(true)
-        setTimeout(() => {
-            setShowFlashMessage(false)
-        }, 4000)
-    }, [flash])
 
     const fetchAllBeers = () => {
         fetch(route('beers.user.index'))
@@ -94,9 +82,7 @@ export default function Dashboard(props) {
         >
             <Head title="My Shouts" />
 
-            {showFlashMessage && (
-                <span className="bg-pink-100 bottom-0 fixed p-4 right-0">{flash.message}</span>
-            )}
+            <FlashMessage />
             <div className="max-w-7xl bg-pink-400 mx-auto px-6">
                 <div className="bg-white overflow-hidden shadow-sm rounded-lg">
                     <Header
