@@ -11,8 +11,9 @@ export default function DeleteBevvie({beer, setShowDeleteModal}) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('beers.user.destroy'));
-        setShowDeleteModal(false)
+        post(route('beers.user.destroy'), {
+            onSuccess: setShowDeleteModal(false)
+        });
     };
 
 

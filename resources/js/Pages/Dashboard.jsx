@@ -6,6 +6,7 @@ import Header from "@/Components/Header";
 import FlashMessage from "@/Components/FlashMessage";
 
 export default function Dashboard(props) {
+    const { flash } = usePage().props
     const [beers, setBeers] = useState([])
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
@@ -18,7 +19,7 @@ export default function Dashboard(props) {
                 setCategories(data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [flash])
 
     const fetchAllBeers = () => {
         fetch(route('beers.user.index'))
