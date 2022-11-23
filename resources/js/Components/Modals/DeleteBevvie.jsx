@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from '@inertiajs/inertia-react';
+import Modal from "@/Components/Modals/Modal";
 
 export default function DeleteBevvie({beer, setShowDeleteModal}) {
 
@@ -16,7 +17,7 @@ export default function DeleteBevvie({beer, setShowDeleteModal}) {
 
 
     return (
-         <div className="fixed top-0 right-0 bottom-0 left-0 overflow-y-scroll p-4 bg-pink-100">
+        <Modal>
             <form onSubmit={submit} className="p-4 bg-white shadow-sm rounded-lg">
                 <p className="pb-4 text-xl leading-tight text-center">Are you sure you want to delete <span className="font-bold ">{beer.name}</span>?</p>
 
@@ -37,6 +38,6 @@ export default function DeleteBevvie({beer, setShowDeleteModal}) {
                     </button>
                 </div>
             </form>
-        </div>
+        </Modal>
     );
 }

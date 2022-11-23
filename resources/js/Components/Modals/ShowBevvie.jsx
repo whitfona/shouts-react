@@ -4,6 +4,7 @@ import {useForm} from "@inertiajs/inertia-react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
+import Modal from "@/Components/Modals/Modal";
 
 export default function ShowBevvie({beer, setShowBevvieModal, userId}) {
 
@@ -37,7 +38,8 @@ export default function ShowBevvie({beer, setShowBevvieModal, userId}) {
     }
 
     return (
-        <div className="fixed top-0 right-0 bottom-0 left-0 overflow-y-scroll p-4 bg-pink-100">
+        // <div className="fixed top-0 right-0 bottom-0 left-0 overflow-y-scroll p-4 bg-pink-100">
+        <Modal>
             <PublicBeerDetails beer={beer} />
             {showError &&
                 <p className="mt-4 px-2 text-lg text-red-600">You must be logged in to rate this beer. <br/><a
@@ -111,6 +113,6 @@ export default function ShowBevvie({beer, setShowBevvieModal, userId}) {
                     Exit
                 </button>
             </div>}
-        </div>
+        </Modal>
     );
 }

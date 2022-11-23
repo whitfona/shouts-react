@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import ApplicationLogo from '@/Components/Icons/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';

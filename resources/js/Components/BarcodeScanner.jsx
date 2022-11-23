@@ -1,5 +1,5 @@
 import Quagga from "@ericblade/quagga2";
-import MagnifyingGlass from "@/Components/MagnifyingGlass";
+import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass";
 import {useState} from "react";
 
 export default function BarcodeScanner({getScannedBeers, setMessage}) {

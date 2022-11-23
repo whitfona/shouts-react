@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DetailFormat from "@/Components/DetailFormat";
-import UpdateBevvie from "@/Components/UpdateBevvie";
-import DeleteBevvie from "@/Components/DeleteBevvie";
+import UpdateBevvie from "@/Components/Modals/UpdateBevvie";
+import DeleteBevvie from "@/Components/Modals/DeleteBevvie";
 
 export default function PrivateBeerDetails({beer, searchByBrewery}) {
     const [showUpdateModal, setShowUpdateModal] = useState(false)

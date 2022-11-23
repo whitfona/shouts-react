@@ -4,6 +4,7 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import heic2any from "heic2any";
+import Modal from "@/Components/Modals/Modal";
 
 export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
@@ -81,7 +82,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
     };
 
     return (
-         <div className="fixed top-0 right-0 bottom-0 left-0 overflow-y-scroll p-4 bg-pink-100">
+         <Modal>
             <form onSubmit={submit} className="p-4 bg-white shadow-sm rounded-lg">
                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                 <div className="font-semibold pb-4 text-xl leading-tight">Update Bevvie</div>
@@ -248,6 +249,6 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                     </button>
                 </div>
             </form>
-        </div>
+         </Modal>
     );
 }

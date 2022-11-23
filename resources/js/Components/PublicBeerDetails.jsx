@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import DetailFormat from "@/Components/DetailFormat";
-import ShowBevvie from "@/Components/ShowBevvie";
+import ShowBevvie from "@/Components/Modals/ShowBevvie";
 
 export default function PublicBeerDetails({beer, searchByBrewery, searchByUser, userId}) {
     const [showBevvieModal, setShowBevvieModal] = useState(false)
