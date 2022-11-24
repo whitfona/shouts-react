@@ -5,6 +5,7 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import heic2any from "heic2any";
 import Modal from "@/Components/Modals/Modal";
+import TypeaheadInput from "@/Components/TypeaheadInput";
 
 export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
@@ -21,6 +22,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
         rating: ''
     });
     const [categories, setCategories] = useState([])
+    const [breweries, setBreweries] = useState([])
     const [previewImage, setPreviewImage] = useState('')
 
     useEffect(() => {
@@ -28,6 +30,14 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
+            })
+            .catch(err => console.log(err))
+
+        fetch(route('beers.index'))
+            .then(res => res.json())
+            .then(data => {
+                const beersSet = new Set(data.map(beer => beer.brewery))
+                setBreweries(Array.from(beersSet))
             })
             .catch(err => console.log(err))
 
@@ -72,6 +82,14 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
             setPreviewImage(URL.createObjectURL(file))
         }
     };
+
+    const breweryFound = (e) => {
+        if (e.length === 1) {
+            const brewery = e[0]
+
+            setData('brewery', brewery)
+        }
+    }
 
     const submit = (e) => {
         e.preventDefault();
@@ -124,13 +142,19 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                     <div className="mt-4 md:grow">
                         <InputLabel forInput="brewery" value="Brewery*" />
 
-                        <TextInput
-                            type="text"
-                            name="brewery"
-                            value={data.brewery}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required
+                        {/*<TextInput*/}
+                        {/*    type="text"*/}
+                        {/*    name="brewery"*/}
+                        {/*    value={data.brewery}*/}
+                        {/*    className="mt-1 block w-full"*/}
+                        {/*    handleChange={onHandleChange}*/}
+                        {/*    required*/}
+                        {/*/>*/}
+                        <TypeaheadInput
+                            data={breweries}
+                            onInputChange={(e) => setData('brewery', e)}
+                            onChange={breweryFound}
+                            initialValue={beer.brewery}
                         />
 
                         <InputError message={errors.brewery} className="mt-2" />
