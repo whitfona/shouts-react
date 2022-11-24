@@ -5,8 +5,8 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import { Typeahead } from "react-bootstrap-typeahead";
 import heic2any from "heic2any";
+import TypeaheadInput from "@/Components/TypeaheadInput";
 
 export default function AddBevvie(props) {
 
@@ -179,14 +179,10 @@ export default function AddBevvie(props) {
                     <div className="p-4 border-b border-gray-200T">
                         <BarcodeScanner getScannedBeers={getScannedBeer} />
                         <p className="text-center my-3">OR</p>
-                        <Typeahead
-                            onChange={getSearchedBeer}
+                        <TypeaheadInput
                             placeholder={'Search for beer...'}
-                            options={beers}
-                            id="id"
-                            clearButton={true}
-                            labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
-                            className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
+                            data={beers}
+                            onChange={getSearchedBeer} labelKey={beer => `${beer.name} | ${beer.brewery} | ${beer.alcohol_percent}% | ${beer.category}`}
                         />
                         <p className="text-red-500 mt-4">{message}</p>
                     </div>
@@ -231,23 +227,11 @@ export default function AddBevvie(props) {
                             <div className="mt-4 md:grow">
                                 <InputLabel forInput="brewery" value="Brewery*" />
 
-                                {/*<TextInput*/}
-                                {/*    type="text"*/}
-                                {/*    name="brewery"*/}
-                                {/*    value={data.brewery}*/}
-                                {/*    className="mt-1 block w-full"*/}
-                                {/*    handleChange={onHandleChange}*/}
-                                {/*    required*/}
-                                {/*/>*/}
-                                <Typeahead
-                                    onChange={breweryFound}
+                                <TypeaheadInput
+                                    data={breweries}
                                     onInputChange={(e) => setData('brewery', e)}
-                                    options={breweries}
-                                    id="id"
-                                    clearButton={true}
-                                    className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
+                                    onChange={breweryFound}
                                 />
-
                                 <InputError message={errors.brewery} className="mt-2" />
                             </div>
                         </div>
