@@ -24,23 +24,49 @@ export default function AddBevvie(props) {
     });
     const [categories, setCategories] = useState([])
     const [beers, setBeers] = useState([])
+    const [breweries, setBreweries] = useState([])
     const [message, setMessage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
 
+    useEffect( () => {
+        fetchAllBeers()
+
+        const breweriesSet = new Set(beers.map(beer => beer.brewery))
+        setBreweries([breweriesSet])
+
+        fetchAllCategories()
+    }, [])
+
     useEffect(() => {
-        fetch(route('beers.index'))
+        const brewerySet = new Set(beers.map(beer => beer.brewery))
+        setBreweries(Array.from(brewerySet))
+    }, [beers])
+
+    const fetchAllBeers = async () => {
+        await fetch(route('beers.index'))
             .then(res => res.json())
             .then(data => {
                 setBeers(data)
             })
             .catch(err => console.log(err))
+    }
+
+    const fetchAllCategories = () => {
         fetch(route('categories.index'))
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }
+
+    const breweryFound = (e) => {
+        if (e.length === 1) {
+            const brewery = e[0]
+
+            setData('brewery', brewery)
+        }
+    }
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
@@ -102,7 +128,8 @@ export default function AddBevvie(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('beers.store'));
+        console.log(data)
+        // post(route('beers.store'));
     };
 
     const setFields = (data, checked) =>{
@@ -204,13 +231,21 @@ export default function AddBevvie(props) {
                             <div className="mt-4 md:grow">
                                 <InputLabel forInput="brewery" value="Brewery*" />
 
-                                <TextInput
-                                    type="text"
-                                    name="brewery"
-                                    value={data.brewery}
-                                    className="mt-1 block w-full"
-                                    handleChange={onHandleChange}
-                                    required
+                                {/*<TextInput*/}
+                                {/*    type="text"*/}
+                                {/*    name="brewery"*/}
+                                {/*    value={data.brewery}*/}
+                                {/*    className="mt-1 block w-full"*/}
+                                {/*    handleChange={onHandleChange}*/}
+                                {/*    required*/}
+                                {/*/>*/}
+                                <Typeahead
+                                    onChange={breweryFound}
+                                    onInputChange={(e) => setData('brewery', e)}
+                                    options={breweries}
+                                    id="id"
+                                    clearButton={true}
+                                    className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full md:w-auto"
                                 />
 
                                 <InputError message={errors.brewery} className="mt-2" />
