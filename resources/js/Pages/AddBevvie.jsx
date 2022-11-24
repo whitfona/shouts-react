@@ -128,8 +128,7 @@ export default function AddBevvie(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        console.log(data)
-        // post(route('beers.store'));
+        post(route('beers.store'));
     };
 
     const setFields = (data, checked) =>{
