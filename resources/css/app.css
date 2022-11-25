@@ -25,6 +25,10 @@ span.rbt-close-content {
     color: #f572b5;
 }
 
+.rbt-menu.dropdown-menu.show {
+    z-index: 1;
+}
+
 span.sr-only.visually-hidden {
     display: none;
 }

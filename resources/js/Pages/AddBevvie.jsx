@@ -212,7 +212,7 @@ export default function AddBevvie(props) {
                                     data={breweries}
                                     onInputChange={(e) => setData('brewery', e)}
                                     onChange={breweryFound}
-                                    selected={[data.brewery]}
+                                    selected={data.brewery === '' ? [] : [data.brewery]}
                                 />
                                 <InputError message={errors.brewery} className="mt-2" />
                             </div>
