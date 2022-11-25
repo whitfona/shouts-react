@@ -1,5 +1,5 @@
-import InputLabel from "@/Components/InputLabel";
-import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/Inputs/InputLabel";
+import InputError from "@/Components/Inputs/InputError";
 import React from "react";
 import heic2any from "heic2any";
 

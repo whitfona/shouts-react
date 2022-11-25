@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, Link, useForm} from '@inertiajs/inertia-react';
 import BarcodeScanner from "@/Components/BarcodeScanner";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
-import TypeaheadInput from "@/Components/TypeaheadInput";
-import FileInput from "@/Components/FileInput";
+import InputLabel from "@/Components/Inputs/InputLabel";
+import TextInput from "@/Components/Inputs/TextInput";
+import InputError from "@/Components/Inputs/InputError";
+import TypeaheadInput from "@/Components/Inputs/TypeaheadInput";
+import FileInput from "@/Components/Inputs/FileInput";
 
 export default function AddBevvie(props) {
 

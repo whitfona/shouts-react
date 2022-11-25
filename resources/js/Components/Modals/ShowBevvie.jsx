@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import PublicBeerDetails from "@/Components/PublicBeerDetails";
 import {useForm} from "@inertiajs/inertia-react";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/Inputs/InputLabel";
+import TextInput from "@/Components/Inputs/TextInput";
+import InputError from "@/Components/Inputs/InputError";
 import Modal from "@/Components/Modals/Modal";
 
 export default function ShowBevvie({beer, setShowBevvieModal, userId}) {

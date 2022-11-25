@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, Link, useForm, usePage} from '@inertiajs/inertia-react';
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/Inputs/InputLabel";
+import TextInput from "@/Components/Inputs/TextInput";
+import InputError from "@/Components/Inputs/InputError";
 import FlashMessage from "@/Components/FlashMessage";
-import FileInput from "@/Components/FileInput";
+import FileInput from "@/Components/Inputs/FileInput";
 
 export default function Dashboard(props) {
     const [previewImage, setPreviewImage] = useState('')
