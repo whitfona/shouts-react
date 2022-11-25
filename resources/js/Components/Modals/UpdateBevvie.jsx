@@ -128,7 +128,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                             data={breweries}
                             onInputChange={(e) => setData('brewery', e)}
                             onChange={breweryFound}
-                            initialValue={beer.brewery}
+                            selected={[data.brewery]}
                         />
 
                         <InputError message={errors.brewery} className="mt-2" />
