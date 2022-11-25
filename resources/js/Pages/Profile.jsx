@@ -8,6 +8,7 @@ import FlashMessage from "@/Components/FlashMessage";
 import FileInput from "@/Components/Inputs/FileInput";
 
 export default function Dashboard(props) {
+    const { app } = usePage().props
     const [previewImage, setPreviewImage] = useState('')
     const { data, setData, post, errors } = useForm({
         user_id: '',
@@ -87,7 +88,7 @@ export default function Dashboard(props) {
                             <InputError message={errors.email} className="mt-2" />
                         </div>
 
-                        {previewImage && <img className="md:w-80 mt-1 mb-2" src={previewImage} alt={data.name} />}
+                        {previewImage && <img className="md:w-80 mt-1 mb-2"  src={`${app.url}/storage/users/${previewImage}`} alt={data.name} />}
                         <FileInput
                             setPreviewImage={setPreviewImage}
                             setData={setData}

@@ -31,10 +31,6 @@ class ProfileController extends Controller
         ]);
 
         $photoName = $request->photo;
-        if ($request->photo && !$request->photo instanceof UploadedFile) {
-            $split = preg_split("/(https:\/\/itsyourshout.ca\/storage\/beers\/)|(http:\/\/localhost:8000\/storage\/beers\/)/", $request->photo);
-            $photoName = $split[1];
-        }
         if ($request->photo && $request->photo instanceof UploadedFile) {
             $photoName = time() . '.' . 'jpg';
             Image::make($request->file('photo'))

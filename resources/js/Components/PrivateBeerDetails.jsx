@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import DetailFormat from "@/Components/DetailFormat";
 import UpdateBevvie from "@/Components/Modals/UpdateBevvie";
 import DeleteBevvie from "@/Components/Modals/DeleteBevvie";
+import {usePage} from "@inertiajs/inertia-react";
 
 export default function PrivateBeerDetails({beer, searchByBrewery}) {
+    const { app } = usePage().props
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
@@ -14,11 +16,12 @@ export default function PrivateBeerDetails({beer, searchByBrewery}) {
         const day = d.getDate()
         return `${year}-${month}-${day}`
     }
+
     return (
         <>
             <div className="border-t-8 border-pink-100 gap-4 md:flex p-4">
                 <div>
-                    <img className="max-w-none w-[192px] mb-3 md:mb-0" src={beer.photo} />
+                    <img className="max-w-none w-[192px] mb-3 md:mb-0" src={`${app.url}/storage/beers/${beer.photo}`} />
                     <div className="flex gap-x-2 mb-3">
                         <button
                             onClick={() => setShowDeleteModal(true)}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useForm} from '@inertiajs/inertia-react';
+import {useForm, usePage} from '@inertiajs/inertia-react';
 import InputLabel from "@/Components/Inputs/InputLabel";
 import TextInput from "@/Components/Inputs/TextInput";
 import InputError from "@/Components/Inputs/InputError";
@@ -9,6 +9,7 @@ import FileInput from "@/Components/Inputs/FileInput";
 
 export default function UpdateBevvie({beer, setShowUpdateModal}) {
 
+    const { app } = usePage().props
     const { data, setData, post, errors } = useForm({
         alcohol_percent: '',
         barcode: '',
@@ -86,7 +87,7 @@ export default function UpdateBevvie({beer, setShowUpdateModal}) {
                 <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                 <div className="font-semibold pb-4 text-xl leading-tight">Update Bevvie</div>
                 <div>
-                    {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={previewImage} alt={data.name} />}
+                    {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`${app.url}/storage/beers/${previewImage}`} alt={data.name} />}
                 </div>
                 <div>
                     <InputLabel forInput="barcode" value="Barcode" />
