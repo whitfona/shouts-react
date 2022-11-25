@@ -5,8 +5,8 @@ import BarcodeScanner from "@/Components/BarcodeScanner";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import heic2any from "heic2any";
 import TypeaheadInput from "@/Components/TypeaheadInput";
+import FileInput from "@/Components/FileInput";
 
 export default function AddBevvie(props) {
 
@@ -70,25 +70,6 @@ export default function AddBevvie(props) {
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
-    };
-
-    const onHandleFileChange = (event) => {
-        const file = event.target.files[0]
-
-        setData(event.target.name, file);
-
-        if (file.type === "image/heic") {
-            heic2any({
-                blob: file,
-                toType: 'image/jpeg',
-            }).then(blob => {
-                setPreviewImage(URL.createObjectURL(blob))
-            }, error => {
-                console.log(error)
-            });
-        } else {
-            setPreviewImage(URL.createObjectURL(file))
-        }
     };
 
     const getScannedBeer = (barcode) => {
@@ -319,19 +300,11 @@ export default function AddBevvie(props) {
                             <InputError message={errors.comment} className="mt-2" />
                         </div>
 
-                        <div className="mt-4">
-                            <InputLabel forInput="photo" value="Add Image" />
-
-                            <input
-                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
-                                id="photo"
-                                type="file"
-                                name="photo"
-                                onChange={onHandleFileChange}
-                            />
-
-                            <InputError message={errors.photo} className="mt-2" />
-                        </div>
+                        <FileInput
+                            setPreviewImage={setPreviewImage}
+                            error={errors.photo}
+                            setData={setData}
+                        />
 
                         <div className="flex gap-4">
                             <button type="submit"
