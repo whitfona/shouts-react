@@ -4,8 +4,8 @@ import {Head, Link, useForm, usePage} from '@inertiajs/inertia-react';
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import heic2any from "heic2any";
 import FlashMessage from "@/Components/FlashMessage";
+import FileInput from "@/Components/FileInput";
 
 export default function Dashboard(props) {
     const [previewImage, setPreviewImage] = useState('')
@@ -35,25 +35,6 @@ export default function Dashboard(props) {
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
-    };
-
-    const onHandleFileChange = (event) => {
-        const file = event.target.files[0]
-
-        setData(event.target.name, file);
-
-        if (file.type === "image/heic") {
-            heic2any({
-                blob: file,
-                toType: 'image/jpeg',
-            }).then(blob => {
-                setPreviewImage(URL.createObjectURL(blob))
-            }, error => {
-                console.log(error)
-            });
-        } else {
-            setPreviewImage(URL.createObjectURL(file))
-        }
     };
 
     const submit = (e) => {
@@ -106,21 +87,12 @@ export default function Dashboard(props) {
                             <InputError message={errors.email} className="mt-2" />
                         </div>
 
-                        <div className="mt-4 md:grow">
-                            <InputLabel forInput="photo" value="Profile Image" />
-
-                            {previewImage && <img className="md:w-80 mt-1 mb-2" src={previewImage} />}
-
-                            <input
-                                className="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full rounded-none"
-                                id="photo"
-                                type="file"
-                                name="photo"
-                                onChange={onHandleFileChange}
-                            />
-
-                            <InputError message={errors.photo} className="mt-2" />
-                        </div>
+                        {previewImage && <img className="md:w-80 mt-1 mb-2" src={previewImage} alt={data.name} />}
+                        <FileInput
+                            setPreviewImage={setPreviewImage}
+                            setData={setData}
+                            error={errors.photo}
+                        />
                         <div className="flex gap-4">
                             <button type="submit"
                                     className="inline-flex items-center px-10 py-6 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mt-8">
