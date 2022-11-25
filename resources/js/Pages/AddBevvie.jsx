@@ -10,7 +10,7 @@ import FileInput from "@/Components/Inputs/FileInput";
 
 export default function AddBevvie(props) {
 
-    const { app } = usePage().props
+    const { url } = usePage().props
     const { data, setData, post, errors } = useForm({
         alcohol_percent: '',
         barcode: '',
@@ -171,7 +171,7 @@ export default function AddBevvie(props) {
                         <input type="hidden" id="beer_id" name="beer_id" value={data.beer_id} />
                         <InputError message={errors.beer_id} className="mt-2" />
                         <div>
-                            {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`${app.url}/storage/beers/${previewImage}`} alt={data.name} />}
+                            {previewImage && <img className="w-[192px] h-[256px] mb-3 md:mb-0 m-auto" src={`${url}/storage/beers/${previewImage}`} alt={data.name} />}
                         </div>
                         <div>
                             <InputLabel forInput="barcode" value="Barcode" />

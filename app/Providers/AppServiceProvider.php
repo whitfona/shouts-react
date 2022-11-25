@@ -14,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Inertia::share('app', [
-            'url' => config('app.url'),
-        ]);
+        Inertia::share('url', env('PROD_URL'));
     }
 
     /**
