@@ -57,22 +57,23 @@ export default function Dashboard(props) {
         }
     }
 
+    useEffect(() => {
+        if (search === '') {
+            return fetchAllBeers()
+        }
+
+        console.log(search)
+        fetch(route('beers.user.search', search))
+            .then(res => res.json())
+            .then(data => {
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
+    }, [search])
+
     const handleSearch = (e) => {
         setSearch(e.target.value)
-        if (search.length > 1) {
-            fetch(route('beers.user.search', search))
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        setBeers([])
-                    }
-                    data.sort((a, b) => b.avg_rating - a.avg_rating)
-                    setBeers(data)
-                })
-                .catch(err => console.log(err))
-        } else {
-            fetchAllBeers()
-        }
     }
 
     return (

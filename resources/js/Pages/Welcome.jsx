@@ -85,24 +85,22 @@ export default function Welcome(props) {
             .catch(err => console.log(err))
     }
 
+    useEffect(() => {
+        if (search === '') {
+            return fetchAllBeers()
+        }
+
+        fetch(route('beers.search.show', search))
+            .then(res => res.json())
+            .then(data => {
+                data.sort((a, b) => b.avg_rating - a.avg_rating)
+                setBeers(data)
+            })
+            .catch(err => console.log(err))
+    }, [search])
+
     const handleSearch = (e) => {
         setSearch(e.target.value)
-        if (search.length > 1) {
-            fetch(route('beers.search.show', search))
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        setMessage('Sorry, no beers match that search.')
-                        setBeers([])
-                    }
-                        data.sort((a, b) => b.avg_rating - a.avg_rating)
-                        setBeers(data)
-                })
-                .catch(err => console.log(err))
-        } else {
-            setMessage('')
-            fetchAllBeers()
-        }
     }
 
     return (
