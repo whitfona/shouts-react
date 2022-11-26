@@ -62,7 +62,6 @@ export default function Dashboard(props) {
             return fetchAllBeers()
         }
 
-        console.log(search)
         fetch(route('beers.user.search', search))
             .then(res => res.json())
             .then(data => {
