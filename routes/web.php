@@ -12,6 +12,7 @@ use App\Http\Controllers\Private\Post\ProfileController;
 use App\Http\Controllers\Private\Post\RatingController;
 use App\Http\Controllers\Private\Post\UpsertBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
+use App\Http\Controllers\Public\Get\AllBreweriesController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
 use App\Http\Controllers\Public\Get\BeersByBarcodeController;
 use App\Http\Controllers\Public\Get\BeersByBreweryController;
@@ -44,6 +45,7 @@ Route::get('/beers/category/{beer}', BeersByCategoryController::class)->name('be
 Route::get('/beers/user/all/{beer}', BeersByUserController::class)->name('beers.user.show');
 Route::get('/beers/search/{beer}', BeersBySearchController::class)->name('beers.search.show');
 Route::get('/categories', AllCategoriesController::class)->name('categories.index');
+Route::get('/beers/breweries', AllBreweriesController::class)->name('breweries.index');
 
 /*
  * START OF PRIVATE ROUTES

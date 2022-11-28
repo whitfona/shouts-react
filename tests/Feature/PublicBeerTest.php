@@ -220,4 +220,13 @@ class PublicBeerTest extends TestCase
             ->assertJsonCount(1);
 //            ->assertJson($beer->toArray());
     }
+
+    public function test_return_all_unique_breweries()
+    {
+        $beer = Beer::all()->unique('brewery')->pluck('brewery');
+
+        $this->getJson(route('breweries.index'))
+            ->assertOk()
+            ->assertJson($beer->toArray());
+    }
 }
