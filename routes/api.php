@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Private\Auth\LoginController;
+use App\Http\Controllers\Private\Auth\LogoutController;
 use App\Http\Controllers\Private\Auth\RegisterController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllBreweriesController;
@@ -40,12 +41,8 @@ Route::get('/categories', AllCategoriesController::class);
 
 Route::post('/register', RegisterController::class);
 Route::post('login', LoginController::class);
-Route::middleware(['auth:sanctum'])->post('/logout', function (Request $request) {
+Route::middleware(['auth:sanctum'])->post('/logout', LogoutController::class);
 
-    $request->user()->currentAccessToken()->delete();
-
-    return response(['You successfully logged out'], 201);
-});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
