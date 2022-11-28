@@ -289,4 +289,17 @@ class PrivateBeerTest extends TestCase
             ->delete(route('beers.user.destroy', $rating->id))
             ->assertRedirect(route('dashboard'));
     }
+
+    public function test_api_registration()
+    {
+        $user = [
+          'name' => 'John Smith',
+          'email' => 'john.smith@example.ca',
+          'password' => 'password',
+          'password_confirmation' => 'password'
+        ];
+
+        $this->postJson('api/register', $user)
+            ->assertOk();
+    }
 }
