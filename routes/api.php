@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Private\Auth\LoginController;
+use App\Http\Controllers\Private\Auth\RegisterController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllBreweriesController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -37,25 +38,8 @@ Route::prefix('beers')->group(function () {
 });
 Route::get('/categories', AllCategoriesController::class);
 
-Route::post('/register', LoginController::class);
-Route::post('/login', function (Request $request) {
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
-
-    $token = $user->createToken($request->email);
-
-    return ['user' => $user, 'token' => $token->plainTextToken];
-});
+Route::post('/register', RegisterController::class);
+Route::post('login', LoginController::class);
 Route::middleware(['auth:sanctum'])->post('/logout', function (Request $request) {
 
     $request->user()->currentAccessToken()->delete();

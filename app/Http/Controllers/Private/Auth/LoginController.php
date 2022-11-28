@@ -6,28 +6,29 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
     /**
-     * Register User using the API
-     * @param Request $request - Name, Email, Password & Password Confirmation of registering user
+     * Login User using the API
+     * @param Request $request - Email, & Password of logging in user
      * @return array - User with token
      */
     public function __invoke(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
 
         $token = $user->createToken($request->email);
 
