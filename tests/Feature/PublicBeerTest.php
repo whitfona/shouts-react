@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Http\Resources\BeerResource;
 use App\Models\Beer;
 use App\Models\Category;
 use App\Models\Rating;
@@ -154,17 +153,16 @@ class PublicBeerTest extends TestCase
 
         $this->getJson(route('beers.index'))
             ->assertOk()
-            ->assertJson($beers->toArray());
+            ->assertJsonCount(count($beers));
     }
 
     public function test_use_barcode_to_get_single_beer_with_all_ratings_comments_from_all_users()
     {
         $beer = Beer::find(2);
-        $beerResource = new BeerResource($beer);
 
         $this->getJson(route('beers.barcode.show', $beer->barcode))
             ->assertOk()
-            ->assertJson([$beerResource]);
+            ->assertJsonCount(1);
     }
 
     public function test_return_all_beers_from_same_brewery()
