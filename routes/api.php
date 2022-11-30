@@ -28,6 +28,7 @@ use Illuminate\Validation\ValidationException;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//PUBLIC ROUTES
 Route::prefix('beers')->group(function () {
     Route::get('/', AllBeersController::class);
     Route::get('/breweries', AllBreweriesController::class);
@@ -39,9 +40,13 @@ Route::prefix('beers')->group(function () {
 });
 Route::get('/categories', AllCategoriesController::class);
 
+// PRIVATE ROUTES
+
+//AUTH ROUTES
 Route::post('/register', RegisterController::class);
 Route::post('login', LoginController::class);
 Route::middleware(['auth:sanctum'])->post('/logout', LogoutController::class);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -81,8 +81,8 @@ export default function AddBevvie(props) {
             .then(data => {
                 // if no matches are returned
                 if (Object.keys(data).length === 0) {
-                    setFields({barcode: barcode})
-                    setMessage('Sorry, no match found. Please try again or enter manually.')
+                    setData('barcode', barcode)
+                    setMessage('Sorry, no match found. Try using the search before entering manually.')
                 } else {
                     const checked = data.has_lactose === 1
                     setFields(data, checked)
@@ -147,6 +147,7 @@ export default function AddBevvie(props) {
         })
     }
 
+    console.log(data)
     return (
         <AuthenticatedLayout
             auth={props.auth}
