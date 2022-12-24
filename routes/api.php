@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Private\API\ProfileUpdateController;
 use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
 use App\Http\Controllers\Private\Auth\RegisterController;
@@ -11,12 +12,8 @@ use App\Http\Controllers\Public\Get\BeersByBreweryController;
 use App\Http\Controllers\Public\Get\BeersByCategoryController;
 use App\Http\Controllers\Public\Get\BeersBySearchController;
 use App\Http\Controllers\Public\Get\BeersByUserController;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,13 +38,13 @@ Route::prefix('beers')->group(function () {
 Route::get('/categories', AllCategoriesController::class);
 
 // PRIVATE ROUTES
+Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:sanctum')->post('/profile/update', ProfileUpdateController::class);
 
 //AUTH ROUTES
 Route::post('/register', RegisterController::class);
 Route::post('login', LoginController::class);
 Route::middleware(['auth:sanctum'])->post('/logout', LogoutController::class);
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
