@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Private\API\DeleteRatingController;
 use App\Http\Controllers\Private\API\ProfileUpdateController;
 use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
@@ -42,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->post('/profile/update', ProfileUpdateController::class);
+Route::middleware('auth:sanctum')->delete('/ratings/{rating}', DeleteRatingController::class);
 
 //AUTH ROUTES
 Route::post('/register', RegisterController::class);
