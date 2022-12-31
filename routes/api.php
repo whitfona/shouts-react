@@ -15,6 +15,7 @@ use App\Http\Controllers\Public\Get\BeersBySearchController;
 use App\Http\Controllers\Public\Get\BeersByUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------

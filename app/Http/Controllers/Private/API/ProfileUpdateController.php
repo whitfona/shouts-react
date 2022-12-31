@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Private\API;
 
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
@@ -13,26 +15,20 @@ class ProfileUpdateController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return Application|ResponseFactory|Response
      */
     public function __invoke(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'id')->ignore($request->user()->id)],
-            'profile_image' => [ 'sometimes', 'max:5000', 'nullable',
-                function ($attribute, $value, $fail) {
-                    if (!is_string($value) && !($value instanceof UploadedFile)) {
-                        $fail('The '.$attribute.' must either be a string or file.');
-                    }
-                }
-            ],
+            'profile_image' => ['sometimes', 'string']
         ]);
 
         $photoName = $request->profile_image;
-        if ($request->profile_image && $request->profile_image instanceof UploadedFile) {
+        if ($request->profile_image) {
             $photoName = time() . '.' . 'jpg';
-            Image::make($request->file('photo'))
+            Image::make($request->profile_image)
                 ->resize(512, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })
