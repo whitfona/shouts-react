@@ -4,17 +4,14 @@ namespace App\Http\Controllers\Private\API;
 
 use App\Models\Beer;
 use App\Models\Rating;
-use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
-use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 
-class BeerUpdateController extends Controller
+class BeerUpsertController extends Controller
 {
     /**
      * @param Request $request
@@ -59,10 +56,11 @@ class BeerUpdateController extends Controller
         $beer->brewery = $request->brewery;
         $beer->alcohol_percent = $request->alcohol_percent;
         $beer->has_lactose = request()->has('hasLactose');
-        if (!$photoName) {
-            $beer->photo = 'zzzzempty-sour-glass.png';
-        } else {
+        if ($photoName) {
             $beer->photo = $photoName;
+        }
+        if (!$beer->photo && !$photoName) {
+            $beer->photo = 'zzzzempty-sour-glass.png';
         }
         $beer->category_id = $request->category_id;
         $beer->save();

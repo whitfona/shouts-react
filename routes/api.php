@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Private\API\BeerUpdateController;
+use App\Http\Controllers\Private\API\BeerUpsertController;
 use App\Http\Controllers\Private\API\DeleteRatingController;
 use App\Http\Controllers\Private\API\ProfileUpdateController;
 use App\Http\Controllers\Private\Auth\LoginController;
@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->post('/profile/update', ProfileUpdateController::class);
-Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpdateController::class);
+Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpsertController::class);
 Route::middleware('auth:sanctum')->delete('/ratings/{rating}', DeleteRatingController::class);
 
 //AUTH ROUTES
