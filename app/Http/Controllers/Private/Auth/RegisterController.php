@@ -27,6 +27,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => strtolower($request->email),
             'password' => Hash::make($request->password),
+            'profile_image' => 'zzzno-profile-image.png',
         ]);
 
         $token = $user->createToken($request->email);

@@ -22,7 +22,7 @@ class ProfileUpdateController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'id')->ignore($request->user()->id)],
-            'profile_image' => ['sometimes', 'string']
+            'profile_image' => ['sometimes', 'string', 'nullable']
         ]);
 
         $photoName = $request->profile_image;
@@ -42,6 +42,9 @@ class ProfileUpdateController extends Controller
         $user->email = $request->email;
         if ($photoName) {
             $user->profile_image = $photoName;
+        }
+        if (!$user->profile_image && !$photoName) {
+            $user->profile_image = 'zzzno-profile-image.png';
         }
 
         $user->save();
