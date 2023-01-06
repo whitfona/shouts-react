@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Private\API\BeerUpsertController;
 use App\Http\Controllers\Private\API\DeleteRatingController;
+use App\Http\Controllers\Private\API\PasswordUpdateController;
 use App\Http\Controllers\Private\API\ProfileUpdateController;
 use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\Public\Get\BeersBySearchController;
 use App\Http\Controllers\Public\Get\BeersByUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->post('/profile/update', ProfileUpdateController::class);
+Route::middleware('auth:sanctum')->post('/profile/password', PasswordUpdateController::class);
 Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpsertController::class);
 Route::middleware('auth:sanctum')->delete('/ratings/{rating}', DeleteRatingController::class);
 
