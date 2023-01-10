@@ -4,6 +4,7 @@ use App\Http\Controllers\Private\API\BeerUpsertController;
 use App\Http\Controllers\Private\API\DeleteRatingController;
 use App\Http\Controllers\Private\API\PasswordUpdateController;
 use App\Http\Controllers\Private\API\ProfileUpdateController;
+use App\Http\Controllers\Private\API\UserBeersController;
 use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
 use App\Http\Controllers\Private\Auth\RegisterController;
@@ -44,6 +45,7 @@ Route::get('/categories', AllCategoriesController::class);
 Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:sanctum')->get('/user/all', UserBeersController::class);
 Route::middleware('auth:sanctum')->post('/profile/update', ProfileUpdateController::class);
 Route::middleware('auth:sanctum')->post('/profile/password', PasswordUpdateController::class);
 Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpsertController::class);
