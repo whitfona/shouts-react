@@ -8,6 +8,7 @@ use App\Http\Controllers\Private\API\UpdateUserRatingController;
 use App\Http\Controllers\Private\API\UserBeersController;
 use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
+use App\Http\Controllers\Private\Auth\PasswordResetController;
 use App\Http\Controllers\Private\Auth\RegisterController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllBreweriesController;
@@ -18,9 +19,6 @@ use App\Http\Controllers\Public\Get\BeersByBreweryController;
 use App\Http\Controllers\Public\Get\BeersByCategoryController;
 use App\Http\Controllers\Public\Get\BeersBySearchController;
 use App\Http\Controllers\Public\Get\BeersByUserController;
-use App\Http\Resources\BeerResource;
-use App\Models\Beer;
-use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +58,7 @@ Route::middleware('auth:sanctum')->post('/user/beer/rating', UpdateUserRatingCon
 
 //AUTH ROUTES
 Route::post('/register', RegisterController::class);
-Route::post('login', LoginController::class);
+Route::post('/login', LoginController::class);
 Route::middleware(['auth:sanctum'])->post('/logout', LogoutController::class);
+Route::post('/forgot-password', PasswordResetController::class);
 
