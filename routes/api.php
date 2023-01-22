@@ -35,8 +35,8 @@ use Illuminate\Support\Facades\Route;
 //PUBLIC ROUTES
 Route::prefix('beers')->group(function () {
     Route::get('/', AllBeersController::class);
-    Route::get('/{beer}', BeerByIdController::class);
     Route::get('/breweries', AllBreweriesController::class);
+    Route::get('/{beer}', BeerByIdController::class);
     Route::get('/barcode/{beer}', BeersByBarcodeController::class);
     Route::get('/brewery/{beer}', BeersByBreweryController::class);
     Route::get('/category/{beer}', BeersByCategoryController::class);
