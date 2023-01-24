@@ -692,5 +692,122 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => '1669221044.jpg'
         ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 87692001355,
+            'name' => 'Samuel Adams Boston Lager',
+            'brewery' => 'Boston Beer Company',
+            'alcohol_percent' => 4.8,
+            'has_lactose' => false,
+            'photo' => '1669820858.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Day Dream - oat sour ale with Niagara cherries',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1669944047.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627843550044,
+            'name' => 'Biju',
+            'brewery' => 'Nita Beer Company',
+            'alcohol_percent' => 6.1,
+            'has_lactose' => false,
+            'photo' => '1670027746.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627843655398,
+            'name' => 'Passion Project',
+            'brewery' => 'Natalya’s Brewing Company',
+            'alcohol_percent' => 5.8,
+            'has_lactose' => false,
+            'photo' => '1670027834.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 180288000029,
+            'name' => 'Outside Jokes',
+            'brewery' => 'Town Brewery Inc.',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1670033991.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627843580256,
+            'name' => 'Pearson Express',
+            'brewery' => 'Henderson Brewing Co',
+            'alcohol_percent' => 6.5,
+            'has_lactose' => false,
+            'photo' => '1670102427.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 628347504946,
+            'name' => 'Mosaic',
+            'brewery' => 'Furnace Room Brewery',
+            'alcohol_percent' => 5.2,
+            'has_lactose' => false,
+            'photo' => '1670112249.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 628451784067,
+            'name' => 'Easy Amber',
+            'brewery' => 'Perth Brewery',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1670708587.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 186300004499,
+            'name' => 'Circling The Sun',
+            'brewery' => 'Collective Arts Brewing Limited',
+            'alcohol_percent' => 5.8,
+            'has_lactose' => false,
+            'photo' => '1670708685.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => null,
+            'name' => 'Captains Log Lager',
+            'brewery' => 'CAMERON\'S Brewing Company',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => 'zzzzempty-sour-glass.png'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 699057000004,
+            'name' => 'Greenwood',
+            'brewery' => 'Left Field Brewery',
+            'alcohol_percent' => 6.3,
+            'has_lactose' => false,
+            'photo' => '1670721133.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 839561000057,
+            'name' => 'Lady Friend',
+            'brewery' => 'Elora Brewing Co.',
+            'alcohol_percent' => 6,
+            'has_lactose' => false,
+            'photo' => '1670727791.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 699057000516,
+            'name' => 'Ice Cold Beer',
+            'brewery' => 'Left Field Brewery',
+            'alcohol_percent' => 4.5,
+            'has_lactose' => false,
+            'photo' => '1671159294.jpg'
+        ]);
     }
 }
