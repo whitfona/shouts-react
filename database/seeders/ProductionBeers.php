@@ -908,5 +908,104 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => '1671651906.jpg'
         ]);
+        Beer::factory()->create([
+            'category_id' => 7,
+            'barcode' => 620707111917,
+            'name' => 'Pineapple Radler',
+            'brewery' => 'Waterloo Brewing Ltd.',
+            'alcohol_percent' => 2.5,
+            'has_lactose' => false,
+            'photo' => '1671652312.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 7,
+            'barcode' => 620707111917,
+            'name' => 'Grapefruit Radler',
+            'brewery' => 'Waterloo Brewing Ltd.',
+            'alcohol_percent' => 2.5,
+            'has_lactose' => false,
+            'photo' => '1671652441.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 675325010104,
+            'name' => 'BlackBerry   ',
+            'brewery' => 'Somersby',
+            'alcohol_percent' => 4.5,
+            'has_lactose' => false,
+            'photo' => '1671653270.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 66542504000,
+            'name' => 'Strawberry Hibiscus',
+            'brewery' => 'Reinhart Foods Ltd.',
+            'alcohol_percent' => 5.0,
+            'has_lactose' => false,
+            'photo' => '1671653365.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 702915000617,
+            'name' => 'Premium Pale Ale',
+            'brewery' => 'Steam Whistle Brewing',
+            'alcohol_percent' => 5.0,
+            'has_lactose' => false,
+            'photo' => '1671656354.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 56910304738,
+            'name' => 'Clear 2.0',
+            'brewery' => 'Sleeman Brewing',
+            'alcohol_percent' => 4,
+            'has_lactose' => false,
+            'photo' => '1671656459.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 62067567346,
+            'name' => 'Bud Light',
+            'brewery' => 'Labatt Brewing Company Limited',
+            'alcohol_percent' => 4,
+            'has_lactose' => false,
+            'photo' => '1671656568.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 62067382215,
+            'name' => 'Stella Artois',
+            'brewery' => 'Anheuser-Busch',
+            'alcohol_percent' => 5.0,
+            'has_lactose' => false,
+            'photo' => '1671656664.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 56327183230,
+            'name' => 'Coors Light',
+            'brewery' => 'Coors Brewing Company',
+            'alcohol_percent' => 4,
+            'has_lactose' => false,
+            'photo' => '1671659244.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 62067382369,
+            'name' => 'Corona Extra',
+            'brewery' => 'Cerveceria Modelo De Mexico',
+            'alcohol_percent' => 4.6,
+            'has_lactose' => false,
+            'photo' => '1671659336.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 779373398761,
+            'name' => 'Cranberry Apple Cider',
+            'brewery' => 'Thornbury Craft Co.',
+            'alcohol_percent' => 5.3,
+            'has_lactose' => false,
+            'photo' => '1671659426.jpg'
+        ]);
     }
 }
