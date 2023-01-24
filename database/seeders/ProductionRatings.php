@@ -573,11 +573,5 @@ class ProductionRatings extends Seeder
             'rating' => 5,
             'comment' => ''
         ]);
-        Rating::factory()->create([
-            'user_id' => 1,
-            'beer_id' => 124,
-            'rating' => 4,
-            'comment' => ''
-        ]);
     }
 }
