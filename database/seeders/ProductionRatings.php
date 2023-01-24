@@ -393,5 +393,66 @@ class ProductionRatings extends Seeder
             'rating' => 2,
             'comment' => 'It\'s Trash'
         ]);
+        Rating::factory()->create([
+            'user_id' => 9,
+            'beer_id' => 44,
+            'rating' => 9,
+            'comment' => 'This is my fave beer from my fave brewer in Ontario so far. Powerful, gets a good buzz going, boozy flavor, pretty bitter.'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 76,
+            'rating' => 10,
+            'comment' => 'Pale sour with lactose, orange, pineapple, & rosemary'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 67,
+            'rating' => 8.5,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 66,
+            'rating' => 7,
+            'comment' => 'Kinda hoppy for a pale ale'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 74,
+            'rating' => 5.5,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 72,
+            'rating' => 7.4,
+            'comment' => 'Tastes like a Christmas peppermint chocolate drink'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 43,
+            'rating' => 9.2,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 77,
+            'rating' => 6,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 78,
+            'rating' => 7.6,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 79,
+            'rating' => 8.2,
+            'comment' => ''
+        ]);
+
     }
 }
