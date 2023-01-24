@@ -513,5 +513,71 @@ class ProductionRatings extends Seeder
             'rating' => 6,
             'comment' => ''
         ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 90,
+            'rating' => 9.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 10,
+            'rating' => 7,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 112,
+            'rating' => 7.7,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 113,
+            'rating' => 7.2,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 3,
+            'beer_id' => 114,
+            'rating' => 8.3,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 115,
+            'rating' => 7.8,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 116,
+            'rating' => 1,
+            'comment' => 'Couldn\'t even finish it'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 117,
+            'rating' => 8.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 118,
+            'rating' => 8.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 123,
+            'rating' => 9.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 124,
+            'rating' => 6.3,
+            'comment' => ''
+        ]);
     }
 }
