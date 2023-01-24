@@ -809,5 +809,104 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => '1671159294.jpg'
         ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627843577485,
+            'name' => 'Boxing Bruin',
+            'brewery' => 'Cowbell Brewing Co.',
+            'alcohol_percent' => 6.3,
+            'has_lactose' => false,
+            'photo' => '1671159372.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 186360051835,
+            'name' => 'POG Fresh Fruit Sour',
+            'brewery' => 'Collective Arts Brewing Limited',
+            'alcohol_percent' => 6.0,
+            'has_lactose' => false,
+            'photo' => '1671160496.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 793888279971,
+            'name' => 'Jelly King Plum',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 5.6,
+            'has_lactose' => false,
+            'photo' => '1671160567.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 19962910043,
+            'name' => 'Jelly King',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 5.6,
+            'has_lactose' => false,
+            'photo' => '1671160615.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 674687100072,
+            'name' => 'Rad Pale Ale',
+            'brewery' => 'Thornbury Craft Co.',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1671160689.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 855315007011,
+            'name' => 'Organic Sangria-Style',
+            'brewery' => 'Mill St. Brewery',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1671160739.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 628055731313   ,
+            'name' => 'Zane Lost His Avocado Bag',
+            'brewery' => 'Refined Fool Brewing Co.',
+            'alcohol_percent' => 7.6,
+            'has_lactose' => false,
+            'photo' => '1671160803.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 20707190101,
+            'name' => 'Seagram Premium White Peach Cider',
+            'brewery' => 'Waterloo Brewing Ltd.',
+            'alcohol_percent' => 5.3,
+            'has_lactose' => false,
+            'photo' => '1671650341.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 66542506004,
+            'name' => 'Reinhart’s BlackBerry',
+            'brewery' => 'Reinhart Foods Ltd.',
+            'alcohol_percent' => 7,
+            'has_lactose' => false,
+            'photo' => '1671650478.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 4,
+            'barcode' => 627843868521,
+            'name' => 'Wild Cherry',
+            'brewery' => 'KW Craft Cider Inc.',
+            'alcohol_percent' => 6.4,
+            'has_lactose' => false,
+            'photo' => '1671650790.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => 834873000269,
+            'name' => 'Hibiscus Sour',
+            'brewery' => 'Side Launch Brewing Company',
+            'alcohol_percent' => 4.2,
+            'has_lactose' => false,
+            'photo' => '1671651906.jpg'
+        ]);
     }
 }
