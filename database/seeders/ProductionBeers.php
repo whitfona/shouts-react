@@ -1007,5 +1007,122 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => '1671659426.jpg'
         ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' =>  687437998539,
+            'name' => 'Hazy Blonde',
+            'brewery' => 'Old Flame Brewing Co.',
+            'alcohol_percent' => 5,
+            'has_lactose' => false,
+            'photo' => '1671752032.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => NULL,
+            'name' => 'Gelato Sour - Raspberry & Lavender',
+            'brewery' => 'Fine Balance Brewing Company',
+            'alcohol_percent' => 5.4,
+            'has_lactose' => false,
+            'photo' => '1671752866.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => NULL,
+            'name' => 'Gelato Sour - Strawberry & Vanilla',
+            'brewery' => 'Fine Balance Brewing Company',
+            'alcohol_percent' => 5.4,
+            'has_lactose' => false,
+            'photo' => '1671756160.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 627843374756,
+            'name' => 'Naughty Otter',
+            'brewery' => 'Gan Beer Company Ltd.',
+            'alcohol_percent' => 5.2,
+            'has_lactose' => false,
+            'photo' => '1671756253.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => 604947481887,
+            'name' => 'Our Pet Pilsner',
+            'brewery' => 'Publican House Brewery',
+            'alcohol_percent' => 4.5,
+            'has_lactose' => false,
+            'photo' => '1671893440.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627843680727,
+            'name' => 'Instigator',
+            'brewery' => 'Indie Alehouse Brewing Co.',
+            'alcohol_percent' => 6.5,
+            'has_lactose' => false,
+            'photo' => '1671893537.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 628055459019,
+            'name' => 'Ball’s Falls Session IPA',
+            'brewery' => 'Bench Brewing Company',
+            'alcohol_percent' => 4.5,
+            'has_lactose' => false,
+            'photo' => '1671907210.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 818662000456,
+            'name' => 'Gnarnia Lil\' IPA',
+            'brewery' => 'Sawdust City Brewing Company',
+            'alcohol_percent' => 5.5,
+            'has_lactose' => false,
+            'photo' => '1673978339.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 793888595910,
+            'name' => 'Monogamy',
+            'brewery' => 'Bellwoods Brewery',
+            'alcohol_percent' => 6.4,
+            'has_lactose' => false,
+            'photo' => '1673978497.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 627843000020,
+            'name' => 'Junction Craft Pilsner',
+            'brewery' => 'Junction Craft Beverage Co.',
+            'alcohol_percent' => 4.5,
+            'has_lactose' => false,
+            'photo' => '1673978594.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627987171716,
+            'name' => 'Premium Pilsner',
+            'brewery' => 'Paniza Brewing Co.',
+            'alcohol_percent' => 5.0,
+            'has_lactose' => false,
+            'photo' => '1673978680.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => 627987941463,
+            'name' => 'Two Loons',
+            'brewery' => 'Two Loons Brewing Ltd.',
+            'alcohol_percent' => 6.3,
+            'has_lactose' => false,
+            'photo' => '1674345237.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => 628110037008,
+            'name' => 'Front Porch',
+            'brewery' => 'Calabogie Brewing Co. Ltd',
+            'alcohol_percent' => 4.7,
+            'has_lactose' => false,
+            'photo' => '1674402691.jpg'
+        ]);
     }
 }
