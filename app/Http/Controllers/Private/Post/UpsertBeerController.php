@@ -33,7 +33,7 @@ class UpsertBeerController extends Controller
                 }
             ],
             'comment' => ['sometimes', 'string', 'max:280', 'nullable'],
-            'rating' => ['required', 'numeric', 'gte:0', 'lte:10', 'nullable'],
+            'rating' => ['required', 'numeric', 'gte:0', 'lte:5', 'nullable'],
             'category_id' => ['sometimes', 'numeric', 'gte:0', 'nullable'],
         ]);
 
