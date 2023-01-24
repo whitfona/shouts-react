@@ -453,6 +453,65 @@ class ProductionRatings extends Seeder
             'rating' => 8.2,
             'comment' => ''
         ]);
-
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 80,
+            'rating' => 5.9,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 81,
+            'rating' => 7,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 82,
+            'rating' => 7.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 83,
+            'rating' => 6.4,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 84,
+            'rating' => 7.3,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 85,
+            'rating' => 7.8,
+            'comment' => 'Apple and cherry cider'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 86,
+            'rating' => 8.9,
+            'comment' => 'Nice and light'
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 87,
+            'rating' => 8.6,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 88,
+            'rating' => 8.3,
+            'comment' => ''
+        ]);
+        Rating::factory()->create([
+            'user_id' => 1,
+            'beer_id' => 89,
+            'rating' => 6,
+            'comment' => ''
+        ]);
     }
 }
