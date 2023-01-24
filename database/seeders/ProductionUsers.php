@@ -23,7 +23,8 @@ class ProductionUsers extends Seeder
         User::factory()->create([
             'name' => 'Firas Khalid',
             'email' => 'drfiraskhalid@gmail.com',
-            'password' => '$2y$10$mwnVU3CofQOvQ1BIQjmjV.ZyKqpu/97DXBMa6O80nn/0FH8kmix76'
+            'password' => '$2y$10$mwnVU3CofQOvQ1BIQjmjV.ZyKqpu/97DXBMa6O80nn/0FH8kmix76',
+            'profile_image' => 'zzzno-profile-image.png'
         ]);
         User::factory()->create([
             'name' => 'Jill',
@@ -45,17 +46,26 @@ class ProductionUsers extends Seeder
         User::factory()->create([
             'name' => 'Andy J',
             'email' => 'andyjlloyd@gmail.com',
-            'password' => '$2y$10$KtYOjYvxeYsnmfe2QG83dugomCPmfRSklmWZAeDX/t4qpSOftnjbW'
+            'password' => '$2y$10$KtYOjYvxeYsnmfe2QG83dugomCPmfRSklmWZAeDX/t4qpSOftnjbW',
+            'profile_image' => 'zzzno-profile-image.png'
         ]);
         User::factory()->create([
             'name' => 'Moniefa',
             'email' => 'moniefae@yahoo.ca',
-            'password' => '$2y$10$5eqPGmwLyu33bY259PJsHulvwzIyCswFVh4B.xZf5ZTHVW58cTwMC'
+            'password' => '$2y$10$5eqPGmwLyu33bY259PJsHulvwzIyCswFVh4B.xZf5ZTHVW58cTwMC',
+            'profile_image' => 'zzzno-profile-image.png'
         ]);
         User::factory()->create([
             'name' => 'Gideon Bell',
             'email' => 'bell.gideon@gmail.com',
-            'password' => '$2y$10$dz7j/3098SsYiOSwvDgcyuNWKu7gj/cCAtS6WJr7qiYU9sGDPTEVS'
+            'password' => '$2y$10$dz7j/3098SsYiOSwvDgcyuNWKu7gj/cCAtS6WJr7qiYU9sGDPTEVS',
+            'profile_image' => 'zzzno-profile-image.png'
+        ]);
+        User::factory()->create([
+            'name' => 'John Benjamin',
+            'email' => 'jgbenjam@gmail.com  ',
+            'password' => '$2y$10$uhiEiw20QVgM2P75DWJ7iec/czBc2UQedSMf8SpB48GF.6pOM1Sim',
+            'profile_image' => 'zzzno-profile-image.png'
         ]);
     }
 }
