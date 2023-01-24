@@ -609,5 +609,88 @@ class ProductionBeers extends Seeder
             'has_lactose' => false,
             'photo' => 'zzzzempty-sour-glass.png'
         ]);
+        /* THESE ARE ALL NEW BEERS */
+
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Bob\'s Best English Ale',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 4.4,
+            'has_lactose' => false,
+            'photo' => '1669157813.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 3,
+            'barcode' => null,
+            'name' => 'Reboot',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 6.0,
+            'has_lactose' => false,
+            'photo' => '1669174518.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => null,
+            'name' => 'All Roads',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 8.0,
+            'has_lactose' => false,
+            'photo' => '1669157955.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Day Dream',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 5.0,
+            'has_lactose' => false,
+            'photo' => '1669158009.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 2,
+            'barcode' => null,
+            'name' => 'Cold Call',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 6.8,
+            'has_lactose' => false,
+            'photo' => '1669158057.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 8,
+            'barcode' => null,
+            'name' => 'Winter White Stout',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 5.6,
+            'has_lactose' => false,
+            'photo' => '1669158102.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 8,
+            'barcode' => null,
+            'name' => 'Winter Stout',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 5.6,
+            'has_lactose' => false,
+            'photo' => '1669158143.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 5,
+            'barcode' => null,
+            'name' => 'Little Thrills',
+            'brewery' => 'Grain & Grit Beer Co.',
+            'alcohol_percent' => 4.8,
+            'has_lactose' => false,
+            'photo' => '1669158204.jpg'
+        ]);
+        Beer::factory()->create([
+            'category_id' => 1,
+            'barcode' => null,
+            'name' => 'Gummy Venus',
+            'brewery' => 'Fairweather Brewing Co.',
+            'alcohol_percent' => 7,
+            'has_lactose' => false,
+            'photo' => '1669221044.jpg'
+        ]);
     }
 }
