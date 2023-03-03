@@ -10,6 +10,7 @@ use App\Http\Controllers\Private\Auth\LoginController;
 use App\Http\Controllers\Private\Auth\LogoutController;
 use App\Http\Controllers\Private\Auth\PasswordResetController;
 use App\Http\Controllers\Private\Auth\RegisterController;
+use App\Http\Controllers\Private\Delete\UserController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllBreweriesController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -55,6 +56,7 @@ Route::middleware('auth:sanctum')->post('/profile/password', PasswordUpdateContr
 Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpsertController::class);
 Route::middleware('auth:sanctum')->delete('/ratings/{rating}', DeleteRatingController::class);
 Route::middleware('auth:sanctum')->post('/user/beer/rating', UpdateUserRatingController::class);
+Route::middleware('auth:sanctum')->delete('/users/delete/{user}', UserController::class);
 
 //AUTH ROUTES
 Route::post('/register', RegisterController::class);

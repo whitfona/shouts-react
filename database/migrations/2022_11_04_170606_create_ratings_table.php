@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('beer_id');
-            $table->unsignedInteger('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->float('rating');
             $table->text('comment')->nullable();
             $table->timestamps();
