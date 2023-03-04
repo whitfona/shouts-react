@@ -314,7 +314,7 @@ class PrivateBeerTest extends TestCase
         $otherUserOneRating = Rating::factory()->create(['user_id' => $userOne->id, 'beer_id' => $userOneBeer->id]);
 
         $this->actingAs($userOne)
-            ->delete('/api/users/delete/' . $userOne->id)
+            ->delete('/api/users/delete')
             ->assertOk()
             ->assertSuccessful();
     }

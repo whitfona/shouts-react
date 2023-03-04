@@ -56,7 +56,7 @@ Route::middleware('auth:sanctum')->post('/profile/password', PasswordUpdateContr
 Route::middleware('auth:sanctum')->post('/beers/{beer}/update', BeerUpsertController::class);
 Route::middleware('auth:sanctum')->delete('/ratings/{rating}', DeleteRatingController::class);
 Route::middleware('auth:sanctum')->post('/user/beer/rating', UpdateUserRatingController::class);
-Route::middleware('auth:sanctum')->delete('/users/delete/{user}', UserController::class);
+Route::middleware('auth:sanctum')->delete('/users/delete', UserController::class);
 
 //AUTH ROUTES
 Route::post('/register', RegisterController::class);
