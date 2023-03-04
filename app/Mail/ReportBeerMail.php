@@ -37,15 +37,8 @@ class ReportBeerMail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
+    public function build(): ReportBeerMail
     {
-        return new Content(
-            view: 'view.report-beer',
-        );
+        return $this->view('emails.report-beer', $this->data);
     }
 }

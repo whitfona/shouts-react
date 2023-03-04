@@ -37,15 +37,8 @@ class FeedbackMail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
+    public function build(): FeedbackMail
     {
-        return new Content(
-            view: 'view.feedback',
-        );
+        return $this->view('emails.feedback', $this->data);
     }
 }
