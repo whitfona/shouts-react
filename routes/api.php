@@ -11,6 +11,8 @@ use App\Http\Controllers\Private\Auth\LogoutController;
 use App\Http\Controllers\Private\Auth\PasswordResetController;
 use App\Http\Controllers\Private\Auth\RegisterController;
 use App\Http\Controllers\Private\Delete\UserController;
+use App\Http\Controllers\Public\Email\FeedbackController;
+use App\Http\Controllers\Public\Email\ReportBeerController;
 use App\Http\Controllers\Public\Get\AllBeersController;
 use App\Http\Controllers\Public\Get\AllBreweriesController;
 use App\Http\Controllers\Public\Get\AllCategoriesController;
@@ -45,6 +47,8 @@ Route::prefix('beers')->group(function () {
     Route::get('/search/{beer}', BeersBySearchController::class);
 });
 Route::get('/categories', AllCategoriesController::class);
+Route::post('/report/beer', ReportBeerController::class);
+Route::post('/report', FeedbackController::class);
 
 // PRIVATE ROUTES
 Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
