@@ -34,7 +34,9 @@ export default function ResetPassword({ token, email }) {
         <GuestLayout>
             <Head title="Reset Password" />
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="p-8">
+                <h2 className="font-medium text-3xl text-gray-700 text-center pb-4">Reset Password</h2>
+
                 <div>
                     <InputLabel forInput="email" value="Email" />
 

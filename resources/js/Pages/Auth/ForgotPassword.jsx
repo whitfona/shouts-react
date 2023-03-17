@@ -29,7 +29,7 @@ export default function ForgotPassword({ status }) {
                 reset link that will allow you to choose a new one.
             </div>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            {status && <div className="pl-8 mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit} className="p-8">
                 <TextInput
@@ -41,7 +41,7 @@ export default function ForgotPassword({ status }) {
                     handleChange={onHandleChange}
                 />
 
-                <InputError message={errors.email} className="mt-2" />
+                <InputError message={errors.email} className="pl-8 mt-2" />
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ml-4" processing={processing}>
