@@ -37,11 +37,41 @@ class BeerUpsertController extends Controller
         $photoName = $request->photo;
         if ($request->photo) {
             $photoName = time() . '.' . 'jpg';
-            Image::make($request->photo)
-                ->resize(512, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->orientate()
+
+            // Convert the base64 string to a binary string
+            $imageData = base64_decode($request->photo);
+            $image = Image::make($imageData);
+
+            // Use exif_read_data() to read the orientation metadata
+            $exif = exif_read_data('data://image/jpeg;base64,' . base64_encode($imageData));
+            if (!empty($exif['Orientation'])) {
+                $orientation = $exif['Orientation'];
+                if ($orientation === 2) { // EXIF orientation value for flipped horizontally
+                    $image->flip('h');
+                }
+                elseif ($orientation === 3) { // EXIF orientation value for rotated 180 degrees
+                    $image->rotate(180);
+                }
+                elseif ($orientation === 4) { // EXIF orientation value for flipped vertically
+                    $image->flip('v');
+                }
+                elseif ($orientation === 5) { // EXIF orientation value for flipped horizontally and rotated 270 degrees
+                    $image->flip('h')->rotate(-90);
+                }
+                elseif ($orientation === 6) { // EXIF orientation value for rotated 90 degrees
+                    $image->rotate(-90);
+                }
+                elseif ($orientation === 7) { // EXIF orientation value for flipped horizontally and rotated 90 degrees
+                    $image->flip('h')->rotate(90);
+                }
+                elseif ($orientation === 8) { // EXIF orientation value for rotated 270 degrees
+                    $image->rotate(-90);
+                }
+            }
+
+            $image->resize(512, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
                 ->save(public_path('/storage/beers/') . $photoName);
         }
 
@@ -84,6 +114,6 @@ class BeerUpsertController extends Controller
             $newRating->save();
         }
 
-        return response('Beer successfully updated.', 200);
+        return response('Beer not updated.', 200);
     }
 }
